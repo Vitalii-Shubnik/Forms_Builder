@@ -6,18 +6,16 @@ import * as moment from "moment"
   providedIn: 'root',
 })
 export class AuthService {
-
   constructor(private http: HttpClient) {
   }
   logout() {
     localStorage.removeItem('user')
-    localStorage.removeItem('expiresIn')
   }
   login(email: string, password: string) {
     return this.http.post<any>('http://localhost:8000/users/authenticate', { username: email, password })
       .pipe(
         map(user => {
-          localStorage.setItem('user', user.token)
+          localStorage.setItem('user', JSON.stringify(user))
         }),
         shareReplay()
       );
@@ -26,8 +24,7 @@ export class AuthService {
     return this.http.post<any>('http://localhost:8000/users/register', { username: email, password })
       .pipe(
         map(user => {
-          localStorage.setItem('user', user.token)
-          localStorage.setItem('expiresIn', user.expiresIn)
+          localStorage.setItem('user', JSON.stringify(user))
         }),
         shareReplay()
       );
@@ -35,15 +32,16 @@ export class AuthService {
   public isLoggedIn() {
     return moment().isBefore(this.getExpiration()) && !!localStorage.getItem("user")
   }
-  get user(){
-    return this.isLoggedIn() && localStorage.getItem("user");
+  get user() {
+    const user = JSON.parse(localStorage.getItem('user')!);
+    return user !== null ? user : false;
   }
   isLoggedOut() {
     return !this.isLoggedIn();
   }
 
   getExpiration() {
-    const expiration = localStorage.getItem("expiresIn");
+    const expiration = this.user.expiresIn
     const expiresAt = JSON.parse(expiration!);
     return moment(expiresAt);
   }
