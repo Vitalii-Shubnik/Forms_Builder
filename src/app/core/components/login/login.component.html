@@ -1,0 +1,31 @@
+<form class="login-form" [formGroup]="form" *ngIf="formState === false; else authorized">
+  <legend>{{authMethod}}</legend>
+  <mat-form-field appearance="outline">
+    <mat-label>Email</mat-label>
+    <input matInput name="email" formControlName="email">
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label>Password</mat-label>
+    <input matInput name="password" formControlName="password" type="password">
+  </mat-form-field>
+  <div *ngIf="authMethod==='Login';else registerTemplate">
+    <div class="form-method">
+      <button mat-raised-button (click)="login()">Login</button>
+      <span>New user? <span class="change-method-text" (click)="toggleSwitchMethod()">Sign Up</span></span>
+    </div>
+  </div>
+  <ng-template #registerTemplate>
+    <div class="form-method">
+      <button mat-raised-button class="submit-form-button" (click)="register()">Register</button>
+      <span>
+        Already have an account? <span class="change-method-text" (click)="toggleSwitchMethod()">Sign In</span>
+      </span>
+    </div>
+  </ng-template>
+</form>
+<ng-template #authorized>
+  <div class="already-logged">
+    <span>You are already logged in as {{authService.user.username}}</span>
+    <button mat-raised-button (click)="logout()">Logout</button>
+  </div>
+</ng-template>

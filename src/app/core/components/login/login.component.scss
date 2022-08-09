@@ -1,0 +1,26 @@
+.login-form{
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.change-method-text{
+  cursor: pointer;
+  color: #53aded;
+}
+.change-method-text:hover{
+  color: #006fd1;
+}
+.form-method{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+.already-logged{
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
