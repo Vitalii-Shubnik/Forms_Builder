@@ -1,17 +1,21 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
 import { RouterModule, Routes } from '@angular/router';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { HomeComponent } from './home/home.component';
-import { LoginComponent } from './login/login.component';
+import { HomeComponent } from './core/components/home/home.component';
+import { LoginComponent } from './core/components/login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { AuthService } from './shared/services/auth.service';
+import { AuthService } from './core/services/auth.service';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { AuthGuard } from './core/guard/auth.guard';
+import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input'
+import { ToastrModule } from 'ngx-toastr';
 
 const routes: Routes = [
-  { path: 'home', component: HomeComponent },
+  { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'authenticate', component: LoginComponent }
 ]
@@ -28,6 +32,14 @@ const routes: Routes = [
     NoopAnimationsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    MatButtonModule,
+    BrowserAnimationsModule,
+    MatInputModule,
+    ToastrModule.forRoot()
+  ],
+  exports: [
+    MatButtonModule,
+    MatInputModule,
   ],
   providers: [
     AuthService,
