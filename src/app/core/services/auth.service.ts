@@ -30,20 +30,20 @@ export class AuthService {
       );
   }
   public isLoggedIn() {
-    return moment().isBefore(this.getExpiration()) && !!localStorage.getItem("user")
+    return this.getExpiration() && !!localStorage.getItem("user")
   }
   get user() {
     const user = JSON.parse(localStorage.getItem('user')!);
     return user !== null ? user : false;
   }
+
   isLoggedOut() {
     return !this.isLoggedIn();
   }
 
   getExpiration() {
     const expiration = this.user.expiresIn
-    const expiresAt = JSON.parse(expiration!);
-    return moment(expiresAt);
+    return expiration && moment().isBefore(moment(JSON.parse(expiration)));
   }
 }
 
