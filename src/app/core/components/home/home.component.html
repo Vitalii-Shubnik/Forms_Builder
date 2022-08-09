@@ -1,1 +1,31 @@
-<p>home works!</p>
+<div class="homepage" cdkDropListGroup>
+  <section class="form-builder-section first-section">
+    sss
+  </section>
+  <section class="form-builder-section first-section">
+    <ul class="drop-area" cdkDropList [cdkDropListData]="someArray" (cdkDropListDropped)="drop($event)">
+      <li *ngFor="let element of someArray" cdkDrag>
+        <div [innerHtml]="element"></div>
+      </li>
+    </ul>
+  </section>
+  <section class="form-builder-section first-section" cdkDropList (cdkDropListDropped)="drop($event)">
+    <div class="item-to-drag" *ngFor="let el of someArray" cdkDrag>
+      <div [innerHtml]="el">
+
+      </div>
+    </div>
+    <!-- <div #first class="item-to-drag" cdkDrag>
+      <label>Input</label>
+      <input disabled type="text" />
+    </div>
+    <div #first class="item-to-drag" cdkDrag>
+      <label>Textarea</label>
+      <textarea disabled></textarea>
+    </div>
+    <div #first class="item-to-drag" cdkDrag>
+      <label>Select</label>
+      <select disabled class="somepadding" name="sss" id="sss"></select>
+    </div> -->
+  </section>
+</div>

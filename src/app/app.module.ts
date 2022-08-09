@@ -13,6 +13,8 @@ import { AuthGuard } from './core/guard/auth.guard';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input'
 import { ToastrModule } from 'ngx-toastr';
+import { PortalModule } from '@angular/cdk/portal'
+import { DragDropModule } from '@angular/cdk/drag-drop'
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
@@ -35,7 +37,9 @@ const routes: Routes = [
     MatButtonModule,
     BrowserAnimationsModule,
     MatInputModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    PortalModule,
+    DragDropModule,
   ],
   exports: [
     MatButtonModule,
