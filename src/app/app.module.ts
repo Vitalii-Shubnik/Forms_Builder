@@ -14,8 +14,14 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input'
 import { ToastrModule } from 'ngx-toastr';
 import { PortalModule } from '@angular/cdk/portal'
-import { DragDropModule } from '@angular/cdk/drag-drop'
-
+import { DragDropModule } from '@angular/cdk/drag-drop';
+import { InputComponent } from './core/components/form-elements/input/input.component';
+import { SelectorComponent } from './core/components/selector/selector.component';
+import { TextareaComponent } from './core/components/form-elements/textarea/textarea.component';
+import { SelectComponent } from './core/components/form-elements/select/select.component';
+import { CheckboxComponent } from './core/components/form-elements/checkbox/checkbox.component';
+import { ButtonComponent } from './core/components/form-elements/button/button.component';
+import { StyleService } from './core/services/style.service';
 const routes: Routes = [
   { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -26,7 +32,13 @@ const routes: Routes = [
   declarations: [
     AppComponent,
     HomeComponent,
-    LoginComponent
+    LoginComponent,
+    InputComponent,
+    SelectorComponent,
+    TextareaComponent,
+    SelectComponent,
+    CheckboxComponent,
+    ButtonComponent,
   ],
   imports: [
     BrowserModule,
@@ -47,7 +59,8 @@ const routes: Routes = [
   ],
   providers: [
     AuthService,
-    HttpClient
+    HttpClient,
+    StyleService
   ],
   bootstrap: [AppComponent]
 })

@@ -1,31 +1,56 @@
-<div class="homepage" cdkDropListGroup>
+<!-- <div class="homepage" cdkDropListGroup>
   <section class="form-builder-section first-section">
     sss
   </section>
   <section class="form-builder-section first-section">
-    <ul class="drop-area" cdkDropList [cdkDropListData]="someArray" (cdkDropListDropped)="drop($event)">
-      <li *ngFor="let element of someArray" cdkDrag>
-        <div [innerHtml]="element"></div>
-      </li>
+    <ul class="drop-area" cdkDropList (cdkDropListDropped)="drop($event)">
+      <div class="example-custom-placeholder" *cdkDragPlaceholder></div>
+      <ng-component class="new-form-element" *ngFor="let element of componentPortals" [cdkPortalOutlet]="element"></ng-component>
     </ul>
   </section>
-  <section class="form-builder-section first-section" cdkDropList (cdkDropListDropped)="drop($event)">
-    <div class="item-to-drag" *ngFor="let el of someArray" cdkDrag>
-      <div [innerHtml]="el">
+  <section class="form-builder-section first-section" cdkDropList (cdkDropListDropped)="dropBack($event)">
+    <div #dragItem class="item-to-drag" cdkDrag>
+      <label>Input</label>
+      <input  type="text" />
+    </div>
+    <div #dragItem class="item-to-drag" cdkDrag>
+      <label>Textarea</label>
+      <textarea ></textarea>
+    </div>
+    <div #dragItem class="item-to-drag" cdkDrag>
+      <label>Select</label>
+      <select  class="somepadding" name="sss" id="sss"></select>
+    </div>
+  </section>
+</div> -->
 
+
+
+
+
+<div cdkDropListGroup class="home-container">
+  <div class="example-container ">
+    <h2>1 section</h2>
+    <div class="example-list first-section">
+      {{current}}
+    </div>
+  </div>
+  <div class="example-container">
+    <h2>2 section</h2>
+    <div cdkDropList [cdkDropListData]="used" class="example-list" (cdkDropListDropped)="drop($event)">
+      <div class="example-box" *ngFor="let item of used" (click)="customClick($event,item)" cdkDrag>
+        <div class="example-custom-placeholder" *cdkDragPlaceholder></div>
+        <app-selector [data]="item"></app-selector>
       </div>
     </div>
-    <!-- <div #first class="item-to-drag" cdkDrag>
-      <label>Input</label>
-      <input disabled type="text" />
+  </div>
+  <div class="example-container">
+    <h2>3 section</h2>
+    <div cdkDropList [cdkDropListData]="available" class="example-list" (cdkDropListDropped)="drop($event)" [cdkDropListEnterPredicate]="noReturnPredicate">
+      <div class="example-box" *ngFor="let item of available" cdkDrag>
+        <div class="example-custom-placeholder" *cdkDragPlaceholder></div>
+        <app-selector [data]="item"></app-selector>
+      </div>
     </div>
-    <div #first class="item-to-drag" cdkDrag>
-      <label>Textarea</label>
-      <textarea disabled></textarea>
-    </div>
-    <div #first class="item-to-drag" cdkDrag>
-      <label>Select</label>
-      <select disabled class="somepadding" name="sss" id="sss"></select>
-    </div> -->
-  </section>
+  </div>
 </div>
