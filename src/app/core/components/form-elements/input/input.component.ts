@@ -1,0 +1,19 @@
+import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
+import { StyleService } from 'src/app/core/services/style.service';
+
+@Component({
+  selector: 'app-input',
+  templateUrl: './input.component.html',
+  styleUrls: ['./input.component.scss']
+})
+export class InputComponent implements AfterViewInit {
+  @ViewChild('coreElement') coreElement: ElementRef<HTMLElement>
+  constructor(private styleService: StyleService) { }
+
+  ngAfterViewInit(): void {
+    console.log(this.coreElement.nativeElement)
+  }
+  clickEvent(){
+    this.styleService.setCurrent(this.coreElement.nativeElement)
+  }
+}
