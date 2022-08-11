@@ -15,5 +15,6 @@ export class InputComponent implements AfterViewInit {
   }
   clickEvent(){
     this.styleService.setCurrent(this.coreElement.nativeElement)
+    // this.coreElement.nativeElement.remove()
   }
 }
