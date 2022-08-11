@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
+import { CustomStyles } from '../models/styles';
 
 @Injectable({
   providedIn: 'root'
@@ -16,17 +17,16 @@ export class StyleService {
     // el.style.color
     return el.nodeName.toLowerCase()
   }
-  getElementCurrentStyleValues(el: HTMLElement){
-    // const names = el.getAttributeNames()
-    // names.filter(el=> el === 'placeholder' || 'required')
+  getElementCurrentStyleValues(el: HTMLElement): CustomStyles{
     return {
       width: el.style.width,
       height: el.style.height,
       placeholder: el.getAttribute('placeholder'),
       required: el.getAttribute('required'),
-      fontsize: el.style.fontSize,
-      fontweight: el.style.fontWeight,
+      fontSize: el.style.fontSize,
+      fontWeight: el.style.fontWeight,
       color: el.style.color,
+      borderStyle: el.style.borderStyle
     }
   }
 }

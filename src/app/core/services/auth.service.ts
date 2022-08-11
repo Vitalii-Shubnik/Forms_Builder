@@ -11,13 +11,13 @@ export class AuthService {
   logout() {
     localStorage.removeItem('user')
   }
-  login(email: string, password: string) {
+  login(email: string, password: string): Observable<any>  {
     return this.http.post<any>('http://localhost:8000/users/authenticate', { username: email, password })
       .pipe(
-        map(user => {
+        map((user) => {
           localStorage.setItem('user', JSON.stringify(user))
-        }),
-        shareReplay()
+          return user
+        })
       );
   }
   register(email: string, password: string): Observable<any> {
@@ -26,7 +26,6 @@ export class AuthService {
         map(user => {
           localStorage.setItem('user', JSON.stringify(user))
         }),
-        shareReplay()
       );
   }
   public isLoggedIn() {
