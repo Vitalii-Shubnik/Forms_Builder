@@ -10,7 +10,7 @@
   </mat-form-field>
   <div *ngIf="authMethod==='Login';else registerTemplate">
     <div class="form-method">
-      <button mat-raised-button (click)="login()">Login</button>
+      <button mat-raised-button (click)="loginClick()">Login</button>
       <span>New user? <span class="change-method-text" (click)="toggleSwitchMethod()">Sign Up</span></span>
     </div>
   </div>

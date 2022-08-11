@@ -4,6 +4,9 @@ import { Router } from '@angular/router';
 import { authMethodEnum } from '../../enums/authMethod';
 import { AuthService } from '../../services/auth.service';
 import { ToastrService } from 'ngx-toastr';
+import { Store } from '@ngrx/store';
+import { from } from 'rxjs';
+import * as AuthActions from 'src/app/shared/actions/auth.actions';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +18,8 @@ export class LoginComponent {
     private fb: FormBuilder,
     public authService: AuthService,
     private router: Router,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private store: Store
   ) {
 
     this.form = this.fb.group({
@@ -23,6 +27,8 @@ export class LoginComponent {
       password: ['', Validators.required]
     });
   }
+
+
 
   form: FormGroup;
   authMethod: authMethodEnum = authMethodEnum.login;
@@ -34,6 +40,11 @@ export class LoginComponent {
   logout() {
     this.authService.logout()
     this.toastr.success('Logged out')
+  }
+
+  loginClick() {
+    const val = this.form.value
+    this.store.dispatch(AuthActions.loginRequest({username: val.email, password: val.password}))
   }
 
   login() {

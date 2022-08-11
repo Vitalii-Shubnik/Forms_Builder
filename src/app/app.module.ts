@@ -22,6 +22,11 @@ import { SelectComponent } from './core/components/form-elements/select/select.c
 import { CheckboxComponent } from './core/components/form-elements/checkbox/checkbox.component';
 import { ButtonComponent } from './core/components/form-elements/button/button.component';
 import { StyleService } from './core/services/style.service';
+import { StylesPipe } from './core/pipes/styles.pipe';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import { authReducer } from './shared/reducers/auth.reducer';
+import { AuthEffects } from './shared/effects/auth.effects';
 const routes: Routes = [
   { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -39,6 +44,7 @@ const routes: Routes = [
     SelectComponent,
     CheckboxComponent,
     ButtonComponent,
+    StylesPipe,
   ],
   imports: [
     BrowserModule,
@@ -52,6 +58,8 @@ const routes: Routes = [
     ToastrModule.forRoot(),
     PortalModule,
     DragDropModule,
+    StoreModule.forRoot({auth: authReducer}, {}),
+    EffectsModule.forRoot([AuthEffects]),
   ],
   exports: [
     MatButtonModule,
