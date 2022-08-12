@@ -3,19 +3,20 @@
     <legend>{{authMethod}}</legend>
     <mat-form-field appearance="outline">
       <mat-label>Email</mat-label>
-      <input matInput name="email" formControlName="email" >
+      <input matInput name="email" formControlName="email">
       <mat-error *ngIf="form.get('email')?.errors">Please enter valid email</mat-error>
     </mat-form-field>
     <mat-form-field appearance="outline">
       <mat-label>Password</mat-label>
       <input matInput name="password" formControlName="password" type="password">
+      <mat-error *ngIf="form.get('email')?.errors">Password is too short</mat-error>
     </mat-form-field>
-    <div *ngIf="authMethod==='Login';else registerTemplate">
+    <ng-container *ngIf="authMethod==='Login'; else registerTemplate">
       <div class="form-method">
         <button mat-raised-button (click)="loginClick()">Login</button>
         <span>New user? <span class="change-method-text" (click)="toggleSwitchMethod()">Sign Up</span></span>
       </div>
-    </div>
+    </ng-container>
     <ng-template #registerTemplate>
       <div class="form-method">
         <button mat-raised-button class="submit-form-button" (click)="loginClick()">Register</button>
