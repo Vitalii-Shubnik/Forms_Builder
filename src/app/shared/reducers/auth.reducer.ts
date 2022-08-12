@@ -1,37 +1,40 @@
 import { createReducer, on } from '@ngrx/store';
 
-import { loginError, loginRequest, loginSuccess, register, logout } from '../actions/auth.actions';
-
-
-export interface AuthState {
-  id: number,
-  username: string,
-  expiresIn: number,
-  token: string,
-  error?: string
-}
+import { loginError, loginSuccess, logout } from '../actions/auth.actions';
+import { AuthState } from '../statesModels/auth.state';
 
 export const initialUser: AuthState = {
   id: null,
   username: null,
   token: null,
   expiresIn: null,
-  error: null
+}
+const getInitialUser = () =>{
+  const user: AuthState | null = JSON.parse(localStorage.getItem('user')!);
+  return user !== null ? user : {initialUser};
 }
 
 export const authReducer = createReducer(
-  initialUser,
-  // on(loginRequest, (state): any => 0),
-  on(loginSuccess, (state, { response }): any => {
+  getInitialUser(),
+  on(loginSuccess, (state, { response }): AuthState => {
     return {
       ...state,
       id: response.id,
       username: response.username,
       token: response.token,
-      expiresIn: response.expiresIn
+      expiresIn: response.expiresIn,
     }
   }),
-  on(loginError, (state, { response }): any => {
+  on(loginError, (state, { response }): AuthState => {
+    return {
+      ...state,
+      id: null,
+      username: null,
+      token: null,
+      expiresIn: null,
+    }
+  }),
+  on(logout, (state): AuthState =>{
     return {
       ...state,
       id: null,

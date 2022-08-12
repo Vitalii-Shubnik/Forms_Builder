@@ -17,46 +17,65 @@ export class AuthEffects {
     private router: Router
   ) { }
 
+  logout$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(AuthActions.logout),
+
+      tap(() => {
+        this.authService.logout()
+        this.toastr.success('Logged out')
+      })
+    )
+  },
+    { dispatch: false }
+  )
 
   loginRequest$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(AuthActions.loginRequest),
       exhaustMap((action) => {
-        console.log(action.username, action.type, action)
+        let url = ''
+        switch (action.authMethod) {
+          case 'Login': {
+            url = 'http://localhost:8000/users/authenticate'
+            break
+          }
+          case 'Register': {
+            url = 'http://localhost:8000/users/register'
+            break
+          }
+        }
         return this.authService
-          .login(action.username, action.password).pipe(
+          .authorize(action.username, action.password, url)
+          .pipe(
             map((response) => AuthActions.loginSuccess({ response })),
-            catchError((error) => of(AuthActions.loginError({ response:error })))
+            catchError((error) => of(AuthActions.loginError({ response: error })))
           )
-      })
+      }
+      )
     )
-  }
-  )
+  })
 
   loginSuccess$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(AuthActions.loginSuccess),
       tap(({ response }) => {
-        this.toastr.success('Login successful')
+        this.toastr.success(response.message)
         this.router.navigateByUrl('/')
       })
     )
   },
-    {
-      dispatch: false
-    }
+    { dispatch: false }
   )
+
   loginError$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(AuthActions.loginError),
       tap(({ response }) => {
-        console.log(response.error.message)
-        this.toastr.error(response.error.message)
+        response && this.toastr.error(response.error.message)
       })
     )
   },
-    {
-      dispatch: false
-    }
+    { dispatch: false }
   )
 }

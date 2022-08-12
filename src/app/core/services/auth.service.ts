@@ -1,48 +1,28 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
-import { map, Observable, shareReplay } from 'rxjs';
-import * as moment from "moment"
+import { map, Observable } from 'rxjs';
+
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  constructor(private http: HttpClient) {
-  }
+  constructor(
+    private http: HttpClient,
+  ) {}
+  
   logout() {
     localStorage.removeItem('user')
   }
-  login(email: string, password: string): Observable<any>  {
-    return this.http.post<any>('http://localhost:8000/users/authenticate', { username: email, password })
+
+  authorize(email: string, password: string, url: string): Observable<any> {
+    console.log('auth called')
+    return this.http.post<any>(url, { username: email, password })
       .pipe(
         map((user) => {
           localStorage.setItem('user', JSON.stringify(user))
           return user
         })
       );
-  }
-  register(email: string, password: string): Observable<any> {
-    return this.http.post<any>('http://localhost:8000/users/register', { username: email, password })
-      .pipe(
-        map(user => {
-          localStorage.setItem('user', JSON.stringify(user))
-        }),
-      );
-  }
-  public isLoggedIn() {
-    return this.getExpiration() && !!localStorage.getItem("user")
-  }
-  get user() {
-    const user = JSON.parse(localStorage.getItem('user')!);
-    return user !== null ? user : false;
-  }
-
-  isLoggedOut() {
-    return !this.isLoggedIn();
-  }
-
-  getExpiration() {
-    const expiration = this.user.expiresIn
-    return expiration && moment().isBefore(moment(JSON.parse(expiration)));
   }
 }
 

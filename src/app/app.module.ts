@@ -8,7 +8,7 @@ import { HomeComponent } from './core/components/home/home.component';
 import { LoginComponent } from './core/components/login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from './core/services/auth.service';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthGuard } from './core/guard/auth.guard';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input'
@@ -27,6 +27,9 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { authReducer } from './shared/reducers/auth.reducer';
 import { AuthEffects } from './shared/effects/auth.effects';
+import { BoolToStringPipe } from './core/pipes/bool-to-string.pipe';
+import { LetModule, PushModule } from '@ngrx/component'; 
+import { ContentApplicationJsonInterceptor } from './core/interceptors/content-application-json.interceptor';
 const routes: Routes = [
   { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -45,6 +48,7 @@ const routes: Routes = [
     CheckboxComponent,
     ButtonComponent,
     StylesPipe,
+    BoolToStringPipe,
   ],
   imports: [
     BrowserModule,
@@ -60,6 +64,8 @@ const routes: Routes = [
     DragDropModule,
     StoreModule.forRoot({auth: authReducer}, {}),
     EffectsModule.forRoot([AuthEffects]),
+    LetModule,
+    PushModule
   ],
   exports: [
     MatButtonModule,
@@ -68,7 +74,12 @@ const routes: Routes = [
   providers: [
     AuthService,
     HttpClient,
-    StyleService
+    StyleService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ContentApplicationJsonInterceptor,
+      multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })
