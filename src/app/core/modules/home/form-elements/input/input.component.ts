@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { StyleService } from 'src/app/core/services/style.service';
 
 @Component({
@@ -13,6 +13,5 @@ export class InputComponent {
 
   clickEvent(){
     this.styleService.setCurrent(this.coreElement.nativeElement)
-    // this.coreElement.nativeElement.remove()
   }
 }
