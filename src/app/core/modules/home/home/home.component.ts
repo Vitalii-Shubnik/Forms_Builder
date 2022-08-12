@@ -1,9 +1,9 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { CdkDragDrop, CdkDropList, copyArrayItem, moveItemInArray } from '@angular/cdk/drag-drop';
-import { AvailableItems } from '../../enums/availableItem';
-import { StyleService } from '../../services/style.service';
+import { AvailableItems } from '../../../enums/availableItem';
+import { StyleService } from '../../../services/style.service';
 import { Renderer2 } from '@angular/core';
-import { CustomStyles } from '../../models/styles';
+import { CustomStyles } from '../../../models/styles';
 @Component({
   selector: 'app-home',
   templateUrl: 'home.component.html',

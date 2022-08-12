@@ -1,6 +1,6 @@
 import { Component, } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { authMethodEnum } from '../../enums/authMethod';
+import { authMethodEnum } from '../../../enums/authMethod';
 import { Store } from '@ngrx/store';
 import * as AuthActions from 'src/app/shared/actions/auth.actions';
 import { selectAuthUsername, selectIsLoggedIn } from 'src/app/shared/selectors/auth.selector';
