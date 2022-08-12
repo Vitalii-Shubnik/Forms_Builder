@@ -1,9 +1,10 @@
 import { Component, } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { authMethodEnum } from '../../../enums/authMethod';
 import { Store } from '@ngrx/store';
 import * as AuthActions from 'src/app/shared/actions/auth.actions';
 import { selectAuthUsername, selectIsLoggedIn } from 'src/app/shared/selectors/auth.selector';
+import { FormValues } from 'src/app/core/models/formValues';
 
 @Component({
   selector: 'app-login',
@@ -16,8 +17,8 @@ export class LoginComponent {
     private store: Store
   ) {
     this.form = this.fb.group({
-      email: ['', Validators.required],
-      password: ['', Validators.required]
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(3)]]
     });
   }
 
@@ -26,16 +27,16 @@ export class LoginComponent {
   isLoggedIn$ = this.store.select(selectIsLoggedIn)
   userName$ = this.store.select(selectAuthUsername)
   
-  toggleSwitchMethod = () => {
+  toggleSwitchMethod(): void {
     this.authMethod == authMethodEnum.login ? this.authMethod = authMethodEnum.register : this.authMethod = authMethodEnum.login
   }
 
-  logout() {
+  logout(): void {
     this.store.dispatch(AuthActions.logout())
   }
 
-  loginClick() {
-    const val = this.form.value
+  loginClick(): void {
+    const val:FormValues = this.form.value
     this.store.dispatch(AuthActions.loginRequest({ username: val.email, password: val.password, authMethod: this.authMethod }))
   }
 

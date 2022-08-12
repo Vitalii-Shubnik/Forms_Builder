@@ -3,7 +3,8 @@
     <legend>{{authMethod}}</legend>
     <mat-form-field appearance="outline">
       <mat-label>Email</mat-label>
-      <input matInput name="email" formControlName="email">
+      <input matInput name="email" formControlName="email" >
+      <mat-error *ngIf="form.get('email')?.errors">Please enter valid email</mat-error>
     </mat-form-field>
     <mat-form-field appearance="outline">
       <mat-label>Password</mat-label>

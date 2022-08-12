@@ -20,7 +20,6 @@ export class AuthEffects {
   logout$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(AuthActions.logout),
-
       tap(() => {
         this.authService.logout()
         this.toastr.success('Logged out')

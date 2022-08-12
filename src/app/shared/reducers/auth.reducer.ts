@@ -1,5 +1,4 @@
 import { createReducer, on } from '@ngrx/store';
-
 import { loginError, loginSuccess, logout } from '../actions/auth.actions';
 import { AuthState } from '../statesModels/auth.state';
 
@@ -9,6 +8,7 @@ export const initialUser: AuthState = {
   token: null,
   expiresIn: null,
 }
+
 const getInitialUser = () =>{
   const user: AuthState | null = JSON.parse(localStorage.getItem('user')!);
   return user !== null ? user : {initialUser};
