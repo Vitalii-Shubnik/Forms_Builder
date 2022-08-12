@@ -6,13 +6,11 @@ import { StyleService } from 'src/app/core/services/style.service';
   templateUrl: './input.component.html',
   styleUrls: ['./input.component.scss']
 })
-export class InputComponent implements AfterViewInit {
+export class InputComponent {
   @ViewChild('coreElement') coreElement: ElementRef<HTMLElement>
   constructor(private styleService: StyleService) { }
 
-  ngAfterViewInit(): void {
-    console.log(this.coreElement.nativeElement)
-  }
+
   clickEvent(){
     this.styleService.setCurrent(this.coreElement.nativeElement)
     // this.coreElement.nativeElement.remove()
