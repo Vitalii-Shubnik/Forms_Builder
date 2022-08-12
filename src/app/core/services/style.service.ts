@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
+import { Subject } from 'rxjs';
 import { CustomStyles } from '../models/styles';
 
 @Injectable({
@@ -14,7 +14,6 @@ export class StyleService {
     this.currentElement.next(el)
   }
   getElementType(el: HTMLElement){
-    // el.style.color
     return el.nodeName.toLowerCase()
   }
   getElementCurrentStyleValues(el: HTMLElement): CustomStyles{

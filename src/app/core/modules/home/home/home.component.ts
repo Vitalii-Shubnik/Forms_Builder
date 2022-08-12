@@ -4,6 +4,7 @@ import { AvailableItems } from '../../../enums/availableItem';
 import { StyleService } from '../../../services/style.service';
 import { Renderer2 } from '@angular/core';
 import { CustomStyles } from '../../../models/styles';
+
 @Component({
   selector: 'app-home',
   templateUrl: 'home.component.html',
@@ -35,7 +36,6 @@ export class HomeComponent {
   drop(event: CdkDragDrop<any>) {
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
-    //  event.previousContainer.removeItem(event.item)
     } else {
       copyArrayItem(
         event.previousContainer.data,
@@ -50,7 +50,7 @@ export class HomeComponent {
     return false;
   }
 
-  
+
 }
 
 
