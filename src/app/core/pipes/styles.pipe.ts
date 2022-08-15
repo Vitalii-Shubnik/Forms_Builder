@@ -6,17 +6,19 @@ import { CustomStyles } from '../models/styles';
 })
 export class StylesPipe implements PipeTransform {
 
-  transform(value: CustomStyles, ...args: unknown[]): unknown {
-    return value && `
-      Placeholder: ${value.placeholder || '' }\n
-      Width: ${value.width || '' } \n
-      Height: ${value.height || '' } \n
-      Color: ${value.color || '' } \n
-      BorderStyle: ${value.borderStyle || '' } \n
-      Required: ${value.required || '' } \n
-      FontWeight: ${value.fontWeight || '' } \n
-      FontSize: ${value.fontSize || '' } \n
+  transform(value: HTMLElement, ...args: unknown[]): unknown {
+    {
+      return value && `
+      Placeholder: ${value.getAttribute('placeholder') || ''}\n
+      Width: ${window.getComputedStyle(value).width || ''} \n
+      Height: ${window.getComputedStyle(value).height  || ''} \n
+      Color: ${window.getComputedStyle(value).color  || ''} \n
+      BorderStyle: ${window.getComputedStyle(value).borderStyle  || ''} \n
+      Required: ${value.getAttribute('required') || ''} \n
+      FontWeight: ${window.getComputedStyle(value).fontWeight || ''} \n
+      FontSize: ${window.getComputedStyle(value).fontSize  || ''} \n
       ` ;
-  }
+    }
 
+  }
 }

@@ -1,28 +1,5 @@
 <div cdkDropListGroup class="home-container">
-  <div class="example-container ">
-    <h2>1 section</h2>
-    <div class="example-list first-section">
-      <div style="white-space: pre">
-        {{current | styles}}
-      </div>
-    </div>
-  </div>
-  <div class="example-container">
-    <h2>2 section</h2>
-    <div #customForm cdkDropList [cdkDropListData]="used" class="example-list" (cdkDropListDropped)="drop($event)">
-      <div class="example-box"  *ngFor="let item of used" (click)="customClick($event,item)" cdkDrag>
-        <div class="example-custom-placeholder" *cdkDragPlaceholder></div>
-        <app-selector [data]="item"></app-selector>
-      </div>
-    </div>
-  </div>
-  <div class="example-container">
-    <h2>3 section</h2>
-    <div cdkDropList [cdkDropListData]="available" class="example-list" (cdkDropListDropped)="drop($event)" [cdkDropListEnterPredicate]="noReturnPredicate">
-      <div class="example-box"  *ngFor="let item of available" cdkDrag>
-        <div class="example-custom-placeholder" *cdkDragPlaceholder></div>
-        <app-selector [data]="item"></app-selector>
-      </div>
-    </div>
-  </div>
+  <app-first-section></app-first-section>
+  <app-second-section [used]="used"></app-second-section>
+  <app-third-section [available]="available"></app-third-section>
 </div>
