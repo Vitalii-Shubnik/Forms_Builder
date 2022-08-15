@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { AuthService } from '../services/auth.service';
+import { PortalBridgeService } from './portal-bridge.service';
 
-describe('AuthService', () => {
-  let service: AuthService;
+describe('PortalBridgeService', () => {
+  let service: PortalBridgeService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(AuthService);
+    service = TestBed.inject(PortalBridgeService);
   });
 
   it('should be created', () => {

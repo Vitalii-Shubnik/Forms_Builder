@@ -11,6 +11,9 @@ import { StylesPipe } from '../../pipes/styles.pipe';
 import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { PortalModule } from '@angular/cdk/portal';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { FirstSectionComponent } from './first-section/first-section.component';
+import { SecondSectionComponent } from './second-section/second-section.component';
+import { ThirdSectionComponent } from './third-section/third-section.component';
 
 
 @NgModule({
@@ -23,6 +26,9 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     CheckboxComponent,
     ButtonComponent,
     StylesPipe,
+    FirstSectionComponent,
+    SecondSectionComponent,
+    ThirdSectionComponent,
   ],
   imports: [
     NoopAnimationsModule,

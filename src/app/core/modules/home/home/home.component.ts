@@ -1,54 +1,44 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
-import { CdkDragDrop, CdkDropList, copyArrayItem, moveItemInArray } from '@angular/cdk/drag-drop';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { CdkDragDrop, CdkDropList, copyArrayItem, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { AvailableItems } from '../../../enums/availableItem';
 import { StyleService } from '../../../services/style.service';
 import { Renderer2 } from '@angular/core';
 import { CustomStyles } from '../../../models/styles';
+import { PortalBridgeService } from 'src/app/core/services/portal-bridge.service';
+import { Observable } from 'rxjs';
+import { TemplatePortal } from '@angular/cdk/portal';
 
 @Component({
   selector: 'app-home',
   templateUrl: 'home.component.html',
   styleUrls: ['home.component.scss'],
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
   @ViewChild('customForm') form: ElementRef<CdkDropList>;
+
+  portal$: Observable<TemplatePortal>
+
   constructor(
     private styleService: StyleService,
-    private renderer: Renderer2
+    private renderer: Renderer2,
+    private portalBridge: PortalBridgeService
   ) {
     this.styleService.currentElement.subscribe(el => {
       el.setAttribute('placeholder', Math.random().toString())
       this.current = styleService.getElementCurrentStyleValues(el)
     })
   }
+  ngOnInit(): void {
+    this.portal$ = this.portalBridge.portal$
+  }
+
   used = [];
   current: CustomStyles;
-  available = [{ text: 'input', tag: AvailableItems.input },
-  { text: 'select', tag: AvailableItems.select },
-  { text: 'textarea', tag: AvailableItems.textarea },
-  { text: 'button', tag: AvailableItems.button },
-  { text: 'checkbox', tag: AvailableItems.checkbox }];
-
-  customClick(ev: MouseEvent, item: any) {
-    console.log(item);
-  }
-
-  drop(event: CdkDragDrop<any>) {
-    if (event.previousContainer === event.container) {
-      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
-    } else {
-      copyArrayItem(
-        event.previousContainer.data,
-        event.container.data,
-        event.previousIndex,
-        event.currentIndex,
-      );
-    }
-
-  }
-  noReturnPredicate() {
-    return false;
-  }
+  available = [AvailableItems.input,
+  AvailableItems.select,
+  AvailableItems.textarea,
+  AvailableItems.button,
+  AvailableItems.checkbox];
 
 
 }

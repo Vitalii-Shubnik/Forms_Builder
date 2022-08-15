@@ -1,0 +1,9 @@
+<div class="example-container">
+  <h2>3 section</h2>
+  <div cdkDropList [cdkDropListData]="available" class="example-list" (cdkDropListDropped)="drop($event)" [cdkDropListEnterPredicate]="noReturnPredicate">
+    <div class="example-box" *ngFor="let item of available" cdkDrag>
+      <div class="example-custom-placeholder" *cdkDragPlaceholder></div>
+      <app-selector [data]="item"></app-selector>
+    </div>
+  </div>
+</div>

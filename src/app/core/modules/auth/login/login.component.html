@@ -4,16 +4,17 @@
     <mat-form-field appearance="outline">
       <mat-label>Email</mat-label>
       <input matInput name="email" formControlName="email">
-      <mat-error *ngIf="form.get('email')?.errors">Please enter valid email</mat-error>
+      <mat-error *ngIf="form.get('email')?.errors && form.get('email')?.errors['required']">This field is required</mat-error>
+      <mat-error *ngIf="form.get('email')?.errors && form.get('email')?.errors['email']">Please enter valid email</mat-error>
     </mat-form-field>
     <mat-form-field appearance="outline">
       <mat-label>Password</mat-label>
       <input matInput name="password" formControlName="password" type="password">
-      <mat-error *ngIf="form.get('email')?.errors">Password is too short</mat-error>
+      <mat-error *ngIf="form.get('password')?.errors">Password is too short</mat-error>
     </mat-form-field>
     <ng-container *ngIf="authMethod==='Login'; else registerTemplate">
       <div class="form-method">
-        <button mat-raised-button (click)="loginClick()">Login</button>
+        <button mat-raised-button [disabled]="!form.valid" (click)="loginClick()">Login</button>
         <span>New user? <span class="change-method-text" (click)="toggleSwitchMethod()">Sign Up</span></span>
       </div>
     </ng-container>
