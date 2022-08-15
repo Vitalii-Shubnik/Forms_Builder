@@ -1,8 +1,8 @@
-<div [ngSwitch]="data.tag">
+<div [ngSwitch]="data">
   <app-input *ngSwitchCase="'input'"></app-input>
   <app-textarea *ngSwitchCase="'textarea'"></app-textarea>
   <app-button *ngSwitchCase="'button'"></app-button>
   <app-checkbox *ngSwitchCase="'checkbox'"></app-checkbox>
   <app-select *ngSwitchCase="'select'"></app-select>
-  <span *ngSwitchDefault>{{data.text}}</span>
+  <span *ngSwitchDefault>sads</span>
 </div>

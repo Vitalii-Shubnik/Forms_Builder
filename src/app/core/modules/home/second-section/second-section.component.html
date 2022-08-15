@@ -1,0 +1,24 @@
+<div class="example-container">
+  <h2>2 section</h2>
+  <div #customForm cdkDropList [cdkDropListData]="used" class="example-list" (cdkDropListDropped)="drop($event)">
+    <div *ngFor="let item of used" cdkDrag>
+      <div class="example-custom-placeholder" *cdkDragPlaceholder></div>
+      <ng-container [ngSwitch]="item">
+        <input #input *ngSwitchCase="'input'" class="SomeStyle" (click)="changeActive(input)" />
+        <input #checkbox type="checkbox" *ngSwitchCase="'checkbox'" (click)="changeActive(checkbox)">
+        <select #select *ngSwitchCase="'select'" (click)="changeActive(select)">
+          <option value="default"></option>
+        </select>
+        <textarea #textarea name="" id="" cols="20" rows="3" *ngSwitchCase="'textarea'" (click)="changeActive(textarea)"></textarea>
+        <button #button *ngSwitchCase="'button'" (click)="changeActive(button)">Button</button>
+        <div *ngSwitchDefault>{{item.text}}</div>
+      </ng-container>
+    </div>
+  </div>
+</div>
+
+<ng-template cdkPortal>
+  <div style="white-space: pre">
+    {{activeItem$ | async | styles}}
+  </div>
+</ng-template>
