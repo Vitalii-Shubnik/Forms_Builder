@@ -1,8 +1,19 @@
-<div class="input-container">
-  <label>Select</label>
-  <select>
-    <option value="sdasd">sadsadsa</option>
-    <option value="sdasd">asdas</option>
-
-  </select>
-</div>
+<!-- <mat-form-field appearance="fill">
+  <mat-label>Select</mat-label>
+  <mat-select matInput placeholder="value" value="" *ngIf="disabled; else active" disabled="true">
+    <mat-option *ngFor="let item of items" [value]="item">
+      {{item}}
+    </mat-option>
+  </mat-select>
+  <ng-template #active>
+    <mat-select>
+      <mat-option *ngFor="let item of items" [value]="item">
+        {{item}}
+      </mat-option>
+    </mat-select>
+  </ng-template>
+</mat-form-field> -->
+<select class="available-select" [attr.disabled]="disabled ? true: null">
+  <option selected>Options</option>
+  <option *ngFor="let item of items" [value]="item"></option>
+</select>

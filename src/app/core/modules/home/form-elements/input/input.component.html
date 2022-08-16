@@ -1,4 +1,9 @@
-<div class="input-container" (click)="clickEvent()">
-  <label>Input</label>
-  <input style="width: 100%; height: 100%; font-size: medium; font-weight: 600; color: aquamarine;" class="somestyle" #coreElement required="true" type="text" />
-</div>
+<!-- <mat-form-field class="example-full-width" appearance="fill">
+  <mat-label>Input</mat-label>
+  <input matInput placeholder="value" value="" *ngIf="disabled; else active" disabled="true">
+  <ng-template #active>
+    <input matInput placeholder="value" value="">
+  </ng-template>
+</mat-form-field> -->
+
+<input class="ddd" (click)="clickEvent()" #coreElement type="text" [attr.disabled]="disabled ? true: null" />

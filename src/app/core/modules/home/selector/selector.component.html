@@ -1,8 +1,8 @@
-<div [ngSwitch]="data">
-  <app-input *ngSwitchCase="'input'"></app-input>
-  <app-textarea *ngSwitchCase="'textarea'"></app-textarea>
-  <app-button *ngSwitchCase="'button'"></app-button>
-  <app-checkbox *ngSwitchCase="'checkbox'"></app-checkbox>
-  <app-select *ngSwitchCase="'select'"></app-select>
+<ng-container [ngSwitch]="data">
+  <app-input *ngSwitchCase="'input'" [disabled]="disabled"></app-input>
+  <app-textarea *ngSwitchCase="'textarea'" [disabled]="disabled"></app-textarea>
+  <app-button *ngSwitchCase="'button'" [disabled]="disabled"></app-button>
+  <app-checkbox  *ngSwitchCase="'checkbox'" [disabled]="disabled"></app-checkbox>
+  <app-select  *ngSwitchCase="'select'" [disabled]="disabled"></app-select>
   <span *ngSwitchDefault>sads</span>
-</div>
+</ng-container>

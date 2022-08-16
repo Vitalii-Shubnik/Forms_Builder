@@ -1,4 +1,4 @@
-import { TemplatePortal } from '@angular/cdk/portal';
+import { TemplatePortal,ComponentPortal } from '@angular/cdk/portal';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { PortalBridgeService } from 'src/app/core/services/portal-bridge.service';

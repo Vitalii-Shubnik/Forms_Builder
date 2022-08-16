@@ -1,4 +1,8 @@
-<div class="input-container">
-  <label>Textarea</label>
-  <textarea type="text" ></textarea>
-</div>
+<!-- <mat-form-field appearance="fill">
+  <mat-label>Textarea</mat-label>
+  <textarea matInput placeholder="value" *ngIf="disabled; else active" disabled="true"></textarea>
+  <ng-template #active>
+    <textarea matInput placeholder="value"></textarea>
+  </ng-template>
+</mat-form-field> -->
+<textarea name="" id="" cols="10" rows="2" [attr.disabled]="disabled ? true : null"></textarea>
