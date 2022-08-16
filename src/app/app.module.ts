@@ -7,6 +7,7 @@ import { authReducer } from './shared/reducers/auth.reducer';
 import { AppRoutingModule } from './app-routing.module';
 import { AuthModule } from './core/modules/auth/auth.module';
 import { HomeModule } from './core/modules/home/home.module';
+import { elementReducer } from './shared/reducers/element.reducer';
 
 
 @NgModule({
@@ -19,7 +20,10 @@ import { HomeModule } from './core/modules/home/home.module';
     AppRoutingModule,
     BrowserModule,
     ToastrModule.forRoot(),
-    StoreModule.forRoot({ auth: authReducer }, {}),
+    StoreModule.forRoot({
+      auth: authReducer,
+      element: elementReducer
+    }, {}),
   ],
   exports: [],
   providers: [],

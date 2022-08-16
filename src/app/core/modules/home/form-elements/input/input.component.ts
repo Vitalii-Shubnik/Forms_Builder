@@ -1,4 +1,5 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, Input, ViewChild } from '@angular/core';
+import { FormItemService } from 'src/app/core/services/form-item.service';
 import { StyleService } from 'src/app/core/services/style.service';
 
 @Component({
@@ -8,10 +9,11 @@ import { StyleService } from 'src/app/core/services/style.service';
 })
 export class InputComponent {
   @ViewChild('coreElement') coreElement: ElementRef<HTMLElement>
-  constructor(private styleService: StyleService) { }
+  constructor(private formItems: FormItemService) { }
+  @Input() disabled: boolean
 
 
   clickEvent(){
-    this.styleService.setCurrent(this.coreElement.nativeElement)
+    this.formItems.setActiveElement(this.coreElement.nativeElement)
   }
 }
