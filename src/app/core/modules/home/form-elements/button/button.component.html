@@ -1,4 +1,6 @@
-<div class="">
-  <label>Button</label>
-  <button>button</button>
-</div>
+<!-- <button *ngIf="disabled; else active" mat-stroked-button disabled="true">Button</button>
+<ng-template #active>
+  <button mat-stroked-button>Button</button>
+</ng-template> -->
+
+<button (click)="clickEvent()" #coreElement [attr.disabled]="disabled ? true: null">Button</button>

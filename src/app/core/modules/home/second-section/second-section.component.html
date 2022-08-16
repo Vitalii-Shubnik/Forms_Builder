@@ -1,24 +1,29 @@
 <div class="example-container">
   <h2>2 section</h2>
   <div #customForm cdkDropList [cdkDropListData]="used" class="example-list" (cdkDropListDropped)="drop($event)">
-    <div *ngFor="let item of used" cdkDrag>
+    <div class="form-item-container" *ngFor="let item of used" cdkDrag>
       <div class="example-custom-placeholder" *cdkDragPlaceholder></div>
-      <ng-container [ngSwitch]="item">
-        <input #input *ngSwitchCase="'input'" class="SomeStyle" (click)="changeActive(input)" />
-        <input #checkbox type="checkbox" *ngSwitchCase="'checkbox'" (click)="changeActive(checkbox)">
-        <select #select *ngSwitchCase="'select'" (click)="changeActive(select)">
-          <option value="default"></option>
-        </select>
-        <textarea #textarea name="" id="" cols="20" rows="3" *ngSwitchCase="'textarea'" (click)="changeActive(textarea)"></textarea>
-        <button #button *ngSwitchCase="'button'" (click)="changeActive(button)">Button</button>
-        <div *ngSwitchDefault>{{item.text}}</div>
-      </ng-container>
+      <app-selector [data]="item" [disabled]="false"></app-selector>
+      <div class="form-items-buttons" >
+        <div class="selecting-piece"></div>
+        <div class="draggable-piece" cdkDragHandle ></div>
+      </div>
+
     </div>
   </div>
 </div>
-
+<!-- (click)="changeActive(checkbox) -->
 <ng-template cdkPortal>
-  <div style="white-space: pre">
-    {{activeItem$ | async | styles}}
-  </div>
+  <ng-container *ngIf="styles">
+    height: <input [(ngModel)]="styles.height"><br/>
+    width: <input [(ngModel)]="styles.width"><br/>
+    fontWeight: <input [(ngModel)]="styles.fontWeight"><br/>
+    fontSize: <input [(ngModel)]="styles.fontSize"><br/>
+    color: <input [(ngModel)]="styles.color"><br/>
+    borderStyle: <input [(ngModel)]="styles.borderStyle"><br/>
+    required: <input [(ngModel)]="styles.required"><br/>
+    placeholder: <input [(ngModel)]="styles.placeholder"><br/>
+    <button (click)="setElementCurrentStyleValues()">Change</button>
+    width from ngrx: {{activeElementWidth$ | async | json}}
+  </ng-container>
 </ng-template>

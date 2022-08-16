@@ -1,4 +1,4 @@
-import { Portal, TemplatePortal } from '@angular/cdk/portal';
+import { Portal, ComponentPortal, TemplatePortal } from '@angular/cdk/portal';
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 
@@ -6,10 +6,10 @@ import { Subject } from 'rxjs';
   providedIn: 'root'
 })
 export class PortalBridgeService {
-  private activePortal = new Subject<TemplatePortal>()
+  private activePortal = new Subject<TemplatePortal<any>>() // ComponentPortal<any> |
   readonly portal$ = this.activePortal.asObservable()
 
-  setPortal(portal: TemplatePortal) {
+  setPortal(portal:TemplatePortal<any>) {
     this.activePortal.next(portal)
   }
   

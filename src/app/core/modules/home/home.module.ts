@@ -14,6 +14,13 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import { FirstSectionComponent } from './first-section/first-section.component';
 import { SecondSectionComponent } from './second-section/second-section.component';
 import { ThirdSectionComponent } from './third-section/third-section.component';
+import { MatSelectModule } from '@angular/material/select'
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { ReactiveFormsModule } from '@angular/forms';
+import { StylesComponent } from './styles/styles.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -29,12 +36,19 @@ import { ThirdSectionComponent } from './third-section/third-section.component';
     FirstSectionComponent,
     SecondSectionComponent,
     ThirdSectionComponent,
+    StylesComponent,
   ],
   imports: [
     NoopAnimationsModule,
     BrowserAnimationsModule,
     PortalModule,
     DragDropModule,
+    MatSelectModule,
+    MatInputModule,
+    MatButtonModule,
+    MatCheckboxModule,
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [
     StyleService
