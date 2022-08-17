@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { StyleService } from '../../services/style.service';
 import { HomeComponent } from './home/home.component';
 import { InputComponent } from './form-elements/input/input.component';
 import { SelectorComponent } from './selector/selector.component';
@@ -52,7 +51,6 @@ import { FormsModule } from '@angular/forms';
     FormsModule,
   ],
   providers: [
-    StyleService
   ]
 })
 export class HomeModule { }

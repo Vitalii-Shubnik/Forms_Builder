@@ -13,7 +13,7 @@
     </mat-select>
   </ng-template>
 </mat-form-field> -->
-<select class="available-select" [attr.disabled]="disabled ? true: null">
+<select #coreElement (click)="onClick(coreElement)" class="available-select" [attr.disabled]="disabled ? true: null">
   <option selected>Options</option>
   <option *ngFor="let item of items" [value]="item"></option>
 </select>

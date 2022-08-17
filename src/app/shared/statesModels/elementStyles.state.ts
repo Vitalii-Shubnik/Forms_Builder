@@ -5,6 +5,6 @@ export interface ElementStyles {
   fontSize?: string,
   color?: string,
   borderStyle?: string,
-  required?: string,
+  required?: boolean,
   placeholder?: string
 }

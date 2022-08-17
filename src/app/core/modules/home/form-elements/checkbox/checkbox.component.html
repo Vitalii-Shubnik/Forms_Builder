@@ -1,2 +1,2 @@
-<input id="checkbox" type="checkbox" [attr.disabled]="disabled ? true: null">
+<input #coreElement (click)="onClick(coreElement)"  id="checkbox" type="checkbox" [attr.disabled]="disabled ? true: null">
 <label for="checkbox">Label</label>
