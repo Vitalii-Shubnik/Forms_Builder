@@ -8,8 +8,7 @@ import { LetModule, PushModule } from '@ngrx/component';
 import { AuthService } from 'src/app/core/services/auth.service'
 import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ContentApplicationJsonInterceptor } from 'src/app/core/interceptors/content-application-json.interceptor';
-import { EffectsModule } from '@ngrx/effects';
-import { AuthEffects } from 'src/app/shared/effects/auth.effects';
+
 
 
 @NgModule({
@@ -22,7 +21,6 @@ import { AuthEffects } from 'src/app/shared/effects/auth.effects';
     MatButtonModule,
     PushModule,
     LetModule,
-    EffectsModule.forRoot([AuthEffects]),
   ],
   exports: [],
   providers: [
