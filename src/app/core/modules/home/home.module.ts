@@ -37,6 +37,7 @@ import { FormsModule } from '@angular/forms';
     SecondSectionComponent,
     ThirdSectionComponent,
     StylesComponent,
+
   ],
   imports: [
     NoopAnimationsModule,
@@ -48,7 +49,7 @@ import { FormsModule } from '@angular/forms';
     MatButtonModule,
     MatCheckboxModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
   ],
   providers: [
     StyleService
