@@ -1,5 +1,4 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { CustomStyles } from '../models/styles';
 
 @Pipe({
   name: 'styles'

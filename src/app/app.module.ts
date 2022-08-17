@@ -7,10 +7,11 @@ import { authReducer } from './shared/reducers/auth.reducer';
 import { AppRoutingModule } from './app-routing.module';
 import { AuthModule } from './core/modules/auth/auth.module';
 import { HomeModule } from './core/modules/home/home.module';
-import { elementReducer } from './shared/reducers/element.reducer';
+import { elementStylesReducer } from './shared/reducers/elementStyles.reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { AuthEffects } from './shared/effects/auth.effects';
-import { ElementEffects } from './shared/effects/element.actions';
+import { ElementStylesEffects } from './shared/effects/elementStyles.effects';
+import { elementReducer } from './shared/reducers/activeElement.reducer';
 
 
 @NgModule({
@@ -25,9 +26,10 @@ import { ElementEffects } from './shared/effects/element.actions';
     ToastrModule.forRoot(),
     StoreModule.forRoot({
       auth: authReducer,
+      elementStyles: elementStylesReducer,
       element: elementReducer
     }, {}),
-    EffectsModule.forRoot([AuthEffects, ElementEffects]),
+    EffectsModule.forRoot([AuthEffects, ElementStylesEffects]),
 
   ],
   exports: [],

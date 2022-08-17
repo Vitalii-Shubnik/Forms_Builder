@@ -5,4 +5,4 @@
     <textarea matInput placeholder="value"></textarea>
   </ng-template>
 </mat-form-field> -->
-<textarea name="" id="" cols="10" rows="2" [attr.disabled]="disabled ? true : null"></textarea>
+<textarea #coreElement (click)="onClick(coreElement)"  name="" id="" cols="10" rows="2" [attr.disabled]="disabled ? true : null"></textarea>
