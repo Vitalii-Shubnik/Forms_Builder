@@ -1,4 +1,5 @@
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { onClickFormItem } from 'src/app/core/models/elementOnClick';
 import { FormItemService } from 'src/app/core/services/form-item.service';
 
 @Component({
@@ -6,14 +7,12 @@ import { FormItemService } from 'src/app/core/services/form-item.service';
   templateUrl: './button.component.html',
   styleUrls: ['./button.component.scss']
 })
-export class ButtonComponent {
-  @ViewChild('coreElement') coreElement: ElementRef<HTMLElement>
-  constructor(private formItems: FormItemService) { }
+export class ButtonComponent extends onClickFormItem {
   @Input() disabled: boolean
 
-
-  clickEvent(){
-    this.formItems.setActiveElement(this.coreElement.nativeElement)
+  constructor(
+    private formItems: FormItemService,
+  ) {
+    super(formItems)
   }
-
 }

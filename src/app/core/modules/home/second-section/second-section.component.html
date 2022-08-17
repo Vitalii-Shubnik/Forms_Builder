@@ -4,26 +4,25 @@
     <div class="form-item-container" *ngFor="let item of used" cdkDrag>
       <div class="example-custom-placeholder" *cdkDragPlaceholder></div>
       <app-selector [data]="item" [disabled]="false"></app-selector>
-      <div class="form-items-buttons" >
+      <div class="form-items-buttons">
         <div class="selecting-piece"></div>
-        <div class="draggable-piece" cdkDragHandle ></div>
+        <div class="draggable-piece" cdkDragHandle></div>
       </div>
-
     </div>
   </div>
 </div>
 <!-- (click)="changeActive(checkbox) -->
 <ng-template cdkPortal>
-  <ng-container *ngIf="styles">
-    height: <input [(ngModel)]="height"><br/>
-    width: <input [(ngModel)]="width"><br/>
-    fontWeight: <input [(ngModel)]="fontWeight"><br/>
-    fontSize: <input [(ngModel)]="fontSize"><br/>
-    color: <input [(ngModel)]="color"><br/>
-    borderStyle: <input [(ngModel)]="borderStyle"><br/>
-    required: <input [(ngModel)]="required"><br/>
-    placeholder: <input [(ngModel)]="placeholder"><br/>
-    <button (click)="setElementCurrentStyleValues()">Change</button>
-    width from ngrx: {{activeElementWidth$ | async | json}}
+  <ng-container *ngIf="!isEmpty(styles)">
+    height: <input [(ngModel)]="styles.height"><br />
+    width: <input [(ngModel)]="styles.width"><br />
+    fontWeight: <input [(ngModel)]="styles.fontWeight"><br />
+    fontSize: <input [(ngModel)]="styles.fontSize"><br />
+    color: <input [(ngModel)]="styles.color"><br />
+    borderStyle: <input [(ngModel)]="styles.borderStyle"><br />
+    required: <input type="checkbox" [(ngModel)]="styles.required"><br />
+    placeholder: <input [(ngModel)]="styles.placeholder"><br />
+    <button
+      (click)="setElementCurrentStyleValues()">Change</button>
   </ng-container>
 </ng-template>
