@@ -1,4 +1,4 @@
-import { TemplatePortal,ComponentPortal } from '@angular/cdk/portal';
+import { TemplatePortal, ComponentPortal } from '@angular/cdk/portal';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { PortalBridgeService } from 'src/app/core/services/portal-bridge.service';
@@ -9,9 +9,9 @@ import { PortalBridgeService } from 'src/app/core/services/portal-bridge.service
   styleUrls: ['./first-section.component.scss']
 })
 export class FirstSectionComponent implements OnInit {
-  
-  portal$: Observable<TemplatePortal>
 
+  portal$: Observable<TemplatePortal>
+  panelOpenState: boolean = false
   constructor(
     private portalBridge: PortalBridgeService
   ) { }

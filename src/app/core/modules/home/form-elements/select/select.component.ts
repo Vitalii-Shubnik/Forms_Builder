@@ -12,7 +12,7 @@ export class SelectComponent extends onClickFormItem {
   @Input() items: string[]
 
   constructor(
-    private formItems: FormItemService,
+    formItems: FormItemService,
   ) {
     super(formItems)
   }

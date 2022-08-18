@@ -1,6 +1,7 @@
-import { Component, Input} from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { onClickFormItem } from 'src/app/core/models/elementOnClick';
 import { FormItemService } from 'src/app/core/services/form-item.service';
+
 @Component({
   selector: 'app-input',
   templateUrl: './input.component.html',
@@ -10,7 +11,7 @@ export class InputComponent extends onClickFormItem {
   @Input() disabled: boolean
 
   constructor(
-    private formItems: FormItemService,
+    formItems: FormItemService,
   ) {
     super(formItems)
   }

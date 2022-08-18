@@ -14,15 +14,38 @@
 <!-- (click)="changeActive(checkbox) -->
 <ng-template cdkPortal>
   <ng-container *ngIf="!isEmpty(styles)">
-    height: <input [(ngModel)]="styles.height"><br />
-    width: <input [(ngModel)]="styles.width"><br />
-    fontWeight: <input [(ngModel)]="styles.fontWeight"><br />
-    fontSize: <input [(ngModel)]="styles.fontSize"><br />
-    color: <input [(ngModel)]="styles.color"><br />
-    borderStyle: <input [(ngModel)]="styles.borderStyle"><br />
-    required: <input type="checkbox" [(ngModel)]="styles.required"><br />
-    placeholder: <input [(ngModel)]="styles.placeholder"><br />
-    <button
-      (click)="setElementCurrentStyleValues()">Change</button>
+    <div class="form-element-styles-container">
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Height</mat-label>
+        <input matInput placeholder="18px, 1.5rem..." [(ngModel)]="styles.height">
+      </mat-form-field>
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Width</mat-label>
+        <input matInput placeholder="18px, 1.5rem..." [(ngModel)]="styles.width">
+      </mat-form-field>
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Font weight</mat-label>
+        <input matInput placeholder="400, 500, 600..." [(ngModel)]="styles.fontWeight">
+      </mat-form-field>
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Font size</mat-label>
+        <input matInput placeholder="18px, 1.5rem..." [(ngModel)]="styles.fontSize">
+      </mat-form-field>
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Color</mat-label>
+        <input matInput placeholder="rgb(0-255,0-255,0-255)..." [(ngModel)]="styles.color">
+      </mat-form-field>
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Border style</mat-label>
+        <input matInput placeholder="dashed, solid, dotted..." [(ngModel)]="styles.borderStyle">
+      </mat-form-field>
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Placeholder</mat-label>
+        <input matInput placeholder="some text..." [(ngModel)]="styles.placeholder">
+      </mat-form-field>
+      <mat-checkbox [(ngModel)]="styles.required">Required</mat-checkbox>
+      <br/>
+      <button mat-raised-button color="accent" (click)="setElementCurrentStyleValues()">Change</button>
+    </div>
   </ng-container>
 </ng-template>

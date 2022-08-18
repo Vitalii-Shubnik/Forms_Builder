@@ -6,7 +6,6 @@ import { TextareaComponent } from './form-elements/textarea/textarea.component';
 import { SelectComponent } from './form-elements/select/select.component';
 import { CheckboxComponent } from './form-elements/checkbox/checkbox.component';
 import { ButtonComponent } from './form-elements/button/button.component';
-import { StylesPipe } from '../../pipes/styles.pipe';
 import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { PortalModule } from '@angular/cdk/portal';
 import { DragDropModule } from '@angular/cdk/drag-drop';
@@ -20,7 +19,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { ReactiveFormsModule } from '@angular/forms';
 import { StylesComponent } from './styles/styles.component';
 import { FormsModule } from '@angular/forms';
-
+import { MatExpansionModule } from '@angular/material/expansion';
 
 @NgModule({
   declarations: [
@@ -31,12 +30,10 @@ import { FormsModule } from '@angular/forms';
     SelectComponent,
     CheckboxComponent,
     ButtonComponent,
-    StylesPipe,
     FirstSectionComponent,
     SecondSectionComponent,
     ThirdSectionComponent,
     StylesComponent,
-
   ],
   imports: [
     NoopAnimationsModule,
@@ -49,6 +46,7 @@ import { FormsModule } from '@angular/forms';
     MatCheckboxModule,
     ReactiveFormsModule,
     FormsModule,
+    MatExpansionModule,
   ],
   providers: [
   ]
