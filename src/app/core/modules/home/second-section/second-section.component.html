@@ -1,14 +1,16 @@
 <div class="example-container">
   <h2>2 section</h2>
   <div #customForm cdkDropList [cdkDropListData]="used" class="example-list" (cdkDropListDropped)="drop($event)">
-    <div class="form-item-container" *ngFor="let item of used" cdkDrag>
-      <div class="example-custom-placeholder" *cdkDragPlaceholder></div>
-      <app-selector [data]="item" [disabled]="false"></app-selector>
-      <div class="form-items-buttons">
-        <div class="selecting-piece"></div>
-        <div class="draggable-piece" cdkDragHandle></div>
+    <form class="main-form">
+      <div class="form-item-container" *ngFor="let item of used" cdkDrag>
+        <div class="example-custom-placeholder" *cdkDragPlaceholder></div>
+        <app-selector class="field" [data]="item" [disabled]="false"></app-selector>
+        <div class="form-items-buttons">
+          <div class="selecting-piece"></div>
+          <div class="draggable-piece" cdkDragHandle></div>
+        </div>
       </div>
-    </div>
+    </form>
   </div>
 </div>
 <!-- (click)="changeActive(checkbox) -->

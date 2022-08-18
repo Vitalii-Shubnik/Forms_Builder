@@ -11,7 +11,6 @@ import { elementStylesReducer } from './shared/reducers/elementStyles.reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { AuthEffects } from './shared/effects/auth.effects';
 import { ElementStylesEffects } from './shared/effects/elementStyles.effects';
-import { elementReducer } from './shared/reducers/activeElement.reducer';
 
 
 @NgModule({
@@ -27,7 +26,6 @@ import { elementReducer } from './shared/reducers/activeElement.reducer';
     StoreModule.forRoot({
       auth: authReducer,
       elementStyles: elementStylesReducer,
-      element: elementReducer
     }, {}),
     EffectsModule.forRoot([AuthEffects, ElementStylesEffects]),
 

@@ -5,6 +5,9 @@
 
 .form-item-container {
   position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 }
 
 .draggable-piece {
@@ -27,11 +30,14 @@
   flex-direction: row;
   justify-content: right;
 }
-
+.field{
+  justify-self: center;
+}
 .example-form {
   min-width: 150px;
   max-width: 500px;
   width: 100%;
+
 }
 
 .example-full-width {
@@ -44,4 +50,11 @@
   max-height: 70vh;
   padding-left: 15px;
   padding-right: 15px;
+}
+
+.main-form{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background: #b7b7b7;
 }
