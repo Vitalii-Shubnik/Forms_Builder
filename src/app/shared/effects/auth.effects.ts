@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { catchError, exhaustMap, map, of, tap } from 'rxjs';
+import { catchError, exhaustMap, map, of, shareReplay, tap } from 'rxjs';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { ToastrService } from 'ngx-toastr';
 
@@ -48,7 +48,8 @@ export class AuthEffects {
           .authorize(action.username, action.password, url)
           .pipe(
             map((response) => AuthActions.loginSuccess({ response })),
-            catchError((error) => of(AuthActions.loginError({ response: error })))
+            catchError((error) => of(AuthActions.loginError({ response: error }))),
+            shareReplay()
           )
       }
       )
