@@ -1,7 +1,8 @@
 import { CdkPortal } from '@angular/cdk/portal';
 import { AfterViewInit, Component, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { distinctUntilChanged, map, Observable, Subject, takeUntil } from 'rxjs';
+import { distinctUntilChanged, filter, map, Observable, Subject, takeUntil } from 'rxjs';
+import { AvailableItems } from 'src/app/core/enums/availableItem';
 import { onDrop } from 'src/app/core/models/onDrop';
 import { FormItemService } from 'src/app/core/services/form-item.service';
 import { PortalBridgeService } from 'src/app/core/services/portal-bridge.service';
@@ -18,13 +19,13 @@ export class SecondSectionComponent extends onDrop implements OnInit, OnDestroy,
   @ViewChild(CdkPortal, { static: true })
   portalContent: CdkPortal
   styles: ElementStyles = null
-
+  previousStyles: ElementStyles = null
   activeItem$ = this.formItemService.element$
   activeElementStyles$: Observable<ElementStyles> = this.store.select(selectElementStyles)
 
   destroy$: Subject<boolean> = new Subject<boolean>();
   @Input()
-  used = [];
+  used:Array<AvailableItems> = [];
   constructor(
     private formItemService: FormItemService,
     private portalBridge: PortalBridgeService,
@@ -43,13 +44,13 @@ export class SecondSectionComponent extends onDrop implements OnInit, OnDestroy,
       takeUntil(this.destroy$),
       distinctUntilChanged((prev, next) => {
         return prev
-          && (JSON.stringify(prev) === JSON.stringify(next)) 
-          //better use lodash 
+          && (JSON.stringify(prev) === JSON.stringify(next))
+        //better use lodash 
       }),
 
     ).subscribe(el => {
-      console.log('styles chnged')
       this.styles = { ...el }
+      this.previousStyles = { ...el }
     })
   }
   ngAfterViewInit() {
@@ -64,11 +65,11 @@ export class SecondSectionComponent extends onDrop implements OnInit, OnDestroy,
     this.store.dispatch(ElementActions.elementChangeStyles({
       styles: this.formItemService.getStyles()
     }))
-
   }
   setElementCurrentStyleValues() {
+    const changedStyles:ElementStyles = Object.fromEntries(Object.entries(this.styles).filter(([key, value])=>this.styles[key]!==this.previousStyles[key]))
     this.store.dispatch(ElementActions.elementChangeSelfStyles({
-      styles: { ...this.styles }
+      styles: { ...changedStyles }
     }))
   }
 

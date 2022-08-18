@@ -16,7 +16,6 @@ export class AuthService {
   }
 
   authorize(email: string, password: string, url: string): Observable<any> {
-    console.log('auth called')
     return this.http.post<any>(url, { username: email, password })
       .pipe(
         tap((user: LoginResponse) => {

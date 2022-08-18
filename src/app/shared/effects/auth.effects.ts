@@ -30,7 +30,6 @@ export class AuthEffects {
   )
 
   loginRequest$ = createEffect(() => {
-    console.log('effect works')
     return this.actions$.pipe(
       ofType(AuthActions.loginRequest),
       exhaustMap((action) => {
