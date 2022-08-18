@@ -11,7 +11,7 @@ export class CheckboxComponent extends onClickFormItem {
   @Input() disabled: boolean
 
   constructor(
-    private formItems: FormItemService,
+    formItems: FormItemService,
   ) {
     super(formItems)
   }
