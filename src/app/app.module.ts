@@ -11,7 +11,7 @@ import { elementStylesReducer } from './shared/reducers/elementStyles.reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { AuthEffects } from './shared/effects/auth.effects';
 import { ElementStylesEffects } from './shared/effects/elementStyles.effects';
-
+import { PortalModule } from '@angular/cdk/portal';
 
 @NgModule({
   declarations: [
@@ -23,12 +23,12 @@ import { ElementStylesEffects } from './shared/effects/elementStyles.effects';
     AppRoutingModule,
     BrowserModule,
     ToastrModule.forRoot(),
+    PortalModule, 
     StoreModule.forRoot({
       auth: authReducer,
       elementStyles: elementStylesReducer,
     }, {}),
     EffectsModule.forRoot([AuthEffects, ElementStylesEffects]),
-
   ],
   exports: [],
   providers: [],

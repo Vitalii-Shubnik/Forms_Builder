@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { HomeComponent } from './home/home.component';
 import { InputComponent } from './form-elements/input/input.component';
-import { SelectorComponent } from './selector/selector.component';
 import { TextareaComponent } from './form-elements/textarea/textarea.component';
 import { SelectComponent } from './form-elements/select/select.component';
 import { CheckboxComponent } from './form-elements/checkbox/checkbox.component';
@@ -17,15 +16,16 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { ReactiveFormsModule } from '@angular/forms';
-import { StylesComponent } from './styles/styles.component';
 import { FormsModule } from '@angular/forms';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { NavbarComponent } from './navbar/navbar.component';
+import { PushModule } from '@ngrx/component';
+
 
 @NgModule({
   declarations: [
     HomeComponent,
     InputComponent,
-    SelectorComponent,
     TextareaComponent,
     SelectComponent,
     CheckboxComponent,
@@ -33,7 +33,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
     FirstSectionComponent,
     SecondSectionComponent,
     ThirdSectionComponent,
-    StylesComponent,
+    NavbarComponent,
   ],
   imports: [
     NoopAnimationsModule,
@@ -47,8 +47,8 @@ import { MatExpansionModule } from '@angular/material/expansion';
     ReactiveFormsModule,
     FormsModule,
     MatExpansionModule,
+    PushModule,
   ],
-  providers: [
-  ]
+  providers: []
 })
 export class HomeModule { }

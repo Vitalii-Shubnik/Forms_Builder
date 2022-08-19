@@ -12,6 +12,8 @@ export class PortalBridgeService {
   setPortal(portal:TemplatePortal<any>) {
     this.activePortal.next(portal)
   }
-  
+  detachPortal(){
+    this.activePortal.unsubscribe()
+  }
   constructor() { }
 }

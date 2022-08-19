@@ -1,6 +1,6 @@
 import { TemplatePortal, ComponentPortal } from '@angular/cdk/portal';
-import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { map, Observable } from 'rxjs';
 import { PortalBridgeService } from 'src/app/core/services/portal-bridge.service';
 
 @Component({
@@ -8,7 +8,7 @@ import { PortalBridgeService } from 'src/app/core/services/portal-bridge.service
   templateUrl: './first-section.component.html',
   styleUrls: ['./first-section.component.scss']
 })
-export class FirstSectionComponent implements OnInit {
+export class FirstSectionComponent implements OnInit{
 
   portal$: Observable<TemplatePortal>
   panelOpenState: boolean = false
@@ -19,5 +19,4 @@ export class FirstSectionComponent implements OnInit {
   ngOnInit(): void {
     this.portal$ = this.portalBridge.portal$
   }
-
 }

@@ -16,11 +16,13 @@ export class HomeComponent {
 
   constructor() { }
   used = [];
-  available = [AvailableItems.input,
-  AvailableItems.select,
-  AvailableItems.textarea,
-  AvailableItems.button,
-  AvailableItems.checkbox];
+  available = [{ type: AvailableItems.input, data: '' },
+  { type: AvailableItems.select, data: [] },
+  { type: AvailableItems.textarea, data: '' },
+  { type: AvailableItems.input, data: '' },
+  { type: AvailableItems.input, data: '' },
+  { type: AvailableItems.button, data: '' },
+  { type: AvailableItems.checkbox, data: '' }];
 }
 
 
