@@ -25,7 +25,7 @@ export class SecondSectionComponent extends onDrop implements OnInit, OnDestroy,
 
   destroy$: Subject<boolean> = new Subject<boolean>();
   @Input()
-  used:Array<AvailableItems> = [];
+  used: Array<any> = [];
   constructor(
     private formItemService: FormItemService,
     private portalBridge: PortalBridgeService,
@@ -57,6 +57,15 @@ export class SecondSectionComponent extends onDrop implements OnInit, OnDestroy,
     this.portalBridge.setPortal(this.portalContent)
   }
 
+  setActive(value: HTMLElement) {
+    this.formItemService.setActiveElement(value)
+  }
+
+  changeData(item: any) {
+    item.type == AvailableItems.checkbox
+      && (item.data = 'new label')
+  }
+
   isEmpty(obj: Object) {
     return obj && Object.keys(obj).length === 0
       && Object.getPrototypeOf(obj) === Object.prototype
@@ -67,14 +76,15 @@ export class SecondSectionComponent extends onDrop implements OnInit, OnDestroy,
     }))
   }
   setElementCurrentStyleValues() {
-    const changedStyles:ElementStyles = Object.fromEntries(Object.entries(this.styles).filter(([key, value])=>this.styles[key]!==this.previousStyles[key]))
+    const changedStyles: ElementStyles = Object.fromEntries(Object.entries(this.styles)
+      .filter(([key, value]) => this.styles[key] !== this.previousStyles[key]))
     this.store.dispatch(ElementActions.elementChangeSelfStyles({
       styles: { ...changedStyles }
     }))
   }
 
   ngOnDestroy(): void {
-    this.portalContent.detach()
+    // this.portalContent.detach()
     this.destroy$.next(true);
     this.destroy$.unsubscribe();
   }

@@ -1,0 +1,4 @@
+<div class="navbar">
+  <span *ngIf="userName$ | ngrxPush as user">{{ user }}</span>
+  <button mat-raised-button (click)="logout()">Logout</button>
+</div>

@@ -1,18 +1,33 @@
 <div class="example-container">
-  <h2>2 section</h2>
   <div #customForm cdkDropList [cdkDropListData]="used" class="example-list" (cdkDropListDropped)="drop($event)">
     <form class="main-form">
       <div class="form-item-container" *ngFor="let item of used" cdkDrag>
         <div class="example-custom-placeholder" *cdkDragPlaceholder></div>
-        <app-selector class="field" [data]="item" [disabled]="false"></app-selector>
+        <ng-container [ngSwitch]="item.type">
+          <app-input *ngSwitchCase="'input'" (setActive)="setActive($event)" [data]="item.data"></app-input>
+          <app-textarea *ngSwitchCase="'textarea'" (setActive)="setActive($event)" [data]="item.data"></app-textarea>
+          <app-button *ngSwitchCase="'button'" (setActive)="setActive($event)" [data]="item.data"></app-button>
+          <app-checkbox *ngSwitchCase="'checkbox'" (setActive)="setActive($event)" [data]="item.data"></app-checkbox>
+          <app-select *ngSwitchCase="'select'" (setActive)="setActive($event)" [data]="item.data"></app-select>
+          <span *ngSwitchDefault>sads</span>
+        </ng-container>
+        <!-- <app-selector class="field" [data]="item" [disabled]="false"></app-selector> -->
         <div class="form-items-buttons">
-          <div class="selecting-piece"></div>
+          <div class="selecting-piece" (click)="changeData(item)"></div>
           <div class="draggable-piece" cdkDragHandle></div>
         </div>
       </div>
     </form>
   </div>
 </div>
+
+
+
+
+
+
+
+
 <!-- (click)="changeActive(checkbox) -->
 <ng-template cdkPortal>
   <ng-container *ngIf="!isEmpty(styles)">
@@ -46,7 +61,7 @@
         <input matInput placeholder="some text..." [(ngModel)]="styles.placeholder">
       </mat-form-field>
       <mat-checkbox [(ngModel)]="styles.required">Required</mat-checkbox>
-      <br/>
+      <br />
       <button mat-raised-button color="accent" (click)="setElementCurrentStyleValues()">Change</button>
     </div>
   </ng-container>

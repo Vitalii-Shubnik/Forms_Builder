@@ -15,5 +15,5 @@
 </mat-form-field> -->
 <select #coreElement (click)="onClick(coreElement)" class="available-select" [attr.disabled]="disabled ? true: null">
   <option selected>Options</option>
-  <option *ngFor="let item of items" [value]="item"></option>
+  <option *ngFor="let item of data" [value]="item"></option>
 </select>

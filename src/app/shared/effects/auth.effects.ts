@@ -23,6 +23,7 @@ export class AuthEffects {
       tap(() => {
         this.authService.logout()
         this.toastr.success('Logged out')
+        this.router.navigateByUrl('/authenticate')
       })
     )
   },

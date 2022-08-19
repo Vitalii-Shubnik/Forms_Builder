@@ -1,4 +1,7 @@
-export interface FormValues{
+import { authMethodEnum } from "../enums/authMethod";
+
+export interface AuthFormValues{
   email: string,
-  password: string
+  password: string,
+  authMethod: authMethodEnum
 }
