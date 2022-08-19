@@ -1,9 +1,15 @@
 <div class="example-container">
-  <h2>3 section</h2>
   <div cdkDropList [cdkDropListData]="available" class="example-list" (cdkDropListDropped)="drop($event)" [cdkDropListEnterPredicate]="noReturnPredicate">
     <div class="example-box" *ngFor="let item of available" cdkDrag>
       <div class="example-custom-placeholder" *cdkDragPlaceholder></div>
-      <app-selector [data]="item" [disabled]="true"></app-selector>
+      <ng-container [ngSwitch]="item.type">
+        <app-input *ngSwitchCase="'input'" [disabled]="true"></app-input>
+        <app-textarea *ngSwitchCase="'textarea'" [disabled]="true"></app-textarea>
+        <app-button *ngSwitchCase="'button'" [disabled]="true"></app-button>
+        <app-checkbox  *ngSwitchCase="'checkbox'" [disabled]="true"></app-checkbox>
+        <app-select  *ngSwitchCase="'select'" [disabled]="true"></app-select>
+        <span *ngSwitchDefault>sads</span>
+      </ng-container>
     </div>
   </div>
 </div>

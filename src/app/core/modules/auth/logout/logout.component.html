@@ -1,0 +1,4 @@
+<div class="already-logged">
+  <span *ngIf="userName">You are already logged in as {{ userName }}</span>
+  <button mat-raised-button (click)="logoutClick()">Logout</button>
+</div>

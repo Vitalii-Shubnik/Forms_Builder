@@ -1,11 +1,26 @@
-<ng-container *ngrxLet="isLoggedIn$ as l">
-  <form class="login-form" [formGroup]="form" *ngIf="!l; else authorized">
+<ng-container *ngIf="!(isLoggedIn$ | ngrxPush); else authorized">
+
+  <app-sign-in [form]="form"
+    (signIn)="login($event.email, $event.password, $event.authMethod)">
+  </app-sign-in>
+
+</ng-container>
+<ng-template #authorized>
+  <app-logout [userName]="userName$ | ngrxPush" (logout)="logout()"></app-logout>
+</ng-template>
+
+
+
+
+<!-- <form class="login-form" [formGroup]="form">
     <legend>{{authMethod}}</legend>
     <mat-form-field appearance="outline">
       <mat-label>Email</mat-label>
       <input matInput name="email" formControlName="email">
-      <mat-error *ngIf="form.get('email')?.errors && form.get('email')?.errors['required']">This field is required</mat-error>
-      <mat-error *ngIf="form.get('email')?.errors && form.get('email')?.errors['email']">Please enter valid email</mat-error>
+      <mat-error *ngIf="form.get('email')?.errors && form.get('email')?.errors['required']">This field is required
+      </mat-error>
+      <mat-error *ngIf="form.get('email')?.errors && form.get('email')?.errors['email']">Please enter valid email
+      </mat-error>
     </mat-form-field>
     <mat-form-field appearance="outline">
       <mat-label>Password</mat-label>
@@ -14,23 +29,16 @@
     </mat-form-field>
     <ng-container *ngIf="authMethod==='Login'; else registerTemplate">
       <div class="form-method">
-        <button mat-raised-button [disabled]="!form.valid" (click)="loginClick()">Login</button>
+        <button mat-raised-button [disabled]="!form.valid" (click)="login()">Login</button>
         <span>New user? <span class="change-method-text" (click)="toggleSwitchMethod()">Sign Up</span></span>
       </div>
     </ng-container>
     <ng-template #registerTemplate>
       <div class="form-method">
-        <button mat-raised-button class="submit-form-button" (click)="loginClick()">Register</button>
+        <button mat-raised-button [disabled]="!form.valid" class="submit-form-button" (click)="login()">Register</button>
         <span>
           Already have an account? <span class="change-method-text" (click)="toggleSwitchMethod()">Sign In</span>
         </span>
       </div>
     </ng-template>
-  </form>
-  <ng-template #authorized>
-    <div class="already-logged">
-      <span *ngIf="userName$ | ngrxPush as user">You are already logged in as {{ user }}</span>
-      <button mat-raised-button (click)="logout()">Logout</button>
-    </div>
-  </ng-template>
-</ng-container>
+  </form> -->
