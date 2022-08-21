@@ -1,6 +1,5 @@
-import { style } from '@angular/animations';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Subject } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 import { ElementStyles } from 'src/app/shared/statesModels/elementStyles.state';
 
 @Injectable({
