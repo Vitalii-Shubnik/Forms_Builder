@@ -1,7 +1,7 @@
-<div #customForm cdkDropList [cdkDropListData]="used" (cdkDropListDropped)="drop($event)">
+<div #customForm cdkDropList [cdkDropListData]="used" class="drop-list" (cdkDropListDropped)="drop($event)">
   <form class="main-form">
-    <div class="form-item-container" *ngFor="let item of used" cdkDrag>
-      <div class="example-custom-placeholder" *cdkDragPlaceholder></div>
+    <div class="form-item-container " *ngFor="let item of used" cdkDrag>
+      <div class="form-element-drop-placeholder" *cdkDragPlaceholder></div>
       <ng-container [ngSwitch]="item.type">
         <app-input *ngSwitchCase="'input'" (setActive)="setActive($event)" [data]="item.data"></app-input>
         <app-textarea *ngSwitchCase="'textarea'" (setActive)="setActive($event)" [data]="item.data"></app-textarea>
@@ -10,13 +10,16 @@
         <app-select *ngSwitchCase="'select'" (setActive)="setActive($event)" [data]="item.data"></app-select>
         <span *ngSwitchDefault>sads</span>
       </ng-container>
-      <!-- <app-selector class="field" [data]="item" [disabled]="false"></app-selector> -->
       <div class="form-items-buttons">
         <div class="selecting-piece" (click)="changeData(item)"></div>
         <div class="draggable-piece" cdkDragHandle></div>
       </div>
     </div>
   </form>
+</div>
+<div [cdkDropListData]="removed" id="garbage-can" style="width: 100%; height: 10%; background: rgb(180, 180, 180);"
+  cdkDropList (cdkDropListDropped)="dropToRemove($event)">
+  <div class="form-element-drop-placeholder" *cdkDragPlaceholder></div>
 </div>
 
 
@@ -26,35 +29,34 @@
 
 
 
-<!-- (click)="changeActive(checkbox) -->
 <ng-template cdkPortal>
   <ng-container *ngIf="!isEmpty(styles)">
     <div class="form-element-styles-container">
-      <mat-form-field class="example-full-width" appearance="fill">
+      <mat-form-field appearance="fill">
         <mat-label>Height</mat-label>
         <input matInput placeholder="18px, 1.5rem..." [(ngModel)]="styles.height">
       </mat-form-field>
-      <mat-form-field class="example-full-width" appearance="fill">
+      <mat-form-field appearance="fill">
         <mat-label>Width</mat-label>
         <input matInput placeholder="18px, 1.5rem..." [(ngModel)]="styles.width">
       </mat-form-field>
-      <mat-form-field class="example-full-width" appearance="fill">
+      <mat-form-field appearance="fill">
         <mat-label>Font weight</mat-label>
         <input matInput placeholder="400, 500, 600..." [(ngModel)]="styles.fontWeight">
       </mat-form-field>
-      <mat-form-field class="example-full-width" appearance="fill">
+      <mat-form-field appearance="fill">
         <mat-label>Font size</mat-label>
         <input matInput placeholder="18px, 1.5rem..." [(ngModel)]="styles.fontSize">
       </mat-form-field>
-      <mat-form-field class="example-full-width" appearance="fill">
+      <mat-form-field appearance="fill">
         <mat-label>Color</mat-label>
         <input matInput placeholder="rgb(0-255,0-255,0-255)..." [(ngModel)]="styles.color">
       </mat-form-field>
-      <mat-form-field class="example-full-width" appearance="fill">
+      <mat-form-field appearance="fill">
         <mat-label>Border style</mat-label>
         <input matInput placeholder="dashed, solid, dotted..." [(ngModel)]="styles.borderStyle">
       </mat-form-field>
-      <mat-form-field class="example-full-width" appearance="fill">
+      <mat-form-field appearance="fill">
         <mat-label>Placeholder</mat-label>
         <input matInput placeholder="some text..." [(ngModel)]="styles.placeholder">
       </mat-form-field>

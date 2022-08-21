@@ -1,22 +1,15 @@
 .home-container {
   display: flex;
   flex-direction: row;
-  margin-right: -27px;
   justify-content: space-around;
 }
 .section-container {
-  width: 30vw;
-  max-width: 100%;
-  margin: 0 25px 25px 0;
+  min-width: 30vw;
   display: inline-block;
   vertical-align: top;
   border: solid 1px #ccc;
   min-height: 90vh;
   border-radius: 4px;
-}
-
-textarea {
-  resize: none;
 }
 
 .cdk-drag-preview {
@@ -31,12 +24,12 @@ textarea {
   transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
 }
 
-.example-list.cdk-drop-list-dragging .example-box:not(.cdk-drag-placeholder) {
-  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
-}
-
-.example-custom-placeholder {
+.form-element-drop-placeholder {
   background: #ccc;
   border: dotted 3px #999;
   min-height: 50px;
 }
+.drop-list{
+  min-height:90%;
+}
+
