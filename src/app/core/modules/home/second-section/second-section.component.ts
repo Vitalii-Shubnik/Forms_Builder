@@ -1,19 +1,19 @@
 import { CdkPortal } from '@angular/cdk/portal';
 import { AfterViewInit, Component, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { distinctUntilChanged, filter, map, Observable, Subject, takeUntil } from 'rxjs';
+import { distinctUntilChanged, Observable, Subject, takeUntil } from 'rxjs';
 import { AvailableItems } from 'src/app/core/enums/availableItem';
 import { onDrop } from 'src/app/core/models/onDrop';
 import { FormItemService } from 'src/app/core/services/form-item.service';
 import { PortalBridgeService } from 'src/app/core/services/portal-bridge.service';
-import * as ElementActions from 'src/app/shared/actions/elementStyles.actions'
+import * as ElementActions from 'src/app/shared/actions/elementStyles.actions';
 import { selectElementStyles } from 'src/app/shared/selectors/elementStyles.selector';
 import { ElementStyles } from 'src/app/shared/statesModels/elementStyles.state';
 
 @Component({
   selector: 'app-second-section',
   templateUrl: './second-section.component.html',
-  styleUrls: ['./second-section.component.scss']
+  styleUrls: ['./second-section.component.scss', '../home/home.component.scss']
 })
 export class SecondSectionComponent extends onDrop implements OnInit, OnDestroy, AfterViewInit {
   @ViewChild(CdkPortal, { static: true })

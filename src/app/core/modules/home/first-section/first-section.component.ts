@@ -1,12 +1,12 @@
-import { TemplatePortal, ComponentPortal } from '@angular/cdk/portal';
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { map, Observable } from 'rxjs';
+import { TemplatePortal } from '@angular/cdk/portal';
+import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 import { PortalBridgeService } from 'src/app/core/services/portal-bridge.service';
 
 @Component({
   selector: 'app-first-section',
   templateUrl: './first-section.component.html',
-  styleUrls: ['./first-section.component.scss']
+  styleUrls: ['./first-section.component.scss', '../home/home.component.scss']
 })
 export class FirstSectionComponent implements OnInit{
 

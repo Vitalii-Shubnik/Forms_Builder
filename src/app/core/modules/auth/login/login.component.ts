@@ -5,12 +5,12 @@ import { DumbComponent } from 'src/app/core/models/dumbComponent';
 import { AuthFormValues } from 'src/app/core/models/formValues';
 
 @Component({
-  selector: 'app-sign-in',
-  templateUrl: './sign-in.component.html',
-  styleUrls: ['./sign-in.component.scss'],
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class SignInComponent extends DumbComponent {
+export class LoginComponent extends DumbComponent {
   authMethod: authMethodEnum = authMethodEnum.login
   @Input() form: FormGroup
   @Output()
