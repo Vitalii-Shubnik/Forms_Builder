@@ -13,7 +13,6 @@ import { selectAuthUsername, selectIsLoggedIn } from 'src/app/shared/selectors/a
 })
 export class AuthComponent {
   form: FormGroup;
-  authMethod: authMethodEnum = authMethodEnum.login;
   isLoggedIn$ = this.store.select(selectIsLoggedIn)
   userName$ = this.store.select(selectAuthUsername)
   
@@ -27,9 +26,6 @@ export class AuthComponent {
     });
   }
 
-  // toggleSwitchMethod(authMethod: authMethodEnum): void {
-  //   this.authMethod = authMethod
-  // }
 
   logout(): void {
     this.store.dispatch(AuthActions.logout())

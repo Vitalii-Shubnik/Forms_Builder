@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AuthComponent } from './login/auth.component';
+import { AuthComponent } from './auth/auth.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
@@ -9,7 +9,7 @@ import { AuthService } from 'src/app/core/services/auth.service'
 import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ContentApplicationJsonInterceptor } from 'src/app/core/interceptors/content-application-json.interceptor';
 import { LogoutComponent } from './logout/logout.component';
-import { SignInComponent } from './sign-in/sign-in.component';
+import { LoginComponent } from './login/login.component';
 
 
 
@@ -17,7 +17,7 @@ import { SignInComponent } from './sign-in/sign-in.component';
   declarations: [
     AuthComponent, 
     LogoutComponent,
-    SignInComponent],
+    LoginComponent],
   imports: [
     HttpClientModule,
     CommonModule,

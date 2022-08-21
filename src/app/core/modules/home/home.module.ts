@@ -21,7 +21,6 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { NavbarComponent } from './navbar/navbar.component';
 import { PushModule } from '@ngrx/component';
 
-
 @NgModule({
   declarations: [
     HomeComponent,
