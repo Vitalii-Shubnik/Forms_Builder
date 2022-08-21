@@ -1,9 +1,10 @@
+import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { CdkPortal } from '@angular/cdk/portal';
 import { AfterViewInit, Component, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { distinctUntilChanged, Observable, Subject, takeUntil } from 'rxjs';
 import { AvailableItems } from 'src/app/core/enums/availableItem';
-import { onDrop } from 'src/app/core/models/onDrop';
+import { Drop } from 'src/app/core/models/drop';
 import { FormItemService } from 'src/app/core/services/form-item.service';
 import { PortalBridgeService } from 'src/app/core/services/portal-bridge.service';
 import * as ElementActions from 'src/app/shared/actions/elementStyles.actions';
@@ -15,7 +16,7 @@ import { ElementStyles } from 'src/app/shared/statesModels/elementStyles.state';
   templateUrl: './second-section.component.html',
   styleUrls: ['./second-section.component.scss', '../home/home.component.scss']
 })
-export class SecondSectionComponent extends onDrop implements OnInit, OnDestroy, AfterViewInit {
+export class SecondSectionComponent implements Drop, OnInit, OnDestroy, AfterViewInit {
   @ViewChild(CdkPortal, { static: true })
   portalContent: CdkPortal
   styles: ElementStyles = null
@@ -26,13 +27,28 @@ export class SecondSectionComponent extends onDrop implements OnInit, OnDestroy,
   destroy$: Subject<boolean> = new Subject<boolean>();
   @Input()
   used: Array<any> = [];
+  removed: any[] = []
   constructor(
     private formItemService: FormItemService,
     private portalBridge: PortalBridgeService,
     private store: Store
-  ) {
-    super()
+  ) { }
+  dropToRemove = (event: CdkDragDrop<any, any, any>) => {
+    event.previousContainer.data.splice(event.previousIndex, 1)
   }
+
+  drop = (event: CdkDragDrop<any, any, any>) => {
+    if (event.previousContainer === event.container) {
+      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+    } else {
+      transferArrayItem(
+        event.previousContainer.data,
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex,
+      );
+    }
+  };
   ngOnInit() {
     this.activeItem$.pipe(
       takeUntil(this.destroy$),
