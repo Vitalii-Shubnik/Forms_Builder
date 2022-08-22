@@ -9,3 +9,24 @@
   box-sizing: border-box;
   cursor: move;
 }
+.add-item{
+  margin-right: 1px;
+  border-radius: 5px;
+  border: 0;
+  width: 100px;
+  height: 53px;
+  cursor: pointer;
+}
+.add-icon{
+  margin-right: 3px;
+  margin-top: 3px;
+}
+.bottom-add-item-container{
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+::ng-deep .add-select .mat-form-field-wrapper{
+  margin-bottom: -1.25em;
+}

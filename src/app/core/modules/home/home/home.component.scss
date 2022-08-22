@@ -27,9 +27,15 @@
 .form-element-drop-placeholder {
   background: #ccc;
   border: dotted 3px #999;
-  min-height: 50px;
+  min-height: 47px;
 }
+
 .drop-list{
   min-height:90%;
 }
 
+.second-section, .third-section{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}

@@ -1,6 +1,7 @@
 <div #customForm cdkDropList [cdkDropListData]="used" class="drop-list" (cdkDropListDropped)="drop($event)">
   <form class="main-form">
-    <div class="form-item-container " *ngFor="let item of used" cdkDrag>
+    <div class="form-item-container " *ngFor="let item of used" cdkDrag (cdkDragStarted)="dragging=true"
+      (cdkDragEnded)="dragging=false">
       <div class="form-element-drop-placeholder" *cdkDragPlaceholder></div>
       <ng-container [ngSwitch]="item.type">
         <app-input *ngSwitchCase="'input'" (setActive)="setActive($event)" [data]="item.data"></app-input>
@@ -11,15 +12,22 @@
         <span *ngSwitchDefault>sads</span>
       </ng-container>
       <div class="form-items-buttons">
-        <div class="selecting-piece" (click)="changeData(item)"></div>
-        <div class="draggable-piece" cdkDragHandle></div>
+        <mat-icon class="draggable-piece" cdkDragHandle> drag_handle</mat-icon>
       </div>
     </div>
   </form>
 </div>
-<div [cdkDropListData]="removed" id="garbage-can" style="width: 100%; height: 10%; background: rgb(180, 180, 180);"
-  cdkDropList (cdkDropListDropped)="dropToRemove($event)">
-  <div class="form-element-drop-placeholder" *cdkDragPlaceholder></div>
+<div class="form-elements-bottom-buttons">
+  <div class="edit-dropfield form-elements-bottom-button" [ngClass]="{'edit-dropfield-active': dragging}" cdkDropList
+    (cdkDropListDropped)="dropToEdit($event)">
+    <div *cdkDragPlaceholder></div>
+    <mat-icon class="edit-icon icon">edit</mat-icon>
+  </div>
+  <div class="garbage-can form-elements-bottom-button" [ngClass]="{'garbage-can-active': dragging}" cdkDropList
+    (cdkDropListDropped)="dropToRemove($event)">
+    <div *cdkDragPlaceholder></div>
+    <mat-icon class="delete-icon icon">delete_outline</mat-icon>
+  </div>
 </div>
 
 

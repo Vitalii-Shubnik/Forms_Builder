@@ -7,15 +7,16 @@
 
 .draggable-piece {
   cursor: move;
-  width: 33%;
-  background: blue;
 }
-.selecting-piece{
+
+.selecting-piece {
   cursor: pointer;
   width: 33%;
+  height: 100%;
   background: greenyellow;
 }
-.form-items-buttons{
+
+.form-items-buttons {
   position: absolute;
   top: 0;
   right: 0;
@@ -24,12 +25,14 @@
   display: flex;
   flex-direction: row;
   justify-content: right;
+  align-items: center;
 }
-.field{
+
+.field {
   justify-self: center;
 }
 
-.form-element-styles-container{
+.form-element-styles-container {
   display: flex;
   flex-direction: column;
   overflow-y: scroll;
@@ -38,10 +41,50 @@
   padding-right: 15px;
 }
 
-.main-form{
+.main-form {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   gap: 10px;
   background: #b7b7b7;
+}
+
+
+
+.form-elements-bottom-button {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  margin-right: 1px;
+  border-radius: 5px;
+  width: 100px;
+  height: 100%;
+}
+
+.icon {
+  position: absolute;
+  margin: auto;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  text-align: center;
+}
+.garbage-can {
+  background: rgba(255, 119, 119, 0.3);
+}
+.garbage-can-active {
+  background: rgba(255, 119, 119, 0.8);
+}
+.edit-dropfield {
+  background: rgba(160, 255, 136, 0.3);
+}
+.edit-dropfield-active{
+  background: rgba(160, 255, 136, 0.8);
+}
+.form-elements-bottom-buttons {
+  height: 53px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
