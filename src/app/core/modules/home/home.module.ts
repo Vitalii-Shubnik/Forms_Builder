@@ -15,6 +15,10 @@ import { HomeComponent } from './home/home.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { SecondSectionComponent } from './second-section/second-section.component';
 import { ThirdSectionComponent } from './third-section/third-section.component';
+import { MatIconModule } from '@angular/material/icon';
+import { MatDialogModule } from '@angular/material/dialog';
+import { EditDialogComponent } from './edit-dialog/edit-dialog.component'
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 @NgModule({
   declarations: [
@@ -23,6 +27,7 @@ import { ThirdSectionComponent } from './third-section/third-section.component';
     SecondSectionComponent,
     ThirdSectionComponent,
     NavbarComponent,
+    EditDialogComponent,
   ],
   imports: [
     FormElementsModule,
@@ -38,6 +43,9 @@ import { ThirdSectionComponent } from './third-section/third-section.component';
     FormsModule,
     MatExpansionModule,
     PushModule,
+    MatIconModule,
+    MatDialogModule,
+    MatFormFieldModule
   ],
   providers: []
 })

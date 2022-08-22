@@ -3,4 +3,6 @@
   <button mat-stroked-button>Button</button>
 </ng-template> -->
 
-<button #coreElement (click)="onClick(coreElement)" [attr.disabled]="disabled ? true: null">Button</button>
+<button #coreElement (click)="onClick(coreElement)" [attr.disabled]="disabled ? true: null">
+  {{data || 'Button'}}
+</button>
