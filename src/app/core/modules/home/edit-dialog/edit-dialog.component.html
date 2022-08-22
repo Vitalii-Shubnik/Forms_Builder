@@ -1,0 +1,36 @@
+<h1 mat-dialog-title>{{data.type | titlecase}}</h1>
+<div mat-dialog-content>
+  <ng-container [ngSwitch]="data.type">
+    <mat-form-field *ngSwitchCase="'checkbox'" appearance="fill">
+      <mat-label>Enter label for checkbox</mat-label>
+      <input matInput [(ngModel)]="temp">
+    </mat-form-field>
+    <mat-form-field *ngSwitchCase="'button'" appearance="fill">
+      <mat-label>Enter button text</mat-label>
+      <input matInput [(ngModel)]="temp">
+    </mat-form-field>
+    <ng-container *ngSwitchCase="'select'" class="edit-data-container">
+      <mat-form-field appearance="fill">
+        <mat-label>Enter option for select</mat-label>
+        <input matInput [(ngModel)]="temp" (keyup.enter)="applyOptionForSelect()">
+      </mat-form-field>
+      <button class="apply-button" mat-flat-button color="primary" (click)="applyOptionForSelect()">Apply</button>
+      <div class="already-set-options">
+        <ng-container *ngFor="let item of temparr; let i = index">
+          <div class="already-set-options-content">
+            <span>{{item}}</span>
+            <mat-icon (click)="removeOption(i)" class="remove-option">remove_circle_outline</mat-icon>
+          </div>
+        </ng-container>
+      </div>
+    </ng-container>
+    <div *ngSwitchDefault appearance="fill">
+      <span>No changes needed</span>
+    </div>
+  </ng-container>
+</div>
+<div mat-dialog-actions>
+  <button mat-stroked-button (click)="onNoClick()">Close</button>
+  <button [disabled]="!(temp || temparr?.length)" mat-flat-button color="primary" [mat-dialog-close]="setDialog()"
+    cdkFocusInitial>Set</button>
+</div>

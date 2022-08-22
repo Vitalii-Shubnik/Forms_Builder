@@ -1,0 +1,26 @@
+.already-set-options{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.already-set-options-content{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+} 
+.edit-data-container{
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+}
+.apply-button{
+  align-self: center;
+  justify-self: center;
+}
+.mat-dialog-content{
+  display: flex;
+  flex-direction: column;
+}
+.remove-option{
+  cursor: pointer;
+}

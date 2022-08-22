@@ -1,5 +1,6 @@
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { Component, Input } from '@angular/core';
+import { AvailableItems } from 'src/app/core/enums/availableItem';
 import { Drop } from 'src/app/core/models/drop';
 
 @Component({
@@ -9,9 +10,14 @@ import { Drop } from 'src/app/core/models/drop';
 })
 export class ThirdSectionComponent implements Drop {
   @Input()
-  available: any
+  available: any[]
+  types = (Object.keys(AvailableItems) as Array<keyof typeof AvailableItems>)
+  elementToAdd: AvailableItems = AvailableItems.input;
+  constructor() { }
 
-  constructor() {}
+  add = () => { 
+    this.available.push({type:this.elementToAdd, data: ''})
+  }
 
   drop = (event: CdkDragDrop<any, any, any>) => {
     if (event.previousContainer === event.container)
