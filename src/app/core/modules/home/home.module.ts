@@ -13,21 +13,22 @@ import { FirstSectionComponent } from './first-section/first-section.component';
 import { FormElementsModule } from './form-elements/form-elements.module';
 import { HomeComponent } from './home/home.component';
 import { NavbarComponent } from './navbar/navbar.component';
-import { SecondSectionComponent } from './second-section/second-section.component';
 import { ThirdSectionComponent } from './third-section/third-section.component';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDialogModule } from '@angular/material/dialog';
 import { EditDialogComponent } from './edit-dialog/edit-dialog.component'
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { SecondSectionModule } from './second-section/second-section.module';
+import { DroplistComponent } from './droplist/droplist.component';
+import { ThirdSectionModule } from './third-section/third-section.module';
 
 @NgModule({
   declarations: [
     HomeComponent,
     FirstSectionComponent,
-    SecondSectionComponent,
-    ThirdSectionComponent,
     NavbarComponent,
     EditDialogComponent,
+
   ],
   imports: [
     FormElementsModule,
@@ -45,7 +46,11 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     PushModule,
     MatIconModule,
     MatDialogModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    SecondSectionModule,
+    ThirdSectionModule
+  ],
+  exports:[
   ],
   providers: []
 })
