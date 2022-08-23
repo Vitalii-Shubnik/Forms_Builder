@@ -1,8 +1,3 @@
-<!-- <button *ngIf="disabled; else active" mat-stroked-button disabled="true">Button</button>
-<ng-template #active>
-  <button mat-stroked-button>Button</button>
-</ng-template> -->
-
 <button #coreElement (click)="onClick(coreElement)" [attr.disabled]="disabled ? true: null">
   {{data || 'Button'}}
 </button>
