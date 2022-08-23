@@ -3,7 +3,7 @@ import { CdkPortal } from '@angular/cdk/portal';
 import { AfterViewInit, Component, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
-import { distinctUntilChanged, Observable, Subject, takeUntil } from 'rxjs';
+import { distinctUntilChanged, filter, Observable, Subject, takeUntil } from 'rxjs';
 import { AvailableItems } from 'src/app/core/enums/availableItem';
 import { Drop } from 'src/app/core/models/drop';
 import { FormItemService } from 'src/app/core/services/form-item.service';
@@ -28,7 +28,6 @@ export class SecondSectionComponent implements Drop, OnInit, OnDestroy, AfterVie
   dragging: boolean = false
 
   destroy$: Subject<boolean> = new Subject<boolean>();
-  @Input()
   used: any[] = [];
   removed: any[] = []
   foredit: any[] = []
@@ -53,9 +52,9 @@ export class SecondSectionComponent implements Drop, OnInit, OnDestroy, AfterVie
 
     dialogRef.afterClosed().pipe(
       takeUntil(this.destroy$),
+      filter(el=>!!el)
     ).subscribe(result => {
       console.log('subscribed '+ result)
-      if (Array.isArray(result) || (typeof result === 'string' || result instanceof String))
         event.previousContainer.data[event.previousIndex].data = result;
     });
   }
@@ -96,7 +95,8 @@ export class SecondSectionComponent implements Drop, OnInit, OnDestroy, AfterVie
     this.portalBridge.setPortal(this.portalContent)
   }
 
-  setActive(value: HTMLElement) {
+  setActive(value: HTMLElement, type: AvailableItems) {
+    this.formItemService.setActiveElementType(type)
     this.formItemService.setActiveElement(value)
   }
 

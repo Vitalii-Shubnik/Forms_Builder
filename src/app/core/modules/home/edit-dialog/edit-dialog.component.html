@@ -31,6 +31,5 @@
 </div>
 <div mat-dialog-actions>
   <button mat-stroked-button (click)="onNoClick()">Close</button>
-  <button [disabled]="!(temp || temparr?.length)" mat-flat-button color="primary" [mat-dialog-close]="setDialog()"
-    cdkFocusInitial>Set</button>
+  <button [disabled]="!(temp || temparr?.length)" mat-flat-button color="primary" [mat-dialog-close]="setDialog()">Set</button>
 </div>
