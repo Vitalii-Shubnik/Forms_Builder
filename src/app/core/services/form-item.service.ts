@@ -2,37 +2,37 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { ElementStyles } from 'src/app/shared/statesModels/elementStyles.state';
 import { AvailableItems } from '../enums/availableItem';
+import { ActiveElement } from '../models/activeElement';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FormItemService {
-  private activeElement = new BehaviorSubject<HTMLElement>(null)
-  private activeElementType = new BehaviorSubject<AvailableItems>(null)
-  readonly element$ = this.activeElement.asObservable()
+  private active = new BehaviorSubject<ActiveElement>(null)
+  readonly element$ = this.active.asObservable()
 
-  setActiveElementType(type: AvailableItems) {
-    this.activeElementType.next(type)
+  setActive(el: ActiveElement) {
+    this.active.next({ ...el })
   }
-  setActiveElement(element: HTMLElement) {
-    this.activeElement.next(element)
-  }
+
   setStyles(styles: ElementStyles) {
-    const currentElement = this.activeElement.getValue()
-    Object.entries(styles).filter(([key, _]) => key !== 'required' && key !== 'placeholder').forEach(([key, value]) => {
-      currentElement.style[key] = value
-    })
-    styles.placeholder !== undefined &&
-      (
-        styles.placeholder !== '' ?
-          currentElement.setAttribute('placeholder', styles.placeholder)
-          : currentElement.removeAttribute('placeholder')
-      )
-    styles.required !== undefined &&
-      (
-        styles.required ?
-          currentElement.setAttribute('required', 'true') : currentElement.removeAttribute('required')
-      )
+    const currentElement = this.active.getValue().element
+    if (!!currentElement) {
+      Object.entries(styles).filter(([key, _]) => key !== 'required' && key !== 'placeholder').forEach(([key, value]) => {
+        currentElement.style[key] = value
+      })
+      styles.placeholder !== undefined &&
+        (
+          styles.placeholder !== '' ?
+            currentElement.setAttribute('placeholder', styles.placeholder)
+            : currentElement.removeAttribute('placeholder')
+        )
+      styles.required !== undefined &&
+        (
+          styles.required ?
+            currentElement.setAttribute('required', 'true') : currentElement.removeAttribute('required')
+        )
+    }
   }
   getFullStyles(el: HTMLElement) {
     return {
@@ -47,8 +47,9 @@ export class FormItemService {
     }
   }
   getStyles(): ElementStyles {
-    const currentType = this.activeElementType.getValue()
-    const currentElement = this.activeElement.getValue()
+    console.log(this.active.getValue())
+    const currentType = this.active.getValue()?.type
+    const currentElement = this.active.getValue()?.element
     if (!currentElement)
       return null
     const styles: ElementStyles = this.getFullStyles(currentElement)

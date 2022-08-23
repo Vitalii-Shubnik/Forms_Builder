@@ -1,4 +1,4 @@
 
 export interface SelectElement {
-  onClick(el: HTMLElement): void 
+  onClick(el: HTMLElement, event?: MouseEvent): void 
 }

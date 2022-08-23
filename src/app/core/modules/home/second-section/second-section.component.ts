@@ -1,10 +1,10 @@
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { CdkPortal } from '@angular/cdk/portal';
-import { AfterViewInit, Component, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
-import { distinctUntilChanged, filter, Observable, Subject, takeUntil } from 'rxjs';
-import { AvailableItems } from 'src/app/core/enums/availableItem';
+import { BehaviorSubject, distinctUntilChanged, filter, forkJoin, Observable, Subject, take, takeUntil } from 'rxjs';
+import { ActiveElement } from 'src/app/core/models/activeElement';
 import { Drop } from 'src/app/core/models/drop';
 import { FormItemService } from 'src/app/core/services/form-item.service';
 import { PortalBridgeService } from 'src/app/core/services/portal-bridge.service';
@@ -21,16 +21,17 @@ import { EditDialogComponent } from '../edit-dialog/edit-dialog.component';
 export class SecondSectionComponent implements Drop, OnInit, OnDestroy, AfterViewInit {
   @ViewChild(CdkPortal, { static: true })
   portalContent: CdkPortal
-  styles: ElementStyles = null
-  previousStyles: ElementStyles = null
+
   activeItem$ = this.formItemService.element$
   activeElementStyles$: Observable<ElementStyles> = this.store.select(selectElementStyles)
-  dragging: boolean = false
+
+  styles: ElementStyles = null
+  previousStyles: ElementStyles = null
+
+  dragging$ = new BehaviorSubject<boolean>(false)
 
   destroy$: Subject<boolean> = new Subject<boolean>();
   used: any[] = [];
-  removed: any[] = []
-  foredit: any[] = []
   constructor(
     public dialog: MatDialog,
     private formItemService: FormItemService,
@@ -40,7 +41,7 @@ export class SecondSectionComponent implements Drop, OnInit, OnDestroy, AfterVie
 
   dropToRemove = (event: CdkDragDrop<any, any, any>) => {
     event.previousContainer.data.splice(event.previousIndex, 1)
-    this.formItemService.setActiveElement(null)
+    this.formItemService.setActive(null)
     this.styles = {}
     this.previousStyles = {}
   }
@@ -51,11 +52,11 @@ export class SecondSectionComponent implements Drop, OnInit, OnDestroy, AfterVie
     });
 
     dialogRef.afterClosed().pipe(
-      takeUntil(this.destroy$),
-      filter(el=>!!el)
+      take(1),
+      filter(el => !!el)
     ).subscribe(result => {
-      console.log('subscribed '+ result)
-        event.previousContainer.data[event.previousIndex].data = result;
+      // console.log('subscribed ' + result)
+      event.previousContainer.data[event.previousIndex].data = result;
     });
   }
 
@@ -74,10 +75,15 @@ export class SecondSectionComponent implements Drop, OnInit, OnDestroy, AfterVie
   ngOnInit() {
     this.activeItem$.pipe(
       takeUntil(this.destroy$),
-      distinctUntilChanged()
+      distinctUntilChanged((prev, next) => {
+        return prev
+          && (JSON.stringify(prev) === JSON.stringify(next))
+        //better use lodash 
+      }),
     ).subscribe(el => {
       this.getElementCurrentStyleValues();
     })
+
     this.activeElementStyles$.pipe(
       takeUntil(this.destroy$),
       distinctUntilChanged((prev, next) => {
@@ -85,7 +91,6 @@ export class SecondSectionComponent implements Drop, OnInit, OnDestroy, AfterVie
           && (JSON.stringify(prev) === JSON.stringify(next))
         //better use lodash 
       }),
-
     ).subscribe(el => {
       this.styles = { ...el }
       this.previousStyles = { ...el }
@@ -95,26 +100,19 @@ export class SecondSectionComponent implements Drop, OnInit, OnDestroy, AfterVie
     this.portalBridge.setPortal(this.portalContent)
   }
 
-  setActive(value: HTMLElement, type: AvailableItems) {
-    this.formItemService.setActiveElementType(type)
-    this.formItemService.setActiveElement(value)
+  setActive(data: ActiveElement) {
+    // this.formItemService.setActiveElementType(data.type)
+    // this.formItemService.setActiveElement(data.element)
+    // console.log(data)
+    this.formItemService.setActive(data)
   }
 
-  changeData(item: any) {
-    item.type == AvailableItems.checkbox
-      && (item.data = 'new label')
-  }
-
-  isEmpty(obj: Object) {
-    return obj && Object.keys(obj).length === 0
-      && Object.getPrototypeOf(obj) === Object.prototype
-  }
-  getElementCurrentStyleValues(): void {
+  getElementCurrentStyleValues(): void {                                          ///
     this.store.dispatch(ElementActions.elementChangeStyles({
       styles: this.formItemService.getStyles()
     }))
   }
-  setElementCurrentStyleValues() {
+  setElementCurrentStyleValues() {                                                            ///
     const changedStyles: ElementStyles = Object.fromEntries(Object.entries(this.styles)
       .filter(([key, value]) => this.styles[key] !== this.previousStyles[key]))
     this.store.dispatch(ElementActions.elementChangeSelfStyles({
@@ -122,7 +120,7 @@ export class SecondSectionComponent implements Drop, OnInit, OnDestroy, AfterVie
     }))
   }
 
-  ngOnDestroy(): void {
+  ngOnDestroy(): void {                                                                   ///
     // this.portalContent.detach()
     this.destroy$.next(true);
     this.destroy$.unsubscribe();
