@@ -16,7 +16,8 @@ export class ButtonComponent extends DumbComponent implements SelectElement {
   constructor() {
     super()
   }
-  onClick(value: HTMLElement ){
+  onClick(value: HTMLElement, event: MouseEvent ){
+    event.preventDefault()
     this.setActive.emit(value)
   }
 }

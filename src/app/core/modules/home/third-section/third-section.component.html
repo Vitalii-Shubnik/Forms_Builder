@@ -1,4 +1,4 @@
-<div class="drop-list" cdkDropList [cdkDropListData]="available" (cdkDropListDropped)="drop($event)"
+<!-- <div class="drop-list" cdkDropList [cdkDropListData]="available" (cdkDropListDropped)="drop($event)"
   [cdkDropListEnterPredicate]="noReturnPredicate">
   <div class="form-item-container" *ngFor="let item of available" cdkDrag>
     <div class="form-element-drop-placeholder" *cdkDragPlaceholder></div>
@@ -11,8 +11,8 @@
       <span *ngSwitchDefault>No such element</span>
     </ng-container>
   </div>
-</div>
-
+</div> -->
+<app-droplist [disabled]="true" [dragHandle]="false" [dropListData]="available" (SetDropped)="drop($event)" [noReturnPredicate]="noReturnPredicate"></app-droplist>
 <div class="bottom-add-item-container">
   <button (click)="add()" class="add-item">
     <mat-icon class="add-icon">add</mat-icon>

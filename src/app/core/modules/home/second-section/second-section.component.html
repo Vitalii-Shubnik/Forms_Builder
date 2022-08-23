@@ -1,4 +1,4 @@
-<div #customForm cdkDropList [cdkDropListData]="used" class="drop-list" (cdkDropListDropped)="drop($event)">
+<!-- <div #customForm cdkDropList [cdkDropListData]="used" class="drop-list" (cdkDropListDropped)="drop($event)">
   <form class="main-form">
     <div class="form-item-container " *ngFor="let item of used" cdkDrag (cdkDragStarted)="dragging=true"
       (cdkDragEnded)="dragging=false">
@@ -16,29 +16,32 @@
       </div>
     </div>
   </form>
-</div>
+</div> -->
+<app-droplist [disabled]="false" (SetActive)="setActive($event)" (SetDropped)="drop($event)" [dropListData]="used"
+  [dragHandle]="true" (dragEvent)="dragging$.next($event)">
+</app-droplist>
 <div class="form-elements-bottom-buttons">
-  <div class="edit-dropfield form-elements-bottom-button" [ngClass]="{'edit-dropfield-active': dragging}" cdkDropList
+  <!-- <div class="edit-dropfield form-elements-bottom-button" [ngClass]="{'edit-dropfield-active': dragging}" cdkDropList
     (cdkDropListDropped)="dropToEdit($event)">
     <div *cdkDragPlaceholder></div>
     <mat-icon class="edit-icon icon">edit</mat-icon>
-  </div>
-  <div class="garbage-can form-elements-bottom-button" [ngClass]="{'garbage-can-active': dragging}" cdkDropList
+  </div> -->
+  <!-- <div class="garbage-can form-elements-bottom-button" [ngClass]="{'garbage-can-active': dragging}" cdkDropList
     (cdkDropListDropped)="dropToRemove($event)">
     <div *cdkDragPlaceholder></div>
     <mat-icon class="delete-icon icon">delete_outline</mat-icon>
-  </div>
+  </div> -->
+  <app-edit-field activeClassName="edit-dropfield-active" className="edit-dropfield" (dropped)="dropToEdit($event)"
+    icon="edit" [dragging]="dragging$ | ngrxPush">
+  </app-edit-field>
+  <app-edit-field activeClassName="garbage-can-active" className="garbage-can" (dropped)="dropToRemove($event)"
+    icon="delete_outline" [dragging]="dragging$ | ngrxPush">
+  </app-edit-field>
 </div>
 
 
-
-
-
-
-
-
 <ng-template cdkPortal>
-  <ng-container *ngIf="!isEmpty(styles)">
+  <ng-container *ngIf="styles | isNotEmptyObj">
     <div class="form-element-styles-container">
       <mat-form-field *ngIf="styles.height !== null" appearance="fill">
         <mat-label>Height</mat-label>

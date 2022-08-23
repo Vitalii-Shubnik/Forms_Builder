@@ -1,0 +1,5 @@
+<div class="{{className}} form-elements-bottom-button " [ngClass]="dragging && activeClassName" cdkDropList
+  (cdkDropListDropped)="drop($event)">
+  <div *cdkDragPlaceholder></div>
+  <mat-icon class="icon">{{icon}}</mat-icon>
+</div>

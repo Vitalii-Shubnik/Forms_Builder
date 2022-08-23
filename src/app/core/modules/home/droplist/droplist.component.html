@@ -1,0 +1,26 @@
+<div cdkDropList [cdkDropListData]="dropListData" class="drop-list" (cdkDropListDropped)="drop($event)"
+  [cdkDropListEnterPredicate]="noReturnPredicate">
+  <form class="main-form">
+    <div [ngClass]="dragHandle ? 'form-item-container' : 'form-item-container-without-draghandle' "
+      *ngFor="let item of dropListData" cdkDrag (cdkDragStarted)="dragEvent.emit(true)"
+      (cdkDragEnded)="dragEvent.emit(false)">
+      <div class="form-element-drop-placeholder" *cdkDragPlaceholder></div>
+      <ng-container [ngSwitch]="item.type">
+        <app-input *ngSwitchCase="'input'" [disabled]="disabled" (setActive)="setActive($event, item.type)"
+          [data]="item.data"></app-input>
+        <app-textarea *ngSwitchCase="'textarea'" [disabled]="disabled" (setActive)="setActive($event, item.type)"
+          [data]="item.data"></app-textarea>
+        <app-button *ngSwitchCase="'button'" [disabled]="disabled" (setActive)="setActive($event, item.type)"
+          [data]="item.data"></app-button>
+        <app-checkbox *ngSwitchCase="'checkbox'" [disabled]="disabled" (setActive)="setActive($event, item.type)"
+          [data]="item.data"></app-checkbox>
+        <app-select *ngSwitchCase="'select'" [disabled]="disabled" (setActive)="setActive($event, item.type)"
+          [data]="item.data"></app-select>
+        <span *ngSwitchDefault>sads</span>
+      </ng-container>
+      <div *ngIf="dragHandle" class="form-items-buttons">
+        <mat-icon class="draggable-piece" cdkDragHandle> drag_handle</mat-icon>
+      </div>
+    </div>
+  </form>
+</div>
