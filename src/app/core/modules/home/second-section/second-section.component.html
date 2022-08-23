@@ -4,11 +4,11 @@
       (cdkDragEnded)="dragging=false">
       <div class="form-element-drop-placeholder" *cdkDragPlaceholder></div>
       <ng-container [ngSwitch]="item.type">
-        <app-input *ngSwitchCase="'input'" (setActive)="setActive($event)" [data]="item.data"></app-input>
-        <app-textarea *ngSwitchCase="'textarea'" (setActive)="setActive($event)" [data]="item.data"></app-textarea>
-        <app-button *ngSwitchCase="'button'" (setActive)="setActive($event)" [data]="item.data"></app-button>
-        <app-checkbox *ngSwitchCase="'checkbox'" (setActive)="setActive($event)" [data]="item.data"></app-checkbox>
-        <app-select *ngSwitchCase="'select'" (setActive)="setActive($event)" [data]="item.data"></app-select>
+        <app-input *ngSwitchCase="'input'" (setActive)="setActive($event, item.type)" [data]="item.data"></app-input>
+        <app-textarea *ngSwitchCase="'textarea'" (setActive)="setActive($event, item.type)" [data]="item.data"></app-textarea>
+        <app-button *ngSwitchCase="'button'" (setActive)="setActive($event, item.type)" [data]="item.data"></app-button>
+        <app-checkbox *ngSwitchCase="'checkbox'" (setActive)="setActive($event, item.type)" [data]="item.data"></app-checkbox>
+        <app-select *ngSwitchCase="'select'" (setActive)="setActive($event, item.type)" [data]="item.data"></app-select>
         <span *ngSwitchDefault>sads</span>
       </ng-container>
       <div class="form-items-buttons">
@@ -40,35 +40,35 @@
 <ng-template cdkPortal>
   <ng-container *ngIf="!isEmpty(styles)">
     <div class="form-element-styles-container">
-      <mat-form-field appearance="fill">
+      <mat-form-field *ngIf="styles.height !== null" appearance="fill">
         <mat-label>Height</mat-label>
         <input matInput placeholder="18px, 1.5rem..." [(ngModel)]="styles.height">
       </mat-form-field>
-      <mat-form-field appearance="fill">
+      <mat-form-field *ngIf="styles.width !== null" appearance="fill">
         <mat-label>Width</mat-label>
         <input matInput placeholder="18px, 1.5rem..." [(ngModel)]="styles.width">
       </mat-form-field>
-      <mat-form-field appearance="fill">
+      <mat-form-field *ngIf="styles.fontWeight !== null" appearance="fill">
         <mat-label>Font weight</mat-label>
         <input matInput placeholder="400, 500, 600..." [(ngModel)]="styles.fontWeight">
       </mat-form-field>
-      <mat-form-field appearance="fill">
+      <mat-form-field *ngIf="styles.fontSize !== null" appearance="fill">
         <mat-label>Font size</mat-label>
         <input matInput placeholder="18px, 1.5rem..." [(ngModel)]="styles.fontSize">
       </mat-form-field>
-      <mat-form-field appearance="fill">
+      <mat-form-field *ngIf="styles.color !== null" appearance="fill">
         <mat-label>Color</mat-label>
         <input matInput placeholder="rgb(0-255,0-255,0-255)..." [(ngModel)]="styles.color">
       </mat-form-field>
-      <mat-form-field appearance="fill">
+      <mat-form-field *ngIf="styles.borderStyle !== null" appearance="fill">
         <mat-label>Border style</mat-label>
         <input matInput placeholder="dashed, solid, dotted..." [(ngModel)]="styles.borderStyle">
       </mat-form-field>
-      <mat-form-field appearance="fill">
+      <mat-form-field *ngIf="styles.placeholder !== null" appearance="fill">
         <mat-label>Placeholder</mat-label>
         <input matInput placeholder="some text..." [(ngModel)]="styles.placeholder">
       </mat-form-field>
-      <mat-checkbox [(ngModel)]="styles.required">Required</mat-checkbox>
+      <mat-checkbox *ngIf="styles.required !== null" [(ngModel)]="styles.required">Required</mat-checkbox>
       <br />
       <button mat-raised-button color="accent" (click)="setElementCurrentStyleValues()">Change</button>
     </div>
