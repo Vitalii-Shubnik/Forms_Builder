@@ -11,12 +11,12 @@ import { SelectElement } from 'src/app/core/models/elementOnClick';
 export class InputComponent extends DumbComponent implements SelectElement {
   @Input() disabled: boolean
   @Input() data: any
-  @Output() 
+  @Output()
   setActive = new EventEmitter<HTMLElement>()
   constructor() {
     super()
   }
-  onClick(value: HTMLElement ){
+  onClick(value: HTMLElement) {
     this.setActive.emit(value)
   }
 }

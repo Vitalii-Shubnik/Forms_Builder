@@ -1,12 +1,9 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { ElementStyles } from 'src/app/shared/statesModels/elementStyles.state';
-import { AvailableItems } from '../enums/availableItem';
 import { ActiveElement } from '../models/activeElement';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class FormItemService {
   private active = new BehaviorSubject<ActiveElement>(null)
   readonly element$ = this.active.asObservable()
@@ -47,7 +44,6 @@ export class FormItemService {
     }
   }
   getStyles(): ElementStyles {
-    console.log(this.active.getValue())
     const currentType = this.active.getValue()?.type
     const currentElement = this.active.getValue()?.element
     if (!currentElement)

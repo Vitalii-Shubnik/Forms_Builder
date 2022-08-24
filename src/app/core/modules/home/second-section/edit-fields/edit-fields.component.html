@@ -1,0 +1,8 @@
+<div class="form-elements-bottom-buttons">
+  <app-edit-field activeClassName="edit-dropfield-active" className="edit-dropfield" (dropped)="dropToEdit($event)"
+    icon="edit" [dragging]="dragging$ | ngrxPush">
+  </app-edit-field>
+  <app-edit-field activeClassName="garbage-can-active" className="garbage-can" (dropped)="dropToRemove($event)"
+    icon="delete_outline" [dragging]="dragging$ | ngrxPush">
+  </app-edit-field>
+</div>
