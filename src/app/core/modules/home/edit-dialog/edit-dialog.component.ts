@@ -14,8 +14,7 @@ export interface DataType{
 })
 export class EditDialogComponent{
   temp: string;
-  temparr: string[] = [...this.data.data];
-  result: string | string[]
+  temparr: string[] = [...this.data?.data];
   constructor(
     public dialogRef: MatDialogRef<EditDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DataType,
