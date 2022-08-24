@@ -14,3 +14,21 @@ body {
 textarea {
   resize: none;
 }
+
+input, select, textarea, button{font-style:inherit;}
+
+.form-element-drop-placeholder {
+  background-color: #cacaca ;
+  opacity: 0.4;
+  border: dotted 3px #999;
+  min-height: 47px;
+}
+
+.form-styles-container {
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+  max-height: 70vh;
+  padding-left: 15px;
+  padding-right: 15px;
+}

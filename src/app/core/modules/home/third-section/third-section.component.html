@@ -1,18 +1,5 @@
-<!-- <div class="drop-list" cdkDropList [cdkDropListData]="available" (cdkDropListDropped)="drop($event)"
-  [cdkDropListEnterPredicate]="noReturnPredicate">
-  <div class="form-item-container" *ngFor="let item of available" cdkDrag>
-    <div class="form-element-drop-placeholder" *cdkDragPlaceholder></div>
-    <ng-container [ngSwitch]="item.type">
-      <app-input *ngSwitchCase="'input'" [disabled]="true"></app-input>
-      <app-textarea *ngSwitchCase="'textarea'" [disabled]="true"></app-textarea>
-      <app-button *ngSwitchCase="'button'" [disabled]="true"></app-button>
-      <app-checkbox *ngSwitchCase="'checkbox'" [disabled]="true"></app-checkbox>
-      <app-select *ngSwitchCase="'select'" [disabled]="true"></app-select>
-      <span *ngSwitchDefault>No such element</span>
-    </ng-container>
-  </div>
-</div> -->
-<app-droplist [disabled]="true" [dragHandle]="false" [dropListData]="available" (SetDropped)="drop($event)" [noReturnPredicate]="noReturnPredicate"></app-droplist>
+<app-droplist [disabled]="true" [dragHandle]="false" [dropListData]="available" (SetDropped)="drop($event)"
+  [noReturnPredicate]="noReturnPredicate" [formClass]="'none'"></app-droplist>
 <div class="bottom-add-item-container">
   <button (click)="add()" class="add-item">
     <mat-icon class="add-icon">add</mat-icon>

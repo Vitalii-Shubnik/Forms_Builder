@@ -1,49 +1,53 @@
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { PortalModule } from '@angular/cdk/portal';
+import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import { MatExpansionModule } from '@angular/material/expansion';
-import { MatInputModule } from '@angular/material/input';
-import { MatSelectModule } from '@angular/material/select';
-import { PushModule } from '@ngrx/component';
-import { SecondSectionComponent } from './second-section.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
-import { FormElementsModule } from '../form-elements/form-elements.module';
-import { CommonModule } from '@angular/common';
+import { MatInputModule } from '@angular/material/input';
+import { PushModule } from '@ngrx/component';
+import { IsNotEmptyObjModule } from 'src/app/core/pipes/is-not-empty-obj.module';
+import { FormItemService } from 'src/app/core/services/form-item.service';
 import { DroplistModule } from '../droplist/droplist.module';
+import { EditDialogComponent } from '../edit-dialog/edit-dialog.component';
 import { EditFieldComponent } from './edit-field/edit-field.component';
-import { IsNotEmptyObjPipe } from 'src/app/core/pipes/is-not-empty-obj.pipe';
-// import { DroplistComponent } from '../droplist/droplist.component';
+import { EditFieldsComponent } from './edit-fields/edit-fields.component';
+import { MainFormComponent } from './main-form/main-form.component';
+import { SecondSectionComponent } from './second-section.component';
+
 
 @NgModule({
   declarations: [
-    // DroplistComponent,
     SecondSectionComponent,
     EditFieldComponent,
-    IsNotEmptyObjPipe,
+    MainFormComponent,
+    EditFieldsComponent,
+    EditDialogComponent,
   ],
   imports: [
     CommonModule,
-    FormElementsModule,
     PortalModule,
     DragDropModule,
     MatInputModule,
     MatButtonModule,
     MatCheckboxModule,
-    ReactiveFormsModule,
     FormsModule,
-    MatExpansionModule,
     PushModule,
     MatIconModule,
     MatFormFieldModule,
     DroplistModule,
+    IsNotEmptyObjModule,
+    MatDialogModule,
   ],
-  exports:[
+  exports: [
     SecondSectionComponent
+  ],
+  providers:[
+    FormItemService
   ]
 })
 export class SecondSectionModule { }

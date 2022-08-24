@@ -7,7 +7,6 @@ export const initialElement: ElementStyles = null
 export const elementStylesReducer = createReducer(
   initialElement,
   on(elementChangeStyles, (state, { styles }): ElementStyles => {
-    // console.log('i am here ', styles)
     return {
       ...state,
       ...styles

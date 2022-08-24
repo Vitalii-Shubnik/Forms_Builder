@@ -5,7 +5,7 @@
         Form General Styles
       </mat-panel-title>
     </mat-expansion-panel-header>
-    <p>Content</p>
+    <app-form-general-styles [styles]="styles" (stylesChanged)="setFormStyles()"></app-form-general-styles>
   </mat-expansion-panel>
   <mat-expansion-panel hideToggle>
     <mat-expansion-panel-header>

@@ -16,7 +16,6 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
