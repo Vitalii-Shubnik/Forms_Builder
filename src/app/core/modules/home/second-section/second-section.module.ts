@@ -11,6 +11,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { PushModule } from '@ngrx/component';
 import { IsNotEmptyObjModule } from 'src/app/core/pipes/is-not-empty-obj.module';
+import { FormElDraggingService } from 'src/app/core/services/form-el-dragging.service';
 import { FormItemService } from 'src/app/core/services/form-item.service';
 import { DroplistModule } from '../droplist/droplist.module';
 import { EditDialogComponent } from '../edit-dialog/edit-dialog.component';
@@ -47,7 +48,8 @@ import { SecondSectionComponent } from './second-section.component';
     SecondSectionComponent
   ],
   providers:[
-    FormItemService
+    FormItemService,
+    FormElDraggingService
   ]
 })
 export class SecondSectionModule { }
