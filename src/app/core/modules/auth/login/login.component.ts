@@ -13,15 +13,12 @@ import { AuthFormValues } from 'src/app/core/models/formValues';
 export class LoginComponent extends DumbComponent {
   authMethod: authMethodEnum = authMethodEnum.login
   @Input() form: FormGroup
-  @Output()
-  signIn = new EventEmitter<AuthFormValues>()
-  @Output()
-  switchMethod = new EventEmitter<authMethodEnum>()
+  @Output() signIn = new EventEmitter<AuthFormValues>()
+
   constructor() {
     super()
   }
-  // toggleSwitchMethod(authMethod: authMethodEnum): void {
-  // }
+
   signInClick() {
     this.signIn.emit({
       email: this.form?.value?.email,
@@ -30,7 +27,6 @@ export class LoginComponent extends DumbComponent {
     })
   }
   toggleSwitchMethod() {
-    // this.switchMethod.emit(authMethodEnum.register)
-    this.authMethod === 'Login' ? this.authMethod = authMethodEnum.register : this.authMethod = authMethodEnum.login 
+    this.authMethod === 'Login' ? this.authMethod = authMethodEnum.register : this.authMethod = authMethodEnum.login
   }
 }

@@ -8,7 +8,7 @@ import { DumbComponent } from 'src/app/core/models/dumbComponent';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LogoutComponent extends DumbComponent{
-  @Input() userName: string
+  @Input() userName: string = null
 
   @Output()
   logout = new EventEmitter()
