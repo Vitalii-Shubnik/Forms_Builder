@@ -1,16 +1,12 @@
-import { CdkDragDrop } from '@angular/cdk/drag-drop';
 import { CdkPortal } from '@angular/cdk/portal';
 import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
-import { distinctUntilChanged, filter, Observable, Subject, take, takeUntil } from 'rxjs';
-import { FormElDraggingService } from 'src/app/core/services/form-el-dragging.service';
+import { distinctUntilChanged, Observable, Subject, takeUntil } from 'rxjs';
 import { FormItemService } from 'src/app/core/services/form-item.service';
 import { PortalBridgeService } from 'src/app/core/services/portal-bridge.service';
 import * as ElementActions from 'src/app/shared/actions/elementStyles.actions';
 import { selectElementStyles } from 'src/app/shared/selectors/elementStyles.selector';
 import { ElementStyles } from 'src/app/shared/statesModels/elementStyles.state';
-import { EditDialogComponent } from '../edit-dialog/edit-dialog.component';
 
 @Component({
   selector: 'app-second-section',
@@ -18,7 +14,7 @@ import { EditDialogComponent } from '../edit-dialog/edit-dialog.component';
   styleUrls: ['./second-section.component.scss', '../home/home.component.scss']
 })
 export class SecondSectionComponent implements OnInit, OnDestroy, AfterViewInit {
-  @ViewChild(CdkPortal, { static: true })
+  @ViewChild(CdkPortal, { static: false })
   portalContent: CdkPortal
 
   activeItem$ = this.formItemService.element$

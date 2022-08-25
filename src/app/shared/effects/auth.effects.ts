@@ -6,6 +6,7 @@ import { ToastrService } from 'ngx-toastr';
 
 import * as AuthActions from '../actions/auth.actions'
 import { Router } from '@angular/router';
+import { LoginResponse } from 'src/app/core/models/userLoginResponse';
 
 
 @Injectable()
@@ -48,6 +49,7 @@ export class AuthEffects {
         return this.authService
           .authorize(action.username, action.password, url)
           .pipe(
+            tap((user: LoginResponse) => this.authService.setUser(user)),
             map((response) => AuthActions.loginSuccess({ response })),
             catchError((error) => of(AuthActions.loginError({ response: error }))),
             shareReplay()
@@ -73,7 +75,7 @@ export class AuthEffects {
     return this.actions$.pipe(
       ofType(AuthActions.loginError),
       tap(({ response }) => {
-        response && this.toastr.error(response.error.message)
+        this.toastr.error(response?.error?.message || 'Something went wrong')
       })
     )
   },
