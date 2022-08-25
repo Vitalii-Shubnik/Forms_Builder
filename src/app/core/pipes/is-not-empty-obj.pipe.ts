@@ -6,8 +6,8 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class IsNotEmptyObjPipe implements PipeTransform {
 
   transform(value: object, ...args: unknown[]): unknown {
-    return !(value && Object.keys(value).length === 0
-      && Object.getPrototypeOf(value) === Object.prototype)
+    return !!value && Object.keys(value).length > 0
+      && Object.getPrototypeOf(value) === Object.prototype
   }
 
 }

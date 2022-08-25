@@ -15,16 +15,15 @@ export class AuthService {
 
   authorize(email: string, password: string, url: string): Observable<any> {
     return this.http.post<any>(url, { username: email, password })
-      .pipe(
-        tap((user: LoginResponse) => {
-          localStorage.setItem('user', JSON.stringify({
-            token: user.token,
-            username: user.username,
-            expiresIn: user.expiresIn,
-            id: user.id
-          }))
-        })
-      );
+  }
+
+  setUser(user: LoginResponse){
+    localStorage.setItem('user', JSON.stringify({
+      token: user.token,
+      username: user.username,
+      expiresIn: user.expiresIn,
+      id: user.id
+    }))
   }
 }
 

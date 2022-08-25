@@ -1,7 +1,11 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { FormBuilder } from '@angular/forms';
-import { Store } from '@ngrx/store';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { PushModule } from '@ngrx/component';
+import { StoreModule } from '@ngrx/store';
+import { AuthService } from 'src/app/core/services/auth.service';
+import { authReducer } from 'src/app/shared/reducers/auth.reducer';
 
 import { AuthComponent } from './auth.component';
 
@@ -11,8 +15,24 @@ describe('AuthComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AuthComponent ],
-      // providers: [HttpClient, FormBuilder, Store]
+      declarations: [
+        AuthComponent, 
+      ],
+      imports: [
+        NoopAnimationsModule,
+        BrowserAnimationsModule,
+        HttpClientModule,
+        ReactiveFormsModule,
+        FormsModule,
+        PushModule,
+        StoreModule.forRoot({
+          auth: authReducer,
+        }, {}),
+      ],
+      providers: [
+        HttpClient,
+        AuthService,
+      ]
     })
     .compileComponents();
 
