@@ -1,42 +1,54 @@
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { CommonModule } from '@angular/common';
+import { Component, Input } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { FormBuilder } from '@angular/forms';
 import { PushModule } from '@ngrx/component';
-import { StoreModule } from '@ngrx/store';
-import { AuthService } from 'src/app/core/services/auth.service';
-import { authReducer } from 'src/app/shared/reducers/auth.reducer';
+import { MockStore, provideMockStore } from '@ngrx/store/testing';
+import { AuthState } from 'src/app/shared/statesModels/auth.state';
 
 import { AuthComponent } from './auth.component';
+@Component({
+  selector: 'app-login',
+  template: '<p>Mock Login Component</p>'
+})
+class MockLoginComponent {
+  @Input() form: any
+}
+
+@Component({
+  selector: 'app-logout',
+  template: '<p>Mock Logout Component</p>'
+})
+class MockLogoutComponent {
+
+}
 
 describe('AuthComponent', () => {
   let component: AuthComponent;
   let fixture: ComponentFixture<AuthComponent>;
+  const initialState = null
+  let store: MockStore<AuthState>
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [
-        AuthComponent, 
+        AuthComponent,
+        MockLoginComponent,
+        MockLogoutComponent
       ],
       imports: [
-        NoopAnimationsModule,
-        BrowserAnimationsModule,
-        HttpClientModule,
-        ReactiveFormsModule,
-        FormsModule,
+        CommonModule,
         PushModule,
-        StoreModule.forRoot({
-          auth: authReducer,
-        }, {}),
       ],
       providers: [
-        HttpClient,
-        AuthService,
+        FormBuilder,
+        provideMockStore({ initialState }),
       ]
     })
-    .compileComponents();
-
+      .compileComponents();
     fixture = TestBed.createComponent(AuthComponent);
+    store = TestBed.inject(MockStore)
+
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
