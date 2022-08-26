@@ -1,56 +1,54 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { of } from 'rxjs';
-
-import { NavbarComponent } from './navbar.component';
-import { selectAuthUsername, selectIsLoggedIn } from 'src/app/shared/selectors/auth.selector';
-import { MockStore, provideMockStore } from '@ngrx/store/testing';
-import { MemoizedSelector } from '@ngrx/store';
+import { MatButtonModule } from '@angular/material/button';
 import { PushModule } from '@ngrx/component';
-import { logout } from 'src/app/shared/actions/auth.actions';
+import { Store } from '@ngrx/store';
+import { of } from 'rxjs';
+import { selectAuthUsername, selectIsLoggedIn } from 'src/app/shared/selectors/auth.selector';
+import { NavbarComponent } from './navbar.component';
 
-describe('NavbarComponent', () => {
+fdescribe('NavbarComponent', () => {
   let component: NavbarComponent;
   let fixture: ComponentFixture<NavbarComponent>;
-  let mockStore: MockStore;
-  let selectMockUsernameSelector: MemoizedSelector<object, string>;
-  let selectMockIsLoggedSelector: MemoizedSelector<object, boolean>;
+  let mockStore = jasmine.createSpyObj('Store', ['dispatch', 'select'])
 
-  beforeEach(async () => {
+  beforeEach(async() => {
     await TestBed.configureTestingModule({
       declarations: [NavbarComponent],
-      imports: [PushModule],
-      providers: [provideMockStore()]
+      imports: [
+        PushModule,
+        MatButtonModule
+      ],
+      providers: [
+        { provide: Store, useValue: mockStore }
+      ]
     })
       .compileComponents();
     fixture = TestBed.createComponent(NavbarComponent);
-    mockStore = TestBed.inject(MockStore);
+
+    component = fixture.componentInstance;
   });
 
-  it('should display username', () => {
-    selectMockIsLoggedSelector = mockStore.overrideSelector(
-      selectIsLoggedIn,
-      true
-    )
-    selectMockUsernameSelector = mockStore.overrideSelector(
-      selectAuthUsername,
-      'user1'
-    );
-    component = fixture.componentInstance;
+  it('should display username', async () => {
+    mockStore.select
+    .withArgs(selectAuthUsername).and.returnValue(of('user1'))
+    .withArgs(selectIsLoggedIn).and.returnValue(of(true))
     fixture.detectChanges();
     const span: HTMLElement = fixture.nativeElement.querySelector('span')
     expect(span?.textContent).toContain('user1')
   })
 
   it('should emit logout', () => {
-    pending()
-    // const testUserData = { token: 'any', username: 'any', expiresIn: 'any', id: 22 }
-    // localStorage.setItem('user', JSON.stringify(testUserData))
-    // logout()
-    // let result = localStorage.getItem('user')
-    // expect(result).toBeFalsy()
+    mockStore.select
+    .withArgs(selectAuthUsername).and.returnValue(of('user1'))
+    .withArgs(selectIsLoggedIn).and.returnValue(of(true))
+    fixture.detectChanges()
+    const button: HTMLButtonElement = fixture.nativeElement.querySelector('button')
+    button.dispatchEvent(new Event('click'))
+    expect(mockStore.dispatch).toHaveBeenCalled()
   })
+
   it('should create', () => {
-    pending()
-    // expect(component).toBeTruthy();
+    fixture.detectChanges()
+    expect(component).toBeTruthy();
   });
 });
