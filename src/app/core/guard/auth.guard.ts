@@ -13,7 +13,7 @@ export class AuthGuard implements CanActivate {
     private store: Store
   ) { }
 
-  canActivate(): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+  canActivate(): Observable<boolean | UrlTree>{
     return this.store.select(selectIsLoggedIn).pipe(map(el => el ? true : this.router.parseUrl('/authenticate')))
   }
 

@@ -32,22 +32,23 @@ export class FormItemService {
     }
   }
   getFullStyles(el: HTMLElement) {
+    let currentStyles = {...window.getComputedStyle(el)}
     return {
-      width: window.getComputedStyle(el).width || '',
-      height: window.getComputedStyle(el).height || '',
-      fontSize: window.getComputedStyle(el).fontSize || '',
-      fontWeight: window.getComputedStyle(el).fontWeight || '',
-      color: window.getComputedStyle(el).color || '',
-      borderStyle: window.getComputedStyle(el).borderStyle || '',
+      width: currentStyles.width || '',
+      height: currentStyles.height || '',
+      fontSize: currentStyles.fontSize || '',
+      fontWeight: currentStyles.fontWeight || '',
+      color: currentStyles.color || '',
+      borderStyle: currentStyles.borderStyle || '',
       required: !!el.getAttribute('required') || false,
       placeholder: el.getAttribute('placeholder') || '',
     }
   }
   getStyles(): ElementStyles {
-    const currentType = this.active.getValue()?.type
     const currentElement = this.active.getValue()?.element
     if (!currentElement)
       return null
+    const currentType = this.active.getValue()?.type
     const styles: ElementStyles = this.getFullStyles(currentElement)
     switch (currentType) {
       case 'select':
