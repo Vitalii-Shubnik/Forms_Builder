@@ -21,6 +21,7 @@ export class FormGeneralService {
     }
   }
 
+
   setStyles(styles: FormGeneralStyles) {
     const active = this.form.getValue()
     const prevStyles = this.getStyles()

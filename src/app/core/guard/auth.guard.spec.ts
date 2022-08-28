@@ -1,44 +1,52 @@
 import { TestBed } from '@angular/core/testing';
+import { Router, UrlTree } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { MockStore, provideMockStore } from '@ngrx/store/testing';
-import { cold } from 'jasmine-marbles';
+import { map, of } from 'rxjs';
+import { TestScheduler } from 'rxjs/testing';
 import { AuthGuard } from './auth.guard';
 
-describe('AuthguardGuard', () => {
+fdescribe('AuthguardGuard', () => {
 
   let guard: AuthGuard;
-  // let store: MockStore<{ token: string, expiresIn: number }>;
-  // const initialState = {
-  //   token: null,
-  //   expiresIn: null,
-  // };
-  // beforeEach(() => {
-  //   TestBed.configureTestingModule({
-  //     imports: [
-  //     ],
-  //     providers: [
-  //       AuthGuard,
-  //       provideMockStore({ initialState })
-  //     ],
-  //   });
-  //   store = TestBed.get<Store>(Store);
-  //   // guard = TestBed.get<AuthGuard>(AuthGuard);
+  let mockStore: any
+  let mockRouter: any
+  let testScheduler: TestScheduler
+  beforeEach(() => {
+    mockStore = jasmine.createSpyObj('Store', ['select'])
+    mockRouter = jasmine.createSpyObj('Router', ['parseUrl'])
+    TestBed.configureTestingModule({
+      providers: [
+        AuthGuard,
+        { provide: Store, useValue: mockStore },
+        { provide: Router, useValue: mockRouter }
+      ]
+    })
+    guard = TestBed.inject(AuthGuard)
+    testScheduler = new TestScheduler((actual, expected) => {
+      expect(actual).toEqual(expected)
+    })
+  })
 
-  //   guard = TestBed.inject(AuthGuard);
-  // });
-  // it('should return false if the user state is not logged in', () => {
-  //   const expected = cold('(a|)', { a: true });
+  it('should return true when user is logged', () => {
+    testScheduler.run(({ hot, expectObservable }) => {
+      let select$ = hot('-a', { a: true })
+      mockStore.select.and.returnValue(select$)
+      const result = guard.canActivate()
+      expectObservable(result).toBe('-b', { b: true })
+    })
+  })
+  
+  it('should return router url when user is logged out', () => {
+    testScheduler.run(({ hot, expectObservable }) => {
+      let select$ = hot('-a', { a: undefined })
+      mockStore.select.and.returnValue(select$)
+      const result = guard.canActivate()
+      mockRouter.parseUrl.withArgs('/authenticate').and.returnValue('url/123')
+      expectObservable(result).toBe('-b', { b: 'url/123' })
+    })
+    expect(mockRouter.parseUrl).toHaveBeenCalledOnceWith('/authenticate')
+  })
 
-  //   expect(guard.canActivate()).toBeObservable(expected);
-  // });
-
-  // it('should return true if the user state is logged in', () => {
-  //   store.setState({ token: 'string', expiresIn: 16614374322740});
-
-  //   const expected = cold('(a|)', { a: true });
-
-  //   expect(guard.canActivate()).toBeObservable(expected);
-  // });
   it('should be created', () => {
     expect(guard).toBeTruthy();
   });
