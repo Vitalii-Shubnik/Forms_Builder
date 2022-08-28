@@ -1,16 +1,45 @@
 import { TestBed } from '@angular/core/testing';
+import { HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { AuthInterceptor } from './auth.interceptor'
 
-import { AuthService } from '../services/auth.service';
-
-describe('AuthService', () => {
-  let service: AuthService;
-
+fdescribe('AuthService', () => {
+  let client: HttpClient
+  let controller: HttpTestingController
   beforeEach(() => {
-    TestBed.configureTestingModule({});
-    service = TestBed.inject(AuthService);
-  });
+    TestBed.configureTestingModule({
+      imports: [
+        HttpClientTestingModule
+      ],
+      providers: [
+        {
+          provide: HTTP_INTERCEPTORS,
+          useClass: AuthInterceptor,
+          multi: true
+        }
+      ]
+    })
 
-  it('should be created', () => {
-    expect(service).toBeTruthy();
-  });
+    client = TestBed.inject(HttpClient)
+    controller = TestBed.inject(HttpTestingController)
+    localStorage.setItem('user', JSON.stringify({ token: 'sometoken' }))
+
+  })
+
+  it('should add authorization header', () => {
+    const url = '/test'
+    client.get(url).subscribe()
+    const get = controller.expectOne(url)
+    expect(get.request.headers.get("Authorization")).toEqual('Bearer sometoken')
+  })
+
+  it('should not ad authorization header', () => {
+    localStorage.clear()
+    const url = '/test'
+    client.get(url).subscribe()
+    const get = controller.expectOne(url)
+    const authorization = get.request.headers.get("Authorization")
+    // console.log(authorization)
+    expect(authorization).toBeFalsy()
+  })
 });
