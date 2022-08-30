@@ -47,6 +47,10 @@ fdescribe('ThirdSectionComponent', () => {
     expect(component.available[currentLength]).toEqual({ type: AvailableItems.button, data: '' })
   })
 
+  it('should return false as return value from noReturnPredicate',()=>{
+    expect(component.noReturnPredicate()).toBeFalse()
+  })
+
   it('should move item to another droplist', () => {
     pending()
   })  

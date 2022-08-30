@@ -13,7 +13,7 @@ export class FormItemService {
   }
 
   setStyles(styles: ElementStyles) {
-    const currentElement = this.active.getValue().element
+    const currentElement = this.active.getValue()?.element
     if (!!currentElement) {
       Object.entries(styles).filter(([key, _]) => key !== 'required' && key !== 'placeholder').forEach(([key, value]) => {
         currentElement.style[key] = value
@@ -34,14 +34,14 @@ export class FormItemService {
   getFullStyles(el: HTMLElement) {
     let currentStyles = {...window.getComputedStyle(el)}
     return {
-      width: currentStyles.width || '',
-      height: currentStyles.height || '',
-      fontSize: currentStyles.fontSize || '',
-      fontWeight: currentStyles.fontWeight || '',
-      color: currentStyles.color || '',
-      borderStyle: currentStyles.borderStyle || '',
+      width: currentStyles.width ,
+      height: currentStyles.height ,
+      fontSize: currentStyles.fontSize,
+      fontWeight: currentStyles.fontWeight,
+      color: currentStyles.color,
+      borderStyle: currentStyles.borderStyle,
       required: !!el.getAttribute('required') || false,
-      placeholder: el.getAttribute('placeholder') || '',
+      placeholder: el.getAttribute('placeholder'),
     }
   }
   getStyles(): ElementStyles {

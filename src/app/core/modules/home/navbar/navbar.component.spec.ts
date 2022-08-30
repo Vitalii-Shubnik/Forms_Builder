@@ -28,27 +28,26 @@ fdescribe('NavbarComponent', () => {
     component = fixture.componentInstance;
   });
 
-  it('should display username', async () => {
+  beforeEach(()=>{
     mockStore.select
     .withArgs(selectAuthUsername).and.returnValue(of('user1'))
     .withArgs(selectIsLoggedIn).and.returnValue(of(true))
-    fixture.detectChanges();
+    fixture.detectChanges()
+
+  })
+
+  it('should display username', async () => {
     const span: HTMLElement = fixture.nativeElement.querySelector('span')
     expect(span?.textContent).toContain('user1')
   })
 
   it('should emit logout', () => {
-    mockStore.select
-    .withArgs(selectAuthUsername).and.returnValue(of('user1'))
-    .withArgs(selectIsLoggedIn).and.returnValue(of(true))
-    fixture.detectChanges()
     const button: HTMLButtonElement = fixture.nativeElement.querySelector('button')
     button.dispatchEvent(new Event('click'))
     expect(mockStore.dispatch).toHaveBeenCalled()
   })
 
   it('should create', () => {
-    fixture.detectChanges()
     expect(component).toBeTruthy();
   });
 });

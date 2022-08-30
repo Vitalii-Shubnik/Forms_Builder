@@ -35,27 +35,14 @@ fdescribe('FormGeneralService', () => {
     expect(service.getStyles()).toBeFalsy()
   })
 
-  // it('should return form backgroundColor, fontStyle and border', () => {
-  //   element.style['backgroundColor'] = 'black'
-  //   element.style['border'] = '1px solid red'
-  //   element.style['fontStyle'] = 'italic'
-  //   service.setActive(element)
-  //   service.form$.subscribe(value => {
-  //     mockWindow.getComputedStyle.and.returnValue({
-  //       border: '1px solid red',
-  //       fontStyle: 'italic',
-  //       backgroundColor: 'black',
-  //       something: '123'
-  //     })
-  //     const result = service.getStyles()
-  //     console.log(result)
-  //     expect(result).toEqual({
-  //       border: '1px solid red',
-  //       fontStyle: 'italic',
-  //       backgroundColor: 'black'
-  //     })
-  //   })
-  // })
+  it('should return form backgroundColor, fontStyle and border', () => {
+    const form = document.createElement('form')  
+    service.setActive(form)
+    service.setStyles({ backgroundColor: 'rgb(60, 120, 180)', border: '1px solid black', fontStyle: 'normal' })
+    expect([form.style['backgroundColor'], form.style['border'], form.style['fontStyle']]).toEqual(['rgb(60, 120, 180)', '1px solid black', 'normal'])
+    service.setStyles({ backgroundColor: 'rgb(10, 20, 80)', border: '3px dashed black', fontStyle: 'italic' })
+    expect([form.style['backgroundColor'], form.style['border'], form.style['fontStyle']]).toEqual(['rgb(10, 20, 80)', '3px dashed black', 'italic'])
+  })
 
   it('should be created', () => {
     expect(service).toBeTruthy();

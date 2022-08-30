@@ -3,7 +3,7 @@ import { HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { AuthInterceptor } from './auth.interceptor'
 
-fdescribe('AuthService', () => {
+fdescribe('AuthInterceptor', () => {
   let client: HttpClient
   let controller: HttpTestingController
   beforeEach(() => {
@@ -33,13 +33,12 @@ fdescribe('AuthService', () => {
     expect(get.request.headers.get("Authorization")).toEqual('Bearer sometoken')
   })
 
-  it('should not ad authorization header', () => {
+  it('should not add authorization header', () => {
     localStorage.clear()
     const url = '/test'
     client.get(url).subscribe()
     const get = controller.expectOne(url)
     const authorization = get.request.headers.get("Authorization")
-    // console.log(authorization)
     expect(authorization).toBeFalsy()
   })
 });
