@@ -1,7 +1,7 @@
-import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
-import { ElementStyles } from 'src/app/shared/statesModels/elementStyles.state';
-import { ActiveElement } from '../models/activeElement';
+import { Injectable } from '@angular/core'
+import { BehaviorSubject } from 'rxjs'
+import { ElementStyles } from 'src/app/shared/statesModels/elementStyles.state'
+import { ActiveElement } from '../models/activeElement'
 
 @Injectable()
 export class FormItemService {
@@ -18,32 +18,33 @@ export class FormItemService {
       Object.entries(styles).filter(([key, _]) => key !== 'required' && key !== 'placeholder').forEach(([key, value]) => {
         currentElement.style[key] = value
       })
-      styles.placeholder !== undefined &&
-        (
-          styles.placeholder !== '' ?
-            currentElement.setAttribute('placeholder', styles.placeholder)
-            : currentElement.removeAttribute('placeholder')
-        )
-      styles.required !== undefined &&
-        (
-          styles.required ?
-            currentElement.setAttribute('required', 'true') : currentElement.removeAttribute('required')
-        )
+      styles.placeholder !== undefined && (
+        styles.placeholder !== '' ?
+          currentElement.setAttribute('placeholder', styles.placeholder)
+          : currentElement.removeAttribute('placeholder')
+      )
+      styles.required !== undefined && (
+        styles.required ?
+          currentElement.setAttribute('required', 'true') 
+          : currentElement.removeAttribute('required')
+      )
     }
   }
+
   getFullStyles(el: HTMLElement) {
-    let currentStyles = {...window.getComputedStyle(el)}
+    let currentStyles = { ...window.getComputedStyle(el) }
     return {
-      width: currentStyles.width ,
-      height: currentStyles.height ,
+      width: currentStyles.width,
+      height: currentStyles.height,
       fontSize: currentStyles.fontSize,
       fontWeight: currentStyles.fontWeight,
       color: currentStyles.color,
       borderStyle: currentStyles.borderStyle,
       required: !!el.getAttribute('required') || false,
-      placeholder: el.getAttribute('placeholder'),
+      placeholder: el.getAttribute('placeholder') || '',
     }
   }
+
   getStyles(): ElementStyles {
     const currentElement = this.active.getValue()?.element
     if (!currentElement)
@@ -72,5 +73,4 @@ export class FormItemService {
         return { ...styles }
     }
   }
-
 }

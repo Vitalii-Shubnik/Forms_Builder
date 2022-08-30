@@ -1,16 +1,16 @@
-import { TemplatePortal } from '@angular/cdk/portal';
-import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { TemplatePortal } from '@angular/cdk/portal'
+import { Injectable } from '@angular/core'
+import { BehaviorSubject } from 'rxjs'
 
 @Injectable()
 export class PortalBridgeService {
-  private activePortal = new BehaviorSubject<TemplatePortal<any>>(null) 
+  private activePortal = new BehaviorSubject<TemplatePortal<any>>(null)
   readonly portal$ = this.activePortal.asObservable()
 
-  setPortal(portal:TemplatePortal<any>) {
+  setPortal(portal: TemplatePortal<any>) {
     this.activePortal.next(portal)
   }
-  detachPortal(){
+  detachPortal() {
     this.activePortal.unsubscribe()
   }
   constructor() { }

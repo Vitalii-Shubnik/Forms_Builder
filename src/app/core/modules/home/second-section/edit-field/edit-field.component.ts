@@ -1,6 +1,6 @@
-import { CdkDragDrop } from '@angular/cdk/drag-drop';
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
-import { DumbComponent } from 'src/app/core/models/dumbComponent';
+import { CdkDragDrop } from '@angular/cdk/drag-drop'
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core'
+import { DumbComponent } from 'src/app/core/models/dumbComponent'
 
 @Component({
   selector: 'app-edit-field',
@@ -8,7 +8,7 @@ import { DumbComponent } from 'src/app/core/models/dumbComponent';
   styleUrls: ['./edit-field.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class EditFieldComponent extends DumbComponent  {
+export class EditFieldComponent extends DumbComponent {
   @Input() dragging = false
   @Input() icon: string
   @Input() className: string
@@ -19,7 +19,7 @@ export class EditFieldComponent extends DumbComponent  {
     super()
   }
 
-  drop(event: CdkDragDrop<any, any, any>){
+  drop(event: CdkDragDrop<any, any, any>) {
     this.dropped.emit(event)
   }
 }

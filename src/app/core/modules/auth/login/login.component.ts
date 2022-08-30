@@ -1,8 +1,8 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
-import { FormGroup } from '@angular/forms';
-import { authMethodEnum } from 'src/app/core/enums/authMethod';
-import { DumbComponent } from 'src/app/core/models/dumbComponent';
-import { AuthFormValues } from 'src/app/core/models/formValues';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core'
+import { FormGroup } from '@angular/forms'
+import { authMethodEnum } from 'src/app/core/enums/authMethod'
+import { DumbComponent } from 'src/app/core/models/dumbComponent'
+import { AuthFormValues } from 'src/app/core/models/formValues'
 
 @Component({
   selector: 'app-login',
@@ -26,6 +26,7 @@ export class LoginComponent extends DumbComponent {
       authMethod: this.authMethod
     })
   }
+
   toggleSwitchMethod() {
     this.authMethod === 'Login' ? this.authMethod = authMethodEnum.register : this.authMethod = authMethodEnum.login
   }

@@ -1,10 +1,10 @@
-import { CommonModule } from '@angular/common';
-import { NgModule } from '@angular/core';
-import { ButtonComponent } from './button/button.component';
-import { CheckboxComponent } from './checkbox/checkbox.component';
-import { InputComponent } from './input/input.component';
-import { SelectComponent } from './select/select.component';
-import { TextareaComponent } from './textarea/textarea.component';
+import { CommonModule } from '@angular/common'
+import { NgModule } from '@angular/core'
+import { ButtonComponent } from './button/button.component'
+import { CheckboxComponent } from './checkbox/checkbox.component'
+import { InputComponent } from './input/input.component'
+import { SelectComponent } from './select/select.component'
+import { TextareaComponent } from './textarea/textarea.component'
 
 @NgModule({
   declarations: [

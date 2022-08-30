@@ -1,7 +1,7 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { LoginResponse } from '../models/userLoginResponse';
+import { HttpClient } from '@angular/common/http'
+import { Injectable } from '@angular/core'
+import { Observable } from 'rxjs'
+import { LoginResponse } from '../models/userLoginResponse'
 
 @Injectable()
 export class AuthService {
@@ -18,7 +18,7 @@ export class AuthService {
     return response
   }
 
-  setUser(user: LoginResponse){
+  setUser(user: LoginResponse) {
     localStorage.setItem('user', JSON.stringify({
       token: user.token,
       username: user.username,

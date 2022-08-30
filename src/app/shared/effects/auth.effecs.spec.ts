@@ -4,12 +4,12 @@ import { Router } from "@angular/router"
 import { provideMockActions } from '@ngrx/effects/testing'
 import { MockStore, provideMockStore } from "@ngrx/store/testing"
 import { ToastrService } from "ngx-toastr"
-import { Observable, of, throwError } from "rxjs"
+import { Observable, of } from "rxjs"
 import { TestScheduler } from "rxjs/testing"
 import { authMethodEnum } from "src/app/core/enums/authMethod"
 import { LoginResponse } from "src/app/core/models/userLoginResponse"
 import { AuthService } from "src/app/core/services/auth.service"
-import { logout, loginSuccess, loginError, loginRequest } from "../actions/auth.actions"
+import { loginError, loginRequest, loginSuccess, logout } from "../actions/auth.actions"
 import { initialUser } from "../reducers/auth.reducer"
 import { AuthState } from "../statesModels/auth.state"
 import { AuthEffects } from "./auth.effects"
@@ -47,12 +47,10 @@ fdescribe('Auth Effects', () => {
     })
   })
 
-  //creation
   it('should be created', () => {
     expect(effects).toBeTruthy()
   })
 
-  //
   it('should dispatch loginsuccess on authorization response', () => {
     const user: LoginResponse = { username: 'user1', token: 'token', expiresIn: '333123120', id: 4, message: 'Login Successful' }
     const action = loginRequest({ authMethod: authMethodEnum.login, password: '12345', username: 'user1' })
@@ -72,15 +70,13 @@ fdescribe('Auth Effects', () => {
     const action = loginRequest({ authMethod: authMethodEnum.login, password: '12345', username: 'user1' })
     const outcome = loginError({ response: { ...error } })
     testScheduler.run(({ hot, cold, expectObservable }) => {
-      actions$ = hot('-a|', { a: action})
+      actions$ = hot('-a|', { a: action })
       const response = cold('(-b|)', { b: error })
       authService.authorize.and.throwError(response)
       expectObservable(effects.loginRequest$).toBe('-b', { b: of(outcome) })
     })
   })
 
-
-  //loginSuccess$
   it('should call router navigateByUrl, toastr success after login success', () => {
     const user: LoginResponse = { username: 'user1', token: 'token', expiresIn: '333123120', id: 4, message: 'Login Successful' }
     const action = loginSuccess({ response: { ...user } })
@@ -92,7 +88,6 @@ fdescribe('Auth Effects', () => {
     expect(toastr.success).toHaveBeenCalledOnceWith('Login Successful')
   })
 
-  //loginError$
   it('should call toastr error with resonse form error after login error', () => {
     const user: AuthState = { username: 'user1', token: 'token', expiresIn: '333123120', id: 4 }
     const action = loginError({ response: new HttpErrorResponse({ error: { message: 'Login Error' } }) })
@@ -103,7 +98,6 @@ fdescribe('Auth Effects', () => {
     expect(toastr.error).toHaveBeenCalledOnceWith('Login Error')
   })
 
-  //loginError$
   it('should call toastr error with default resonse after login error', () => {
     const user: AuthState = { username: 'user1', token: 'token', expiresIn: '333123120', id: 4 }
     const action = loginError({ response: new HttpErrorResponse({}) })
@@ -114,7 +108,6 @@ fdescribe('Auth Effects', () => {
     expect(toastr.error).toHaveBeenCalledOnceWith('Something went wrong')
   })
 
-  //logout$
   it('should call authService logout router navigateByUrl, toastr success after logout', () => {
     const action = logout()
     testScheduler.run(({ hot, expectObservable }) => {

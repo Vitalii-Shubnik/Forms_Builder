@@ -1,12 +1,12 @@
 import { TestBed } from "@angular/core/testing"
+import { provideMockActions } from '@ngrx/effects/testing'
 import { MockStore, provideMockStore } from "@ngrx/store/testing"
 import { Observable } from "rxjs"
+import { TestScheduler } from "rxjs/testing"
+import { FormItemService } from "src/app/core/services/form-item.service"
+import { elementChangeSelfStyles, elementChangeStyles } from "../actions/elementStyles.actions"
 import { ElementStyles } from "../statesModels/elementStyles.state"
 import { ElementStylesEffects } from "./elementStyles.effects"
-import { provideMockActions } from '@ngrx/effects/testing'
-import { FormItemService } from "src/app/core/services/form-item.service"
-import { TestScheduler } from "rxjs/testing"
-import { elementChangeSelfStyles, elementChangeStyles } from "../actions/elementStyles.actions"
 
 fdescribe('Element Styles Effects', () => {
   const initialState = null
@@ -32,12 +32,10 @@ fdescribe('Element Styles Effects', () => {
     })
   })
 
-  //creation
   it('should be created', () => {
     expect(effects).toBeTruthy()
   })
 
-  //changeElementStyles$
   it('should change styles', () => {
     const styles: ElementStyles = { color: 'rgb(83,0,41)', height: '300px' }
     const action = elementChangeSelfStyles({ styles })

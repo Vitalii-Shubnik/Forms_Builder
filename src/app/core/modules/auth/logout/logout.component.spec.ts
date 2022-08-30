@@ -1,11 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { LogoutComponent } from './logout.component';
 
 fdescribe('LogoutComponent', () => {
   let component: LogoutComponent;
   let fixture: ComponentFixture<LogoutComponent>;
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [LogoutComponent],
