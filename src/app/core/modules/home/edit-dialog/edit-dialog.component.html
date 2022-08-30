@@ -32,5 +32,4 @@
 <div mat-dialog-actions>
   <button mat-stroked-button (click)="onNoClick()">Close</button>
   <button [disabled]="!(data.type === 'select' ? temparr?.length : temp)" mat-flat-button color="primary" [mat-dialog-close]="setDialog()">Set</button> 
-  <!-- !(temp || temparr?.length) -->
 </div>

@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
-import * as AuthActions from 'src/app/shared/actions/auth.actions';
-import { selectAuthUsername, selectIsLoggedIn } from 'src/app/shared/selectors/auth.selector';
+import { Component, OnInit } from '@angular/core'
+import { Store } from '@ngrx/store'
+import { Observable } from 'rxjs'
+import * as AuthActions from 'src/app/shared/actions/auth.actions'
+import { selectAuthUsername, selectIsLoggedIn } from 'src/app/shared/selectors/auth.selector'
 
 @Component({
   selector: 'app-navbar',
@@ -13,7 +13,7 @@ export class NavbarComponent implements OnInit {
   userName$: Observable<string>
   isLogged$: Observable<boolean>
 
-  constructor(private store: Store) {}
+  constructor(private store: Store) { }
 
   ngOnInit(): void {
     this.userName$ = this.store.select(selectAuthUsername)

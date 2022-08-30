@@ -1,8 +1,6 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { IsNotEmptyObjPipe } from './is-not-empty-obj.pipe';
-
-
+import { CommonModule } from '@angular/common'
+import { NgModule } from '@angular/core'
+import { IsNotEmptyObjPipe } from './is-not-empty-obj.pipe'
 
 @NgModule({
   declarations: [

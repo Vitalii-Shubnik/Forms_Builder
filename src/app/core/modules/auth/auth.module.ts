@@ -1,21 +1,20 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { AuthComponent } from './auth/auth.component';
-import { ReactiveFormsModule } from '@angular/forms';
-import { MatInputModule } from '@angular/material/input';
-import { MatButtonModule } from '@angular/material/button';
-import { LetModule, PushModule } from '@ngrx/component';
+import { CommonModule } from '@angular/common'
+import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'
+import { NgModule } from '@angular/core'
+import { ReactiveFormsModule } from '@angular/forms'
+import { MatButtonModule } from '@angular/material/button'
+import { MatInputModule } from '@angular/material/input'
+import { LetModule, PushModule } from '@ngrx/component'
+import { ContentApplicationJsonInterceptor } from 'src/app/core/interceptors/content-application-json.interceptor'
 import { AuthService } from 'src/app/core/services/auth.service'
-import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { ContentApplicationJsonInterceptor } from 'src/app/core/interceptors/content-application-json.interceptor';
-import { LogoutComponent } from './logout/logout.component';
-import { LoginComponent } from './login/login.component';
-
+import { AuthComponent } from './auth/auth.component'
+import { LoginComponent } from './login/login.component'
+import { LogoutComponent } from './logout/logout.component'
 
 
 @NgModule({
   declarations: [
-    AuthComponent, 
+    AuthComponent,
     LogoutComponent,
     LoginComponent],
   imports: [

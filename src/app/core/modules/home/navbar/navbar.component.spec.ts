@@ -1,14 +1,14 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { MatButtonModule } from '@angular/material/button';
-import { PushModule } from '@ngrx/component';
-import { Store } from '@ngrx/store';
-import { of } from 'rxjs';
-import { selectAuthUsername, selectIsLoggedIn } from 'src/app/shared/selectors/auth.selector';
-import { NavbarComponent } from './navbar.component';
+import { ComponentFixture, TestBed } from '@angular/core/testing'
+import { MatButtonModule } from '@angular/material/button'
+import { PushModule } from '@ngrx/component'
+import { Store } from '@ngrx/store'
+import { of } from 'rxjs'
+import { selectAuthUsername, selectIsLoggedIn } from 'src/app/shared/selectors/auth.selector'
+import { NavbarComponent } from './navbar.component'
 
 fdescribe('NavbarComponent', () => {
-  let component: NavbarComponent;
-  let fixture: ComponentFixture<NavbarComponent>;
+  let component: NavbarComponent
+  let fixture: ComponentFixture<NavbarComponent>
   let mockStore = jasmine.createSpyObj('Store', ['dispatch', 'select'])
 
   beforeEach(async() => {
@@ -22,11 +22,11 @@ fdescribe('NavbarComponent', () => {
         { provide: Store, useValue: mockStore }
       ]
     })
-      .compileComponents();
-    fixture = TestBed.createComponent(NavbarComponent);
+      .compileComponents()
+    fixture = TestBed.createComponent(NavbarComponent)
 
-    component = fixture.componentInstance;
-  });
+    component = fixture.componentInstance
+  })
 
   beforeEach(()=>{
     mockStore.select
@@ -48,6 +48,6 @@ fdescribe('NavbarComponent', () => {
   })
 
   it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
+    expect(component).toBeTruthy()
+  })
+})

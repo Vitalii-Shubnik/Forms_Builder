@@ -1,9 +1,8 @@
-import { Injectable } from '@angular/core';
-import { Actions, createEffect, ofType } from '@ngrx/effects';
-
-import { FormItemService } from 'src/app/core/services/form-item.service';
+import { Injectable } from '@angular/core'
+import { Actions, createEffect, ofType } from '@ngrx/effects'
+import { map, tap } from 'rxjs'
+import { FormItemService } from 'src/app/core/services/form-item.service'
 import * as ElementActions from '../actions/elementStyles.actions'
-import { map, tap } from 'rxjs';
 
 
 @Injectable()
@@ -21,6 +20,5 @@ export class ElementStylesEffects {
       }),
       map(({ styles }) => ElementActions.elementChangeStyles({ styles }))
     )
-  },
-  )
+  })
 }

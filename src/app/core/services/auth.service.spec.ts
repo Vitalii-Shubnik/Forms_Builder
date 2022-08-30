@@ -1,13 +1,13 @@
 
 
-import { HttpClient } from '@angular/common/http';
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
-import { TestBed } from '@angular/core/testing';
-import { LoginResponse } from '../models/userLoginResponse';
-import { AuthService } from './auth.service';
+import { HttpClient } from '@angular/common/http'
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing'
+import { TestBed } from '@angular/core/testing'
+import { LoginResponse } from '../models/userLoginResponse'
+import { AuthService } from './auth.service'
 
 fdescribe('AuthService', () => {
-  let service: AuthService;
+  let service: AuthService
   let testUserData: LoginResponse
   let client: HttpClient
   let controller: HttpTestingController
@@ -20,14 +20,14 @@ fdescribe('AuthService', () => {
       ],
       providers: [
         AuthService,
-        {provide: HttpClient, useValue: mockHttpClientService}
+        { provide: HttpClient, useValue: mockHttpClientService }
       ]
     })
     service = TestBed.inject(AuthService)
     client = TestBed.inject(HttpClient)
     controller = TestBed.inject(HttpTestingController)
     testUserData = { token: 'any', username: 'any', expiresIn: 'any', id: 22 }
-  });
+  })
 
   it('should set user in localstorage', () => {
     service.setUser(testUserData)
@@ -41,19 +41,14 @@ fdescribe('AuthService', () => {
     let result = localStorage.getItem('user')
     expect(result).toBeFalsy()
   })
-
-  // it('should send post request', () => {
-  //   const url = 'http://localhost:8000/users/authenticate'
-  //   client.post(url, { username: 'user2', password: 'password' }).subscribe()
-  //   const post = controller.expectOne(url)
-  //   expect(post.request.body).toEqual({ username: 'user2', password: 'password' })
-  // })
+  
   it('should return HttpResponse', () => {
-    service.authorize('user1', 'password', 'http://localhost:8000/users/authenticate')
-    expect(mockHttpClientService.post).toHaveBeenCalledOnceWith('http://localhost:8000/users/authenticate', { username: 'user1', password: 'password' })
+    const url = 'http://localhost:8000/users/authenticate'
+    service.authorize('user1', 'password', url)
+    expect(mockHttpClientService.post).toHaveBeenCalledOnceWith(url, { username: 'user1', password: 'password' })
   })
 
   it('should be created', () => {
-    expect(service).toBeTruthy();
-  });
-});
+    expect(service).toBeTruthy()
+  })
+})

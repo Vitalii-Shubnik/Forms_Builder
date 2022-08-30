@@ -1,4 +1,4 @@
-<ng-container *ngIf="!(isLoggedIn$ | ngrxPush); else authorized">
+<ng-container *ngIf="!(isLoggedIn$ | ngrxPush) else authorized">
   <app-login [form]="form" (signIn)="login($event.email, $event.password, $event.authMethod)">
   </app-login>
 </ng-container>

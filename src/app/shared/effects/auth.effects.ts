@@ -1,12 +1,11 @@
-import { Injectable } from '@angular/core';
-import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { catchError, exhaustMap, map, of, shareReplay, tap } from 'rxjs';
-import { AuthService } from 'src/app/core/services/auth.service';
-import { ToastrService } from 'ngx-toastr';
-
+import { Injectable } from '@angular/core'
+import { Actions, createEffect, ofType } from '@ngrx/effects'
+import { ToastrService } from 'ngx-toastr'
+import { catchError, exhaustMap, map, of, shareReplay, tap } from 'rxjs'
+import { AuthService } from 'src/app/core/services/auth.service'
+import { Router } from '@angular/router'
+import { LoginResponse } from 'src/app/core/models/userLoginResponse'
 import * as AuthActions from '../actions/auth.actions'
-import { Router } from '@angular/router';
-import { LoginResponse } from 'src/app/core/models/userLoginResponse';
 
 
 @Injectable()

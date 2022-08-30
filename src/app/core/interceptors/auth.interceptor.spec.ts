@@ -1,6 +1,6 @@
-import { TestBed } from '@angular/core/testing';
-import { HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { TestBed } from '@angular/core/testing'
+import { HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http'
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing'
 import { AuthInterceptor } from './auth.interceptor'
 
 fdescribe('AuthInterceptor', () => {
@@ -41,4 +41,4 @@ fdescribe('AuthInterceptor', () => {
     const authorization = get.request.headers.get("Authorization")
     expect(authorization).toBeFalsy()
   })
-});
+})

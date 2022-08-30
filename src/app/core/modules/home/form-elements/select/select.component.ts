@@ -1,6 +1,6 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
-import { DumbComponent } from 'src/app/core/models/dumbComponent';
-import { SelectElement } from 'src/app/core/models/elementOnClick';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core'
+import { DumbComponent } from 'src/app/core/models/dumbComponent'
+import { SelectElement } from 'src/app/core/models/elementOnClick'
 
 @Component({
   selector: 'app-select',
@@ -11,12 +11,12 @@ import { SelectElement } from 'src/app/core/models/elementOnClick';
 export class SelectComponent extends DumbComponent implements SelectElement {
   @Input() disabled: boolean
   @Input() data: any
-  @Output()
-  setActive = new EventEmitter<HTMLElement>()
-  constructor(
-  ) {
+  @Output() setActive = new EventEmitter<HTMLElement>()
+  
+  constructor() {
     super()
   }
+
   onClick(value: HTMLElement) {
     this.setActive.emit(value)
   }

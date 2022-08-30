@@ -1,21 +1,18 @@
-import { Injectable } from '@angular/core';
 import {
-  HttpRequest,
-  HttpHandler,
-  HttpEvent,
-  HttpInterceptor
-} from '@angular/common/http';
-import { Observable } from 'rxjs';
+  HttpEvent, HttpHandler, HttpInterceptor, HttpRequest
+} from '@angular/common/http'
+import { Injectable } from '@angular/core'
+import { Observable } from 'rxjs'
 
 @Injectable()
 export class ContentApplicationJsonInterceptor implements HttpInterceptor {
 
-  constructor() {}
+  constructor() { }
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     const cloned = request.clone({
-      headers: request.headers.set("Content-Type", 'application/json; charset=utf-8')
+      headers: request.headers.set("Content-Type", 'application/json charset=utf-8')
     })
-    return next.handle(cloned);
+    return next.handle(cloned)
   }
 }

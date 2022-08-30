@@ -1,16 +1,15 @@
-import { DragDropModule } from '@angular/cdk/drag-drop';
-import { CommonModule } from '@angular/common';
-import { ElementRef } from '@angular/core';
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { MatIconModule } from '@angular/material/icon';
-import { AvailableItems } from 'src/app/core/enums/availableItem';
-import { FormElementsModule } from '../form-elements/form-elements.module';
-
-import { DroplistComponent } from './droplist.component';
+import { DragDropModule } from '@angular/cdk/drag-drop'
+import { CommonModule } from '@angular/common'
+import { ElementRef } from '@angular/core'
+import { ComponentFixture, TestBed } from '@angular/core/testing'
+import { MatIconModule } from '@angular/material/icon'
+import { AvailableItems } from 'src/app/core/enums/availableItem'
+import { FormElementsModule } from '../form-elements/form-elements.module'
+import { DroplistComponent } from './droplist.component'
 
 fdescribe('DroplistComponent', () => {
-  let component: DroplistComponent;
-  let fixture: ComponentFixture<DroplistComponent>;
+  let component: DroplistComponent
+  let fixture: ComponentFixture<DroplistComponent>
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -22,11 +21,11 @@ fdescribe('DroplistComponent', () => {
         MatIconModule
       ]
     })
-      .compileComponents();
+      .compileComponents()
 
-    fixture = TestBed.createComponent(DroplistComponent);
-    component = fixture.componentInstance;
-  });
+    fixture = TestBed.createComponent(DroplistComponent)
+    component = fixture.componentInstance
+  })
 
   it('should emit drop when cdkDropListDropped', () => {
     spyOn(component.SetDropped, 'emit')
@@ -52,7 +51,6 @@ fdescribe('DroplistComponent', () => {
     ]
     fixture.detectChanges()
     const element: HTMLElement = fixture.nativeElement.querySelector('app-select')
-    // const element = container.firstChild
     spyOn(component.SetActive, 'emit')
     element.dispatchEvent(new Event('setActive'))
     expect(component.SetActive.emit).toHaveBeenCalledTimes(1)
@@ -62,12 +60,13 @@ fdescribe('DroplistComponent', () => {
     component.dropListData = [
       { type: AvailableItems.select, data: '' },
     ]
-    fixture.detectChanges();
+    fixture.detectChanges()
     const form: HTMLElement = fixture.nativeElement.querySelector('form')
     const formelements = form.querySelectorAll('div')
     spyOn(component.dragEvent, 'emit')
     formelements[0].dispatchEvent(new Event('cdkDragStarted'))
     expect(component.dragEvent.emit).toHaveBeenCalledOnceWith(true)
+
     formelements[0].dispatchEvent(new Event('cdkDragEnded'))
     expect(component.dragEvent.emit).toHaveBeenCalledWith(false)
   })
@@ -77,14 +76,14 @@ fdescribe('DroplistComponent', () => {
       { type: AvailableItems.select, data: '' },
       { type: AvailableItems.button, data: '' }
     ]
-    fixture.detectChanges();
+    fixture.detectChanges()
     const form: HTMLElement = fixture.nativeElement.querySelector('form')
     const formelements = form.querySelectorAll('div')
     expect(formelements.length).toBe(2)
   })
 
   it('should return callback with return value of true', () => {
-    expect(component.noReturnPredicate()).toEqual(true)
+    expect(component.noReturnPredicate()).toBeTrue()
   })
 
   it('should emit form after view init', () => {
@@ -96,6 +95,6 @@ fdescribe('DroplistComponent', () => {
   })
 
   it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
+    expect(component).toBeTruthy()
+  })
+})
