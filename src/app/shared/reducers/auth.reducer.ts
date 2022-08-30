@@ -9,8 +9,8 @@ export const initialUser: AuthState = {
   expiresIn: null,
 }
 
-const getInitialUser = () =>{
-  const user: AuthState | null = JSON.parse(localStorage.getItem('user')!);
+export const getInitialUser = () =>{
+  const user: AuthState = JSON.parse(localStorage.getItem('user')!);
   return user !== null ? user : {initialUser};
 }
 
