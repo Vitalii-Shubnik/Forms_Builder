@@ -66,17 +66,18 @@ fdescribe('Auth Effects', () => {
     expect(authService.setUser).toHaveBeenCalledOnceWith(user)
   })
 
-  // it('should dispatch loginerror on authorization response', () => {
-  //   const error = new HttpErrorResponse({ error: { message: 'Login Error' } })
-  //   const action = loginRequest({ authMethod: authMethodEnum.login, password: '12345', username: 'user1' })
-  //   const outcome = loginError({ response: { ...error } })
-  //   testScheduler.run(({ hot, cold, expectObservable }) => {
-  //     actions$ = hot('-a|', { a: action})
-  //     const response = cold('(b|)', { b: error })
-  //     authService.authorize.and.throwError(response)
-  //     expectObservable(effects.loginRequest$).toBe('-b', { b: of(outcome) })
-  //   })
-  // })
+  it('should dispatch loginerror on authorization response', () => {
+    pending()
+    const error = new HttpErrorResponse({ error: { message: 'Login Error' } })
+    const action = loginRequest({ authMethod: authMethodEnum.login, password: '12345', username: 'user1' })
+    const outcome = loginError({ response: { ...error } })
+    testScheduler.run(({ hot, cold, expectObservable }) => {
+      actions$ = hot('-a|', { a: action})
+      const response = cold('(-b|)', { b: error })
+      authService.authorize.and.throwError(response)
+      expectObservable(effects.loginRequest$).toBe('-b', { b: of(outcome) })
+    })
+  })
 
 
   //loginSuccess$

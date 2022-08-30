@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, tap } from 'rxjs';
+import { Observable } from 'rxjs';
 import { LoginResponse } from '../models/userLoginResponse';
 
 @Injectable()
@@ -14,7 +14,8 @@ export class AuthService {
   }
 
   authorize(email: string, password: string, url: string): Observable<any> {
-    return this.http.post<any>(url, { username: email, password })
+    const response = this.http.post<any>(url, { username: email, password })
+    return response
   }
 
   setUser(user: LoginResponse){

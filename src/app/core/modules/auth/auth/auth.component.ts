@@ -19,12 +19,12 @@ export class AuthComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private store: Store
-  ) {
-    this.userName$ = this.store.select(selectAuthUsername)
-    this.isLoggedIn$ = this.store.select(selectIsLoggedIn)
-  }
+  ) { }
 
   ngOnInit() {
+    this.userName$ = this.store.select(selectAuthUsername)
+    this.isLoggedIn$ = this.store.select(selectIsLoggedIn)
+    
     this.form = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(3)]]

@@ -1,14 +1,31 @@
 
 
+import { HttpClient } from '@angular/common/http';
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
 import { LoginResponse } from '../models/userLoginResponse';
-import { AuthService } from './auth.service'
-fdescribe('FormElDraggingService', () => {
+import { AuthService } from './auth.service';
+
+fdescribe('AuthService', () => {
   let service: AuthService;
   let testUserData: LoginResponse
+  let client: HttpClient
+  let controller: HttpTestingController
+  let mockHttpClientService
   beforeEach(() => {
-    let mockHttpClientService = jasmine.createSpyObj('HttpClient', ['post'])
-    service = new AuthService(mockHttpClientService)
+    mockHttpClientService = jasmine.createSpyObj('HttpClient', ['post'])
+    TestBed.configureTestingModule({
+      imports: [
+        HttpClientTestingModule
+      ],
+      providers: [
+        AuthService,
+        {provide: HttpClient, useValue: mockHttpClientService}
+      ]
+    })
+    service = TestBed.inject(AuthService)
+    client = TestBed.inject(HttpClient)
+    controller = TestBed.inject(HttpTestingController)
     testUserData = { token: 'any', username: 'any', expiresIn: 'any', id: 22 }
   });
 
@@ -25,8 +42,15 @@ fdescribe('FormElDraggingService', () => {
     expect(result).toBeFalsy()
   })
 
-  it('should send post request', () => {
-    pending()
+  // it('should send post request', () => {
+  //   const url = 'http://localhost:8000/users/authenticate'
+  //   client.post(url, { username: 'user2', password: 'password' }).subscribe()
+  //   const post = controller.expectOne(url)
+  //   expect(post.request.body).toEqual({ username: 'user2', password: 'password' })
+  // })
+  it('should return HttpResponse', () => {
+    service.authorize('user1', 'password', 'http://localhost:8000/users/authenticate')
+    expect(mockHttpClientService.post).toHaveBeenCalledOnceWith('http://localhost:8000/users/authenticate', { username: 'user1', password: 'password' })
   })
 
   it('should be created', () => {

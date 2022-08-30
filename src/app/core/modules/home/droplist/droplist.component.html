@@ -16,10 +16,10 @@
           [data]="item.data"></app-checkbox>
         <app-select *ngSwitchCase="'select'" [disabled]="disabled" (setActive)="setActive($event, item.type)"
           [data]="item.data"></app-select>
-        <span *ngSwitchDefault>sads</span>
+        <span *ngSwitchDefault>No such item</span>
       </ng-container>
       <div *ngIf="dragHandle" class="form-items-buttons">
-        <mat-icon class="draggable-piece" cdkDragHandle> drag_handle</mat-icon>
+        <mat-icon class="draggable-piece" cdkDragHandle>drag_handle</mat-icon>
       </div>
     </div>
   </form>
