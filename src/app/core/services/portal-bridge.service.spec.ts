@@ -1,8 +1,8 @@
-import { CdkPortal, PortalModule } from '@angular/cdk/portal';
-import { Component, ViewChild } from '@angular/core';
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { CdkPortal, PortalModule } from '@angular/cdk/portal'
+import { Component, ViewChild } from '@angular/core'
+import { ComponentFixture, TestBed } from '@angular/core/testing'
+import { PortalBridgeService } from './portal-bridge.service'
 
-import { PortalBridgeService } from './portal-bridge.service';
 @Component({
   selector: 'app-second-section',
   template: '<ng-template cdkPortal>Portal</ng-template>',
@@ -11,10 +11,11 @@ class PortalComponent {
   @ViewChild(CdkPortal)
   portalContent: CdkPortal
 }
+
 fdescribe('PortalBridgeService', () => {
-  let service: PortalBridgeService;
-  let fixture: ComponentFixture<PortalComponent>;
-  let component: PortalComponent;
+  let service: PortalBridgeService
+  let fixture: ComponentFixture<PortalComponent>
+  let component: PortalComponent
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [PortalComponent],
@@ -25,14 +26,14 @@ fdescribe('PortalBridgeService', () => {
         PortalBridgeService,
       ]
     }).compileComponents()
-    service = TestBed.inject(PortalBridgeService);
-    fixture = TestBed.createComponent(PortalComponent);
-    component = fixture.componentInstance;
-  });
+    service = TestBed.inject(PortalBridgeService)
+    fixture = TestBed.createComponent(PortalComponent)
+    component = fixture.componentInstance
+  })
 
   it('should add new TemplatePortal', () => {
     service.setPortal(component.portalContent)
-    service.portal$.subscribe(el=>{
+    service.portal$.subscribe(el => {
       expect(el).toEqual(component.portalContent)
     })
   })
@@ -44,6 +45,6 @@ fdescribe('PortalBridgeService', () => {
   })
 
   it('should be created', () => {
-    expect(service).toBeTruthy();
-  });
-});
+    expect(service).toBeTruthy()
+  })
+})

@@ -1,9 +1,9 @@
-import { Component, OnInit, } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { authMethodEnum } from '../../../enums/authMethod';
-import { Store } from '@ngrx/store';
-import * as AuthActions from 'src/app/shared/actions/auth.actions';
-import { selectAuthUsername, selectIsLoggedIn } from 'src/app/shared/selectors/auth.selector';
+import { Component, OnInit } from '@angular/core'
+import { FormBuilder, FormGroup, Validators } from '@angular/forms'
+import { Store } from '@ngrx/store'
+import * as AuthActions from 'src/app/shared/actions/auth.actions'
+import { selectAuthUsername, selectIsLoggedIn } from 'src/app/shared/selectors/auth.selector'
+import { authMethodEnum } from '../../../enums/authMethod'
 
 
 @Component({
@@ -12,7 +12,7 @@ import { selectAuthUsername, selectIsLoggedIn } from 'src/app/shared/selectors/a
   styleUrls: ['./auth.component.scss']
 })
 export class AuthComponent implements OnInit {
-  form: FormGroup;
+  form: FormGroup
   isLoggedIn$: any
   userName$: any
 
@@ -24,11 +24,11 @@ export class AuthComponent implements OnInit {
   ngOnInit() {
     this.userName$ = this.store.select(selectAuthUsername)
     this.isLoggedIn$ = this.store.select(selectIsLoggedIn)
-    
+
     this.form = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(3)]]
-    });
+    })
   }
 
   logout(): void {

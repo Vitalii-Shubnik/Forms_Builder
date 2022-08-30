@@ -1,4 +1,3 @@
-
 export interface FormGeneralStyles {
   border?: string,
   fontStyle?: string,

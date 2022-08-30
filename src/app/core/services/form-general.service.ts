@@ -1,6 +1,6 @@
-import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
-import { FormGeneralStyles } from '../models/formGeneralStyles';
+import { Injectable } from '@angular/core'
+import { BehaviorSubject } from 'rxjs'
+import { FormGeneralStyles } from '../models/formGeneralStyles'
 
 @Injectable()
 export class FormGeneralService {
@@ -20,7 +20,6 @@ export class FormGeneralService {
       backgroundColor: window.getComputedStyle(active).backgroundColor
     }
   }
-
 
   setStyles(styles: FormGeneralStyles) {
     const active = this.form.getValue()

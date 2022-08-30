@@ -1,16 +1,15 @@
-import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { FormBuilder } from '@angular/forms';
-import { PushModule } from '@ngrx/component';
-import { Store } from '@ngrx/store';
-import { of } from 'rxjs';
-import { selectAuthUsername, selectIsLoggedIn } from 'src/app/shared/selectors/auth.selector';
-import { logout, loginRequest } from 'src/app/shared/actions/auth.actions'
+import { CommonModule } from '@angular/common'
+import { Component, EventEmitter, Input, Output } from '@angular/core'
+import { ComponentFixture, TestBed } from '@angular/core/testing'
+import { FormBuilder } from '@angular/forms'
+import { PushModule } from '@ngrx/component'
+import { Store } from '@ngrx/store'
+import { of } from 'rxjs'
+import { authMethodEnum } from 'src/app/core/enums/authMethod'
+import { loginRequest, logout } from 'src/app/shared/actions/auth.actions'
+import { selectAuthUsername, selectIsLoggedIn } from 'src/app/shared/selectors/auth.selector'
+import { AuthComponent } from './auth.component'
 
-
-import { AuthComponent } from './auth.component';
-import { authMethodEnum } from 'src/app/core/enums/authMethod';
 @Component({
   selector: 'app-login',
   template: '<p>Mock Login Component</p>'
@@ -29,8 +28,8 @@ class MockLogoutComponent {
 }
 
 fdescribe('AuthComponent', () => {
-  let component: AuthComponent;
-  let fixture: ComponentFixture<AuthComponent>;
+  let component: AuthComponent
+  let fixture: ComponentFixture<AuthComponent>
   let mockStore: any
   beforeEach(async () => {
     mockStore = jasmine.createSpyObj('Store', ['select', 'dispatch'])
@@ -49,11 +48,10 @@ fdescribe('AuthComponent', () => {
         { provide: Store, useValue: mockStore }
       ]
     })
-      .compileComponents();
-    fixture = TestBed.createComponent(AuthComponent);
-    component = fixture.componentInstance;
-  });
-
+      .compileComponents()
+    fixture = TestBed.createComponent(AuthComponent)
+    component = fixture.componentInstance
+  })
 
   it('should dispatch logout action', () => {
     mockStore.select
@@ -78,6 +76,6 @@ fdescribe('AuthComponent', () => {
   })
 
   it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
+    expect(component).toBeTruthy()
+  })
+})

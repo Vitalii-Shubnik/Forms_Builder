@@ -1,12 +1,12 @@
-import { CdkPortal } from '@angular/cdk/portal';
-import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { Store } from '@ngrx/store';
-import { distinctUntilChanged, Observable, Subject, takeUntil } from 'rxjs';
-import { FormItemService } from 'src/app/core/services/form-item.service';
-import { PortalBridgeService } from 'src/app/core/services/portal-bridge.service';
-import * as ElementActions from 'src/app/shared/actions/elementStyles.actions';
-import { selectElementStyles } from 'src/app/shared/selectors/elementStyles.selector';
-import { ElementStyles } from 'src/app/shared/statesModels/elementStyles.state';
+import { CdkPortal } from '@angular/cdk/portal'
+import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core'
+import { Store } from '@ngrx/store'
+import { distinctUntilChanged, Observable, Subject, takeUntil } from 'rxjs'
+import { FormItemService } from 'src/app/core/services/form-item.service'
+import { PortalBridgeService } from 'src/app/core/services/portal-bridge.service'
+import * as ElementActions from 'src/app/shared/actions/elementStyles.actions'
+import { selectElementStyles } from 'src/app/shared/selectors/elementStyles.selector'
+import { ElementStyles } from 'src/app/shared/statesModels/elementStyles.state'
 
 @Component({
   selector: 'app-second-section',
@@ -16,20 +16,18 @@ import { ElementStyles } from 'src/app/shared/statesModels/elementStyles.state';
 export class SecondSectionComponent implements OnInit, OnDestroy, AfterViewInit {
   @ViewChild(CdkPortal, { static: false })
   portalContent: CdkPortal
-
   activeItem$ = this.formItemService.element$
   activeElementStyles$: Observable<ElementStyles> = this.store.select(selectElementStyles)
-
   styles: ElementStyles = null
   previousStyles: ElementStyles = null
+  destroy$: Subject<boolean> = new Subject<boolean>()
 
-
-  destroy$: Subject<boolean> = new Subject<boolean>();
   constructor(
     private formItemService: FormItemService,
     private portalBridge: PortalBridgeService,
     private store: Store,
   ) { }
+
   onRemoved() {
     this.formItemService.setActive(null)
     this.styles = {}
@@ -40,26 +38,23 @@ export class SecondSectionComponent implements OnInit, OnDestroy, AfterViewInit 
     this.activeItem$.pipe(
       takeUntil(this.destroy$),
       distinctUntilChanged((prev, next) => {
-        return prev
-          && (JSON.stringify(prev) === JSON.stringify(next))
-        //better use lodash 
-      }),
+        return prev && (JSON.stringify(prev) === JSON.stringify(next))
+      })
     ).subscribe(el => {
-      this.getElementCurrentStyleValues();
+      this.getElementCurrentStyleValues()
     })
 
     this.activeElementStyles$.pipe(
       takeUntil(this.destroy$),
       distinctUntilChanged((prev, next) => {
-        return prev
-          && (JSON.stringify(prev) === JSON.stringify(next))
-        //better use lodash 
-      }),
+        return prev && (JSON.stringify(prev) === JSON.stringify(next))
+      })
     ).subscribe(el => {
       this.styles = { ...el }
       this.previousStyles = { ...el }
     })
   }
+
   ngAfterViewInit() {
     this.portalBridge.setPortal(this.portalContent)
   }
@@ -69,6 +64,7 @@ export class SecondSectionComponent implements OnInit, OnDestroy, AfterViewInit 
       styles: this.formItemService.getStyles()
     }))
   }
+  
   setElementCurrentStyleValues() {
     const changedStyles: ElementStyles = Object.fromEntries(Object.entries(this.styles)
       .filter(([key, value]) => this.styles[key] !== this.previousStyles[key]))
@@ -80,7 +76,7 @@ export class SecondSectionComponent implements OnInit, OnDestroy, AfterViewInit 
 
   ngOnDestroy(): void {
     // this.portalContent.detach()
-    this.destroy$.next(true);
-    this.destroy$.unsubscribe();
+    this.destroy$.next(true)
+    this.destroy$.unsubscribe()
   }
 }

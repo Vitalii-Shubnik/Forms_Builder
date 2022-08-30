@@ -1,13 +1,12 @@
-import { TestBed } from '@angular/core/testing';
-import { Router, UrlTree } from '@angular/router';
-import { Store } from '@ngrx/store';
-import { map, of } from 'rxjs';
-import { TestScheduler } from 'rxjs/testing';
-import { AuthGuard } from './auth.guard';
+import { TestBed } from '@angular/core/testing'
+import { Router } from '@angular/router'
+import { Store } from '@ngrx/store'
+import { TestScheduler } from 'rxjs/testing'
+import { AuthGuard } from './auth.guard'
 
 fdescribe('AuthguardGuard', () => {
 
-  let guard: AuthGuard;
+  let guard: AuthGuard
   let mockStore: any
   let mockRouter: any
   let testScheduler: TestScheduler
@@ -35,7 +34,7 @@ fdescribe('AuthguardGuard', () => {
       expectObservable(result).toBe('-b', { b: true })
     })
   })
-  
+
   it('should return router url when user is logged out', () => {
     testScheduler.run(({ hot, expectObservable }) => {
       let select$ = hot('-a', { a: undefined })
@@ -48,6 +47,6 @@ fdescribe('AuthguardGuard', () => {
   })
 
   it('should be created', () => {
-    expect(guard).toBeTruthy();
-  });
-});
+    expect(guard).toBeTruthy()
+  })
+})

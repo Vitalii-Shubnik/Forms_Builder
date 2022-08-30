@@ -1,7 +1,7 @@
-import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
-import { Component, Input } from '@angular/core';
-import { AvailableItems } from 'src/app/core/enums/availableItem';
-import { Drop } from 'src/app/core/models/drop';
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop'
+import { Component, Input } from '@angular/core'
+import { AvailableItems } from 'src/app/core/enums/availableItem'
+import { Drop } from 'src/app/core/models/drop'
 
 @Component({
   selector: 'app-third-section',
@@ -15,9 +15,9 @@ export class ThirdSectionComponent implements Drop {
     { type: AvailableItems.textarea, data: '' },
     { type: AvailableItems.button, data: '' },
     { type: AvailableItems.checkbox, data: '' }
-  ];
+  ]
   types = (Object.keys(AvailableItems) as Array<keyof typeof AvailableItems>)
-  elementToAdd: AvailableItems = AvailableItems.input;
+  elementToAdd: AvailableItems = AvailableItems.input
   constructor() { }
 
   add = () => {
@@ -30,6 +30,6 @@ export class ThirdSectionComponent implements Drop {
   }
 
   noReturnPredicate() {
-    return false;
+    return false
   }
 }

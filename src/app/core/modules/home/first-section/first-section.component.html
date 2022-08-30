@@ -13,6 +13,8 @@
         Form Element Styles
       </mat-panel-title>
     </mat-expansion-panel-header>
-    <ng-template [cdkPortalOutlet]="portal$ | async"></ng-template>
+    <ng-container *ngrxLet="portal$ as portal">
+      <div [cdkPortalOutlet]="portal"></div>
+    </ng-container>
   </mat-expansion-panel>
 </mat-accordion>

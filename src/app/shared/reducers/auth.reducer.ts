@@ -1,6 +1,6 @@
-import { createReducer, on } from '@ngrx/store';
-import { loginError, loginSuccess, logout } from '../actions/auth.actions';
-import { AuthState } from '../statesModels/auth.state';
+import { createReducer, on } from '@ngrx/store'
+import { loginError, loginSuccess, logout } from '../actions/auth.actions'
+import { AuthState } from '../statesModels/auth.state'
 
 export const initialUser: AuthState = {
   id: null,
@@ -9,9 +9,9 @@ export const initialUser: AuthState = {
   expiresIn: null,
 }
 
-export const getInitialUser = () =>{
-  const user: AuthState = JSON.parse(localStorage.getItem('user')!);
-  return user !== null ? user : {initialUser};
+export const getInitialUser = () => {
+  const user: AuthState = JSON.parse(localStorage.getItem('user')!)
+  return user !== null ? user : { initialUser }
 }
 
 export const authReducer = createReducer(
@@ -34,7 +34,7 @@ export const authReducer = createReducer(
       expiresIn: null,
     }
   }),
-  on(logout, (state): AuthState =>{
+  on(logout, (state): AuthState => {
     return {
       ...state,
       id: null,

@@ -3,9 +3,11 @@
   <mat-form-field appearance="outline">
     <mat-label>Email</mat-label>
     <input matInput name="email" formControlName="email">
-    <mat-error *ngIf="form.get('email')?.errors && form.get('email')?.errors['required']">This field is required
+    <mat-error *ngIf="form.get('email')?.errors && form.get('email')?.errors['required']">
+      This field is required
     </mat-error>
-    <mat-error *ngIf="form.get('email')?.errors && form.get('email')?.errors['email']">Please enter valid email
+    <mat-error *ngIf="form.get('email')?.errors && form.get('email')?.errors['email']">
+      Please enter valid email
     </mat-error>
   </mat-form-field>
   <mat-form-field appearance="outline">
@@ -14,9 +16,14 @@
     <mat-error *ngIf="form.get('password')?.errors">Password is too short</mat-error>
   </mat-form-field>
   <div class="form-method">
-    <button mat-raised-button [disabled]="!form.valid" class="submit-form-button" (click)="signInClick()">{{authMethod === 'Login' ? 'Login' : 'Register'}}</button>
+    <button mat-raised-button [disabled]="!form.valid" class="submit-form-button" (click)="signInClick()">
+      {{authMethod === 'Login' ? 'Login' : 'Register'}}
+    </button>
     <span>
-      {{authMethod === 'Login' ? 'New user?' : 'Already have an account?'}} <span class="change-method-text" (click)="toggleSwitchMethod()">{{authMethod === 'Login' ? 'Sign up' : 'Sign in'}}</span>
+      {{authMethod === 'Login' ? 'New user?' : 'Already have an account?'}} 
+      <span class="change-method-text" (click)="toggleSwitchMethod()">
+        {{authMethod === 'Login' ? 'Sign up' : 'Sign in'}}
+      </span>
     </span>
   </div>
 </form>

@@ -1,11 +1,9 @@
-import { TestBed } from '@angular/core/testing';
-
-import { FormItemService } from './form-item.service';
-import { AvailableItems } from '../enums/availableItem';
-import { ElementStyles } from 'src/app/shared/statesModels/elementStyles.state';
+import { TestBed } from '@angular/core/testing'
+import { AvailableItems } from '../enums/availableItem'
+import { FormItemService } from './form-item.service'
 
 fdescribe('FormItemService', () => {
-  let service: FormItemService;
+  let service: FormItemService
   let mockWindow: any
   let styles: any
   beforeEach(() => {
@@ -15,10 +13,9 @@ fdescribe('FormItemService', () => {
         FormItemService,
         { provide: Window, useValue: mockWindow }
       ]
-    });
-    // console.log(window)
-    service = TestBed.inject(FormItemService);
-  });
+    })
+    service = TestBed.inject(FormItemService)
+  })
 
   beforeEach(() => {
     styles = {
@@ -44,7 +41,7 @@ fdescribe('FormItemService', () => {
 
   it('should return styles of checkbox', () => {
     const checkbox = document.createElement('input')
-    checkbox.setAttribute("type", "checkbox");
+    checkbox.setAttribute("type", "checkbox")
     const checkboxStyles = {
       ...styles,
       fontSize: null,
@@ -107,6 +104,6 @@ fdescribe('FormItemService', () => {
   })
 
   it('should be created', () => {
-    expect(service).toBeTruthy();
-  });
-});
+    expect(service).toBeTruthy()
+  })
+})

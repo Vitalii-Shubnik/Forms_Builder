@@ -1,6 +1,6 @@
-import { AuthState } from '../statesModels/auth.state';
-import { createFeatureSelector, createSelector } from '@ngrx/store';
-import * as moment from 'moment';
+import { AuthState } from '../statesModels/auth.state'
+import { createFeatureSelector, createSelector } from '@ngrx/store'
+import * as moment from 'moment'
 
 export const selectAuth = createFeatureSelector<AuthState>('auth')
 

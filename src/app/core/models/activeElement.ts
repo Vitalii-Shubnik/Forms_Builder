@@ -1,4 +1,4 @@
-import { AvailableItems } from "../enums/availableItem";
+import { AvailableItems } from "../enums/availableItem"
 
 export interface ActiveElement {
   type: AvailableItems,

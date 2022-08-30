@@ -1,21 +1,21 @@
-import { ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
-import { FormsModule } from '@angular/forms';
-import { MatButtonModule } from '@angular/material/button';
-import { MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatIconModule } from '@angular/material/icon';
-import { MatInputModule } from '@angular/material/input';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AvailableItems } from 'src/app/core/enums/availableItem';
+import { ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing'
+import { FormsModule } from '@angular/forms'
+import { MatButtonModule } from '@angular/material/button'
+import { MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog'
+import { MatFormFieldModule } from '@angular/material/form-field'
+import { MatIconModule } from '@angular/material/icon'
+import { MatInputModule } from '@angular/material/input'
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+import { AvailableItems } from 'src/app/core/enums/availableItem'
 
-import { EditDialogComponent } from './edit-dialog.component';
+import { EditDialogComponent } from './edit-dialog.component'
 
 fdescribe('EditDialogComponent', () => {
-  let component: EditDialogComponent;
-  let fixture: ComponentFixture<EditDialogComponent>;
+  let component: EditDialogComponent
+  let fixture: ComponentFixture<EditDialogComponent>
   let dialofRef = jasmine.createSpyObj(MatDialogRef, ['close'])
-  beforeEach(async () => {
 
+  beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [EditDialogComponent],
       imports: [
@@ -37,11 +37,11 @@ fdescribe('EditDialogComponent', () => {
         { provide: MatDialogRef, useValue: dialofRef }
       ]
     })
-      .compileComponents();
+      .compileComponents()
 
-    fixture = TestBed.createComponent(EditDialogComponent);
-    component = fixture.componentInstance;
-  });
+    fixture = TestBed.createComponent(EditDialogComponent)
+    component = fixture.componentInstance
+  })
 
   it('should close dialog', () => {
     component.onNoClick()
@@ -54,7 +54,7 @@ fdescribe('EditDialogComponent', () => {
     fixture.detectChanges()
     component.applyOptionForSelect()
     expect(component.temp).toBe('')
-    expect(component.temparr).toEqual(['option1','value1'])
+    expect(component.temparr).toEqual(['option1', 'value1'])
   })
 
   it('should not do any changes', () => {
@@ -89,7 +89,7 @@ fdescribe('EditDialogComponent', () => {
   })
 
   it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+    expect(component).toBeTruthy()
+  })
 
-});
+})

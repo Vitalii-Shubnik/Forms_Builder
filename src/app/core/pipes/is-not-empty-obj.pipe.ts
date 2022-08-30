@@ -1,4 +1,4 @@
-import { Pipe, PipeTransform } from '@angular/core';
+import { Pipe, PipeTransform } from '@angular/core'
 
 @Pipe({
   name: 'isNotEmptyObj'
@@ -9,5 +9,4 @@ export class IsNotEmptyObjPipe implements PipeTransform {
     return !!value && Object.keys(value).length > 0
       && Object.getPrototypeOf(value) === Object.prototype
   }
-
 }
