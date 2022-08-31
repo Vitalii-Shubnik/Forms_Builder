@@ -14,8 +14,7 @@ export class AuthService {
   }
 
   authorize(email: string, password: string, url: string): Observable<any> {
-    const response = this.http.post<any>(url, { username: email, password })
-    return response
+    return this.http.post<any>(url, { username: email, password })
   }
 
   setUser(user: LoginResponse) {

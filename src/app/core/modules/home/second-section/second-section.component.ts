@@ -21,6 +21,7 @@ export class SecondSectionComponent implements OnInit, OnDestroy, AfterViewInit 
   styles: ElementStyles = null
   previousStyles: ElementStyles = null
   destroy$: Subject<boolean> = new Subject<boolean>()
+  justRemoved: boolean = false;
 
   constructor(
     private formItemService: FormItemService,
@@ -32,13 +33,14 @@ export class SecondSectionComponent implements OnInit, OnDestroy, AfterViewInit 
     this.formItemService.setActive(null)
     this.styles = {}
     this.previousStyles = {}
+    this.justRemoved = true
   }
 
   ngOnInit() {
     this.activeItem$.pipe(
       takeUntil(this.destroy$),
       distinctUntilChanged((prev, next) => {
-        return prev && (JSON.stringify(prev) === JSON.stringify(next))
+        return prev && (JSON.stringify(prev) === JSON.stringify(next)) && !this.justRemoved
       })
     ).subscribe(el => {
       this.getElementCurrentStyleValues()
@@ -47,9 +49,10 @@ export class SecondSectionComponent implements OnInit, OnDestroy, AfterViewInit 
     this.activeElementStyles$.pipe(
       takeUntil(this.destroy$),
       distinctUntilChanged((prev, next) => {
-        return prev && (JSON.stringify(prev) === JSON.stringify(next))
+        return prev && (JSON.stringify(prev) === JSON.stringify(next)) && !this.justRemoved
       })
     ).subscribe(el => {
+      this.justRemoved = false
       this.styles = { ...el }
       this.previousStyles = { ...el }
     })

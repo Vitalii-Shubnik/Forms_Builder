@@ -34,6 +34,7 @@ export class AuthEffects {
     return this.actions$.pipe(
       ofType(AuthActions.loginRequest),
       exhaustMap((action) => {
+        console.log(action.username)
         let url = ''
         switch (action.authMethod) {
           case 'Login': {
@@ -48,7 +49,9 @@ export class AuthEffects {
         return this.authService
           .authorize(action.username, action.password, url)
           .pipe(
-            tap((user: LoginResponse) => this.authService.setUser(user)),
+            tap((user: LoginResponse) => {
+              this.authService.setUser({ ...user })
+            }),
             map((response) => AuthActions.loginSuccess({ response })),
             catchError((error) => of(AuthActions.loginError({ response: error }))),
             shareReplay()

@@ -1,4 +1,4 @@
-<app-main-form></app-main-form>
+<app-main-form class="custom-droplist"></app-main-form>
 <app-edit-fields (removed)="onRemoved()"></app-edit-fields>
 
 <ng-template cdkPortal>
@@ -34,7 +34,8 @@
       </mat-form-field>
       <mat-checkbox *ngIf="styles.required !== null" [(ngModel)]="styles.required">Required</mat-checkbox>
       <br />
-      <button mat-raised-button color="accent" (click)="setElementCurrentStyleValues()">Change</button>
+      <button id="change-element-styles-btn" mat-raised-button color="accent"
+        (click)="setElementCurrentStyleValues()">Change</button>
     </div>
   </ng-container>
 </ng-template>

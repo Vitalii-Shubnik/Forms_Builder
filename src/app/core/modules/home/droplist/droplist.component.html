@@ -1,6 +1,6 @@
 <div cdkDropList [cdkDropListData]="dropListData" class="drop-list" (cdkDropListDropped)="drop($event)"
   [cdkDropListEnterPredicate]="noReturnPredicate">
-  <form #mainform class="main-form" [ngClass]="formClass">
+  <form #mainform class="main-form">
     <div [ngClass]="dragHandle ? 'form-item-container' : 'form-item-container-without-draghandle' "
       *ngFor="let item of dropListData" cdkDrag (cdkDragStarted)="dragEvent.emit(true)"
       (cdkDragEnded)="dragEvent.emit(false)">
