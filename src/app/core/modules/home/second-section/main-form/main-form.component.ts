@@ -1,6 +1,7 @@
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop'
 import { Component } from '@angular/core'
 import { Observable } from 'rxjs'
+import { AvailableItems } from 'src/app/core/enums/availableItem'
 import { ActiveElement } from 'src/app/core/models/activeElement'
 import { FormElDraggingService } from 'src/app/core/services/form-el-dragging.service'
 import { FormGeneralService } from 'src/app/core/services/form-general.service'
@@ -12,9 +13,9 @@ import { FormItemService } from 'src/app/core/services/form-item.service'
   styleUrls: ['./main-form.component.scss']
 })
 export class MainFormComponent {
-  used: any[] = []
+  used: any[] = [{ type: AvailableItems.input, data: '' }]
   dragging$: Observable<boolean>
-  
+
   constructor(
     private formStylesService: FormGeneralService,
     private formItemService: FormItemService,
