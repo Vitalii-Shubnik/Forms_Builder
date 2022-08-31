@@ -1,5 +1,9 @@
 .login-form {
-  margin-top: 1rem;
+  width: fit-content;
+  height: fit-content;
+  padding: 50px 50px 60px 50px;
+  border: 1px solid black;
+  border-radius: 12px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -8,6 +12,16 @@
 .change-method-text {
   cursor: pointer;
   color: #53aded;
+}
+
+.submit-form-button {
+  margin-top: 20px;
+}
+
+.auth-form-legend {
+  font-size: large;
+  font-weight: 500;
+  margin-bottom: 10px;
 }
 
 .change-method-text:hover {
@@ -19,4 +33,10 @@
   flex-direction: column;
   align-items: center;
   gap: 1rem;
+}
+
+.auth-form-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }

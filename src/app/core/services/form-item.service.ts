@@ -5,7 +5,7 @@ import { ActiveElement } from '../models/activeElement'
 
 @Injectable()
 export class FormItemService {
-  private active = new BehaviorSubject<ActiveElement>(null)
+  active = new BehaviorSubject<ActiveElement>(null)
   readonly element$ = this.active.asObservable()
 
   setActive(el: ActiveElement) {

@@ -1,5 +1,5 @@
 .form-elements-bottom-buttons {
-  height: 53px;
+  height: var(--button-height);
   display: flex;
   flex-direction: row;
   justify-content: space-between;

@@ -1,4 +1,4 @@
-<app-droplist [disabled]="true" [dragHandle]="false" [dropListData]="available" (SetDropped)="drop($event)"
+<app-droplist class="custom-droplist" [disabled]="true" [dragHandle]="false" [dropListData]="available" (SetDropped)="drop($event)"
   [noReturnPredicate]="noReturnPredicate" [formClass]="'none'"></app-droplist>
 <div class="bottom-add-item-container">
   <button (click)="add()" class="add-item">

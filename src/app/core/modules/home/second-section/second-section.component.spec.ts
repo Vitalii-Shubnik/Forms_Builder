@@ -7,6 +7,7 @@ import { FormItemService } from 'src/app/core/services/form-item.service'
 import { PortalBridgeService } from 'src/app/core/services/portal-bridge.service'
 import { SecondSectionComponent } from './second-section.component'
 
+
 @Component({
   selector: 'app-main-form',
   template: 'Form'

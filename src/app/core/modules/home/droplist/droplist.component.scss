@@ -1,3 +1,7 @@
+:root {
+  --large-screen: 1080px;
+}
+
 .cdk-drag-preview {
   box-sizing: border-box;
   border-radius: 4px;
@@ -10,16 +14,26 @@
   transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
 }
 
-.drop-list::-webkit-scrollbar { 
-  display: none;  /* Safari and Chrome */
+.drop-list::-webkit-scrollbar {
+  display: none;
+  /* Safari and Chrome */
 }
 
-.drop-list {
-  -ms-overflow-style: none;  /* Internet Explorer 10+ */
-  scrollbar-width: none;  /* Firefox */
-  min-height: 80vh;
-  max-height: 80vh;
-  overflow-y: scroll;
+@media only screen and (max-width: 1080px) {
+  .drop-list {
+    padding-bottom: 60px;
+  }
+}
+
+@media only screen and (min-width: 1080px) {
+  .drop-list {
+    -ms-overflow-style: none;
+    /* Internet Explorer 10+ */
+    scrollbar-width: none;
+    /* Firefox */
+    height: 100%;
+    overflow-y: scroll;
+  }
 }
 
 .form-item-container {
@@ -59,9 +73,10 @@
 
 .main-form {
   display: flex;
+  gap: 10px;
   flex-direction: column;
 }
 
-.default-form{
+.default-form {
   gap: 10px;
 }
