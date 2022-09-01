@@ -4,7 +4,8 @@ describe('Change form element styles', () => {
   beforeEach(() => {
     cy.viewport(1200, 780)
   })
-  it('should click existing element', async () => {
+  
+  it('should change element styles', async () => {
     login()
 
     cy.get('#cdk-drop-list-0>form>div>app-input>input').should('be.visible').click()

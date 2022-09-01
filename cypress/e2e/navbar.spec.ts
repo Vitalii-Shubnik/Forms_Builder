@@ -1,6 +1,10 @@
 import { login, routes } from './spec'
 
 describe('App Test', () => {
+  beforeEach(() => {
+    cy.viewport(1200, 780)
+  })
+  
   it('Login', () => {
     cy.visit(routes.home, { failOnStatusCode: false })
     login()
