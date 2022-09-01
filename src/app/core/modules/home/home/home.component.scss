@@ -1,0 +1,44 @@
+@media only screen and (min-width: 1080px) {
+  .home-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+
+  .section-container {
+    min-width: 30vw;
+    display: inline-block;
+    vertical-align: top;
+    border: solid 1px #ccc;
+    min-height: 90vh;
+    max-height: 90vh;
+    border-radius: 4px;
+  }
+}
+
+@media only screen and (max-width: 1080px) {
+  .home-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 100px;
+  }
+
+  .section-container {
+    width: 80%;
+    min-width: 320px;
+    border: solid 1px #ccc;
+    border-radius: 4px;
+  }
+}
+
+.first-section {
+  max-height: fit-content;
+}
+
+.second-section,
+.third-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}

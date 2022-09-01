@@ -1,0 +1,20 @@
+<mat-accordion>
+  <mat-expansion-panel hideToggle>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Form General Styles
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <app-form-general-styles  [styles]="styles" (stylesChanged)="setFormStyles()"></app-form-general-styles>
+  </mat-expansion-panel>
+  <mat-expansion-panel hideToggle>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Form Element Styles
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <ng-container *ngrxLet="portal$ as portal">
+      <div [cdkPortalOutlet]="portal"></div>
+    </ng-container>
+  </mat-expansion-panel>
+</mat-accordion>
