@@ -4,6 +4,7 @@ describe('Register for first time', () => {
   beforeEach(() => {
     cy.viewport(1200, 780)
   })
+  
   it('should register user', () => {
     cy.visit(routes.home, { failOnStatusCode: false })
 

@@ -4,8 +4,10 @@ describe('Change form element styles', () => {
   beforeEach(() => {
     cy.viewport(1200, 780)
   })
-  it('should click existing element', async () => {
+
+  it('should change form styles', async () => {
     login()
+    
     cy.get('#mat-expansion-panel-header-0').should('be.visible').click()
     cy.get('#mat-input-2').should('be.visible').clear().type('2px solid rgb(0, 0, 0)')
     cy.get('#mat-input-3').should('be.visible').clear().type('italic')
