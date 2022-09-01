@@ -4,6 +4,7 @@ describe('Auth Test', () => {
   beforeEach(() => {
     cy.viewport(1200, 780)
   })
+  
   it('Visits the initial project page ', () => {
     cy.visit(routes.home, { failOnStatusCode: false })
 
