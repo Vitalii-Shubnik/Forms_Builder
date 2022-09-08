@@ -30,7 +30,7 @@ fdescribe('AuthInterceptor', () => {
     const url = '/test'
     client.get(url).subscribe()
     const get = controller.expectOne(url)
-    expect(get.request.headers.get("Authorization")).toEqual('Bearer sometoken')
+    expect(get.request.headers.get('Authorization')).toEqual('Bearer sometoken')
   })
 
   it('should not add authorization header', () => {
@@ -38,7 +38,7 @@ fdescribe('AuthInterceptor', () => {
     const url = '/test'
     client.get(url).subscribe()
     const get = controller.expectOne(url)
-    const authorization = get.request.headers.get("Authorization")
+    const authorization = get.request.headers.get('Authorization')
     expect(authorization).toBeFalsy()
   })
 })

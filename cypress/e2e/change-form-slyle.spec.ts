@@ -1,4 +1,4 @@
-import { login } from "./spec"
+import { login } from './spec'
 
 describe('Change form element styles', () => {
   beforeEach(() => {

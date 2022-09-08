@@ -1,18 +1,18 @@
-import { HttpErrorResponse } from "@angular/common/http"
-import { TestBed } from "@angular/core/testing"
-import { Router } from "@angular/router"
+import { HttpErrorResponse } from '@angular/common/http'
+import { TestBed } from '@angular/core/testing'
+import { Router } from '@angular/router'
 import { provideMockActions } from '@ngrx/effects/testing'
-import { MockStore, provideMockStore } from "@ngrx/store/testing"
-import { ToastrService } from "ngx-toastr"
-import { Observable, of } from "rxjs"
-import { TestScheduler } from "rxjs/testing"
-import { authMethodEnum } from "src/app/core/enums/authMethod"
-import { LoginResponse } from "src/app/core/models/userLoginResponse"
-import { AuthService } from "src/app/core/services/auth.service"
-import { loginError, loginRequest, loginSuccess, logout } from "../actions/auth.actions"
-import { initialUser } from "../reducers/auth.reducer"
-import { AuthState } from "../statesModels/auth.state"
-import { AuthEffects } from "./auth.effects"
+import { MockStore, provideMockStore } from '@ngrx/store/testing'
+import { ToastrService } from 'ngx-toastr'
+import { Observable, of } from 'rxjs'
+import { TestScheduler } from 'rxjs/testing'
+import { authMethodEnum } from 'src/app/core/enums/authMethod'
+import { LoginResponse } from 'src/app/core/models/userLoginResponse'
+import { AuthService } from 'src/app/core/services/auth.service'
+import { loginError, loginRequest, loginSuccess, logout } from '../actions/auth.actions'
+import { initialUser } from '../reducers/auth.reducer'
+import { AuthState } from '../statesModels/auth.state'
+import { AuthEffects } from './auth.effects'
 
 fdescribe('Auth Effects', () => {
   const initial = { ...initialUser }

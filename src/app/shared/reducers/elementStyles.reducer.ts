@@ -8,7 +8,6 @@ export const elementStylesReducer = createReducer(
   initialElement,
   on(elementChangeStyles, (state, { styles }): ElementStyles => {
     return {
-      ...state,
       ...styles
     }
   })

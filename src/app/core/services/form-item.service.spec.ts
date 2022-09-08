@@ -32,7 +32,7 @@ fdescribe('FormItemService', () => {
   })
 
   it('should set active element', () => {
-    const button = document.createElement('button')
+    const button:HTMLButtonElement = document.createElement('button')
     service.setActive({ type: AvailableItems.button, element: button })
     service.element$.subscribe(el => {
       expect(el).toEqual({ type: AvailableItems.button, element: button })
@@ -41,7 +41,7 @@ fdescribe('FormItemService', () => {
 
   it('should return styles of checkbox', () => {
     const checkbox = document.createElement('input')
-    checkbox.setAttribute("type", "checkbox")
+    checkbox.setAttribute('type', 'checkbox')
     const checkboxStyles = {
       ...styles,
       fontSize: null,

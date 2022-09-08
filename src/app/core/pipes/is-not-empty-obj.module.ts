@@ -1,16 +1,16 @@
-import { CommonModule } from '@angular/common'
-import { NgModule } from '@angular/core'
-import { IsNotEmptyObjPipe } from './is-not-empty-obj.pipe'
+import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
+import { IsNotEmptyObjPipe } from './is-not-empty-obj.pipe';
 
 @NgModule({
   declarations: [
-    IsNotEmptyObjPipe
+    IsNotEmptyObjPipe,
   ],
   imports: [
     CommonModule
   ],
   exports: [
-    IsNotEmptyObjPipe
+    IsNotEmptyObjPipe,
   ]
 })
 export class IsNotEmptyObjModule { }

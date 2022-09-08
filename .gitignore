@@ -7,6 +7,7 @@
 /bazel-out
 
 # Node
+/node-jwt-authentication-api-master
 /node_modules
 npm-debug.log
 yarn-error.log

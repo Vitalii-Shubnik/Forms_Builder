@@ -2,40 +2,41 @@
 <app-edit-fields (removed)="onRemoved()"></app-edit-fields>
 
 <ng-template cdkPortal>
-  <ng-container *ngIf="styles | isNotEmptyObj">
+  <form [formGroup]="formStyles" *ngIf="formStyles.value | isNotEmptyObj">
     <div class="form-styles-container">
-      <mat-form-field *ngIf="styles.height !== null" appearance="fill">
+      <mat-form-field *ngIf="formStyles.value['height'] | variableExists" appearance="fill">
         <mat-label>Height</mat-label>
-        <input matInput placeholder="18px, 1.5rem..." [(ngModel)]="styles.height">
+        <input matInput placeholder="18px, 1.5rem..." formControlName="height">
       </mat-form-field>
-      <mat-form-field *ngIf="styles.width !== null" appearance="fill">
+      <mat-form-field *ngIf="formStyles.value['width'] | variableExists" appearance="fill">
         <mat-label>Width</mat-label>
-        <input matInput placeholder="18px, 1.5rem..." [(ngModel)]="styles.width">
+        <input matInput placeholder="18px, 1.5rem..." formControlName="width">
       </mat-form-field>
-      <mat-form-field *ngIf="styles.fontWeight !== null" appearance="fill">
+      <mat-form-field *ngIf="formStyles.value['fontWeight'] | variableExists" appearance="fill">
         <mat-label>Font weight</mat-label>
-        <input matInput placeholder="400, 500, 600..." [(ngModel)]="styles.fontWeight">
+        <input matInput placeholder="400, 500, 600..." formControlName="fontWeight">
       </mat-form-field>
-      <mat-form-field *ngIf="styles.fontSize !== null" appearance="fill">
+      <mat-form-field *ngIf="formStyles.value['fontSize'] | variableExists" appearance="fill">
         <mat-label>Font size</mat-label>
-        <input matInput placeholder="18px, 1.5rem..." [(ngModel)]="styles.fontSize">
+        <input matInput placeholder="18px, 1.5rem..." formControlName="fontSize">
       </mat-form-field>
-      <mat-form-field *ngIf="styles.color !== null" appearance="fill">
+      <mat-form-field *ngIf="formStyles.value['color'] | variableExists" appearance="fill">
         <mat-label>Color</mat-label>
-        <input matInput placeholder="rgb(0-255,0-255,0-255)..." [(ngModel)]="styles.color">
+        <input matInput placeholder="rgb(0-255,0-255,0-255)..." formControlName="color">
       </mat-form-field>
-      <mat-form-field *ngIf="styles.borderStyle !== null" appearance="fill">
+      <mat-form-field *ngIf="formStyles.value['borderStyle'] | variableExists" appearance="fill">
         <mat-label>Border style</mat-label>
-        <input matInput placeholder="dashed, solid, dotted..." [(ngModel)]="styles.borderStyle">
+        <input matInput placeholder="dashed, solid, dotted..." formControlName="borderStyle">
       </mat-form-field>
-      <mat-form-field *ngIf="styles.placeholder !== null" appearance="fill">
+      <mat-form-field *ngIf="formStyles.value['placeholder'] | variableExists" appearance="fill">
         <mat-label>Placeholder</mat-label>
-        <input matInput placeholder="some text..." [(ngModel)]="styles.placeholder">
+        <input matInput placeholder="some text..." formControlName="placeholder">
       </mat-form-field>
-      <mat-checkbox *ngIf="styles.required !== null" [(ngModel)]="styles.required">Required</mat-checkbox>
+      <mat-checkbox formControlName="required" *ngIf="formStyles.value['required'] | variableExists">
+        Required</mat-checkbox>
       <br />
       <button id="change-element-styles-btn" mat-raised-button color="accent"
         (click)="setElementCurrentStyleValues()">Change</button>
     </div>
-  </ng-container>
+  </form>
 </ng-template>

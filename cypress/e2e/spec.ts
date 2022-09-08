@@ -1,8 +1,8 @@
 import { slowCypressDown } from 'cypress-slow-down'
 slowCypressDown(100)
 
-export const login = () => {
-  cy.visit(routes.home)
+export const login = (): void => {
+  cy.visit(routes['home'])
   cy.get('#auth-form-email')
     .should('be.visible')
     .type('user1@gmail.com')
@@ -16,14 +16,14 @@ export const login = () => {
     .click()
 }
 
-const drag = (dragSelector: string, dropSelector: string) => {
+const drag = (dragSelector: string, dropSelector: string): void => {
   cy.get(dragSelector).should('exist')
     .get(dropSelector).should('exist')
 
-  const draggable = Cypress.$(dragSelector)[0]
-  const droppable = Cypress.$(dropSelector)[0]
+  const draggable: HTMLElement = Cypress.$(dragSelector)[0]
+  const droppable: HTMLElement = Cypress.$(dropSelector)[0]
 
-  const coords = droppable.getBoundingClientRect()
+  const coords: DOMRect = droppable.getBoundingClientRect()
   draggable.dispatchEvent(<any>new MouseEvent('mousedown'))
   draggable.dispatchEvent(<any>new MouseEvent('mousemove', { clientX: 10, clientY: 0 }))
   draggable.dispatchEvent(<any>new MouseEvent('mousemove', {
@@ -31,10 +31,10 @@ const drag = (dragSelector: string, dropSelector: string) => {
     clientY: coords.top + 10
   }))
   draggable.dispatchEvent(new MouseEvent('mouseup'))
-  return cy.get(dropSelector)
+  cy.get(dropSelector)
 }
 
-export const routes = {
-  "home": 'http://localhost:4200/home',
-  "auth": 'http://localhost:4200/authenticate'
+export const routes: {[key: string]: string} = {
+  'home': 'http://localhost:4200/home',
+  'auth': 'http://localhost:4200/authenticate'
 }

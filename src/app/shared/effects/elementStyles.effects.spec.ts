@@ -1,12 +1,12 @@
-import { TestBed } from "@angular/core/testing"
+import { TestBed } from '@angular/core/testing'
 import { provideMockActions } from '@ngrx/effects/testing'
-import { MockStore, provideMockStore } from "@ngrx/store/testing"
-import { Observable } from "rxjs"
-import { TestScheduler } from "rxjs/testing"
-import { FormItemService } from "src/app/core/services/form-item.service"
-import { elementChangeSelfStyles, elementChangeStyles } from "../actions/elementStyles.actions"
-import { ElementStyles } from "../statesModels/elementStyles.state"
-import { ElementStylesEffects } from "./elementStyles.effects"
+import { MockStore, provideMockStore } from '@ngrx/store/testing'
+import { Observable } from 'rxjs'
+import { TestScheduler } from 'rxjs/testing'
+import { FormItemService } from 'src/app/core/services/form-item.service'
+import { elementChangeSelfStyles, elementChangeStyles } from '../actions/elementStyles.actions'
+import { ElementStyles } from '../statesModels/elementStyles.state'
+import { ElementStylesEffects } from './elementStyles.effects'
 
 fdescribe('Element Styles Effects', () => {
   const initialState = null

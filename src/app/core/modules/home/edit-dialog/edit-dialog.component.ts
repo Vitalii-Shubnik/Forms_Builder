@@ -21,7 +21,7 @@ export class EditDialogComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: DataType,
   ) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
     if (this.data.type === 'select') {
       this.temparr = [...this.data?.data]
     }
@@ -34,18 +34,18 @@ export class EditDialogComponent implements OnInit {
     this.dialogRef.close()
   }
 
-  removeOption(index: number) {
+  removeOption(index: number): void {
     this.temparr.splice(index, 1)
   }
 
-  applyOptionForSelect() {
+  applyOptionForSelect(): void {
     if (this.temp) {
       this.temparr.push(this.temp)
       this.temp = ''
     }
   }
-  
-  setDialog() {
+
+  setDialog(): string | string[] {
     if (this.data.type === 'select') {
       return [...this.temparr]
     }

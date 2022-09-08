@@ -9,7 +9,7 @@ import { DumbComponent } from 'src/app/core/models/dumbComponent'
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class EditFieldComponent extends DumbComponent {
-  @Input() dragging = false
+  @Input() dragging: boolean = false
   @Input() icon: string
   @Input() className: string
   @Input() activeClassName: string
@@ -19,7 +19,7 @@ export class EditFieldComponent extends DumbComponent {
     super()
   }
 
-  drop(event: CdkDragDrop<any, any, any>) {
+  drop(event: CdkDragDrop<any, any, any>): void {
     this.dropped.emit(event)
   }
 }

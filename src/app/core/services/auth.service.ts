@@ -9,15 +9,15 @@ export class AuthService {
     private http: HttpClient,
   ) { }
 
-  logout() {
+  logout(): void {
     localStorage.removeItem('user')
   }
 
-  authorize(email: string, password: string, url: string): Observable<any> {
-    return this.http.post<any>(url, { username: email, password })
+  authorize(email: string, password: string, url: string): Observable<LoginResponse> {
+    return this.http.post<LoginResponse>(url, { username: email, password })
   }
 
-  setUser(user: LoginResponse) {
+  setUser(user: LoginResponse): void {
     localStorage.setItem('user', JSON.stringify({
       token: user.token,
       username: user.username,

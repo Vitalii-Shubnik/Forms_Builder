@@ -1,17 +1,17 @@
-<ng-container *ngIf="styles | isNotEmptyObj">
+<form [formGroup]="form" (submit)="setFormStyles()" >
   <div class="form-styles-container">
-    <mat-form-field *ngIf="styles.border !== undefined" appearance="fill">
+    <mat-form-field *ngIf="form.get('border') | variableExists " appearance="fill">
       <mat-label>Border</mat-label>
-      <input matInput placeholder="width style color" [(ngModel)]="styles.border">
+      <input matInput placeholder="width style color" formControlName="border">
     </mat-form-field>
-    <mat-form-field *ngIf="styles.fontStyle !== undefined" appearance="fill">
+    <mat-form-field *ngIf="form.get('fontStyle') | variableExists" appearance="fill">
       <mat-label>Font style</mat-label>
-      <input matInput placeholder="normal, italic, oblique" [(ngModel)]="styles.fontStyle">
+      <input matInput placeholder="normal, italic, oblique" formControlName="fontStyle">
     </mat-form-field>
-    <mat-form-field *ngIf="styles.backgroundColor !== undefined" appearance="fill">
+    <mat-form-field *ngIf="form.get('backgroundColor') | variableExists" appearance="fill">
       <mat-label>Background color</mat-label>
-      <input matInput placeholder="rgb(0,0,0)..." [(ngModel)]="styles.backgroundColor">
+      <input matInput placeholder="rgb(0,0,0)..." formControlName="backgroundColor">
     </mat-form-field>
-    <button id="change-form-styles-btn" mat-raised-button color="accent" (click)="setFormStyles()">Change</button>
+    <button type="submit" id="change-form-styles-btn" mat-raised-button color="accent">Change</button>
   </div>
-</ng-container>
+</form>

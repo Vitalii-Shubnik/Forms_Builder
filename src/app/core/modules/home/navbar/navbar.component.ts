@@ -20,7 +20,7 @@ export class NavbarComponent implements OnInit {
     this.isLogged$ = this.store.select(selectIsLoggedIn)
   }
 
-  logout() {
+  logout(): void {
     this.store.dispatch(AuthActions.logout())
   }
 }

@@ -26,10 +26,10 @@ fdescribe('ContentApplicationJsonInterceptor', () => {
   })
 
   it('should change header Content-Type to application/json charset=utf-8', () => {
-    const url = 'http://localhost:8000/users/authenticate'
+    const url: string = 'http://localhost:8000/users/authenticate'
     client.post(url, { username: 'user2', password: 'password' }).subscribe()
     const post = controller.expectOne(url)
-    expect(post.request.headers.get("Content-Type")).toEqual('application/json charset=utf-8')
+    expect(post.request.headers.get('Content-Type')).toEqual('application/json charset=utf-8')
   })
 
 })

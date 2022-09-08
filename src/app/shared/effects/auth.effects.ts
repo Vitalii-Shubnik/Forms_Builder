@@ -34,18 +34,7 @@ export class AuthEffects {
     return this.actions$.pipe(
       ofType(AuthActions.loginRequest),
       exhaustMap((action) => {
-        console.log(action.username)
-        let url = ''
-        switch (action.authMethod) {
-          case 'Login': {
-            url = 'http://localhost:8000/users/authenticate'
-            break
-          }
-          case 'Register': {
-            url = 'http://localhost:8000/users/register'
-            break
-          }
-        }
+        const url: string = `http://localhost:8000/users/${action.authMethod === 'Login' ? 'authenticate' : 'register'}`
         return this.authService
           .authorize(action.username, action.password, url)
           .pipe(

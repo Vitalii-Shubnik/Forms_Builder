@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core'
-import { BehaviorSubject } from 'rxjs'
+import { BehaviorSubject, Observable } from 'rxjs'
 
 @Injectable()
 export class FormElDraggingService {
-  private dragging = new BehaviorSubject<boolean>(false)
-  readonly dragging$ = this.dragging.asObservable()
+  private dragging: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false)
+  readonly dragging$: Observable<boolean> = this.dragging.asObservable()
   constructor() { }
-  setDragging(state: boolean) {
+  setDragging(state: boolean): void {
     this.dragging.next(state)
   }
 }
