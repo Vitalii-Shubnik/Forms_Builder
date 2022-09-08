@@ -2,7 +2,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop'
 import { PortalModule } from '@angular/cdk/portal'
 import { CommonModule } from '@angular/common'
 import { NgModule } from '@angular/core'
-import { FormsModule } from '@angular/forms'
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { MatButtonModule } from '@angular/material/button'
 import { MatCheckboxModule } from '@angular/material/checkbox'
 import { MatDialogModule } from '@angular/material/dialog'
@@ -11,6 +11,7 @@ import { MatIconModule } from '@angular/material/icon'
 import { MatInputModule } from '@angular/material/input'
 import { PushModule } from '@ngrx/component'
 import { IsNotEmptyObjModule } from 'src/app/core/pipes/is-not-empty-obj.module'
+import { VariableExistsModule } from 'src/app/core/pipes/variable-exists.module'
 import { FormElDraggingService } from 'src/app/core/services/form-el-dragging.service'
 import { FormItemService } from 'src/app/core/services/form-item.service'
 import { DroplistModule } from '../droplist/droplist.module'
@@ -43,6 +44,8 @@ import { SecondSectionComponent } from './second-section.component'
     DroplistModule,
     IsNotEmptyObjModule,
     MatDialogModule,
+    VariableExistsModule,
+    ReactiveFormsModule
   ],
   exports: [
     SecondSectionComponent

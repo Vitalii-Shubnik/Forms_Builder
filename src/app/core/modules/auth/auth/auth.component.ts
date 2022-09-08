@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { Store } from '@ngrx/store'
+import { Observable } from 'rxjs'
 import * as AuthActions from 'src/app/shared/actions/auth.actions'
 import { selectAuthUsername, selectIsLoggedIn } from 'src/app/shared/selectors/auth.selector'
 import { authMethodEnum } from '../../../enums/authMethod'
@@ -13,15 +14,15 @@ import { authMethodEnum } from '../../../enums/authMethod'
 })
 export class AuthComponent implements OnInit {
   form: FormGroup
-  isLoggedIn$: any
-  userName$: any
+  isLoggedIn$: Observable<boolean>
+  userName$: Observable<string>
 
   constructor(
     private fb: FormBuilder,
     private store: Store
   ) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.userName$ = this.store.select(selectAuthUsername)
     this.isLoggedIn$ = this.store.select(selectIsLoggedIn)
 

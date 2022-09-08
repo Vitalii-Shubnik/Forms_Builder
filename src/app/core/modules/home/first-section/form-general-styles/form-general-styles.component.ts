@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core'
+import { FormControl, FormGroup } from '@angular/forms'
 import { DumbComponent } from 'src/app/core/models/dumbComponent'
-import { FormGeneralStyles } from 'src/app/core/models/formGeneralStyles'
 
 @Component({
   selector: 'app-form-general-styles',
@@ -9,14 +9,18 @@ import { FormGeneralStyles } from 'src/app/core/models/formGeneralStyles'
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FormGeneralStylesComponent extends DumbComponent {
-  @Input() styles: FormGeneralStyles
-  @Output() stylesChanged = new EventEmitter()
-
+  @Output() stylesChanged = new EventEmitter<void>()
+  @Input() form: FormGroup<{
+    'border': FormControl<string|null>,
+    'fontStyle': FormControl<string|null>,
+    'backgroundColor': FormControl<string|null>
+  }>;
+  
   constructor() {
     super()
   }
 
-  setFormStyles() {
+  setFormStyles(): void {
     this.stylesChanged.emit()
   }
 }

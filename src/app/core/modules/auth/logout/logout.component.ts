@@ -7,15 +7,15 @@ import { DumbComponent } from 'src/app/core/models/dumbComponent';
   styleUrls: ['./logout.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class LogoutComponent extends DumbComponent{
+export class LogoutComponent extends DumbComponent {
   @Input() userName: string = null
-  @Output() logout = new EventEmitter()
+  @Output() logout = new EventEmitter<void>()
 
-  constructor() { 
+  constructor() {
     super()
   }
 
-  logoutClick(){
+  logoutClick(): void {
     this.logout.emit()
   }
 }

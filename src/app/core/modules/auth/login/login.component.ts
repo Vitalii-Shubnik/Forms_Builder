@@ -19,7 +19,7 @@ export class LoginComponent extends DumbComponent {
     super()
   }
 
-  signInClick() {
+  signInClick(): void {
     this.signIn.emit({
       email: this.form?.value?.email,
       password: this.form?.value?.password,
@@ -27,7 +27,7 @@ export class LoginComponent extends DumbComponent {
     })
   }
 
-  toggleSwitchMethod() {
+  toggleSwitchMethod(): void {
     this.authMethod === 'Login' ? this.authMethod = authMethodEnum.register : this.authMethod = authMethodEnum.login
   }
 }

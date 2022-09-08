@@ -1,6 +1,6 @@
 import { AvailableItems } from '../enums/availableItem'
 
-export interface ActiveElement {
+export interface DropListElementData {
   type: AvailableItems,
-  element: HTMLElement
+  data: string | string[]
 }
