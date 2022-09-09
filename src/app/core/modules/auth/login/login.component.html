@@ -1,0 +1,29 @@
+<form class="login-form" [formGroup]="form">
+  <legend class="auth-form-legend">{{authMethod === 'Login' ? 'Sign in' : 'Sign up'}}</legend>
+  <mat-form-field appearance="outline">
+    <mat-label>Email</mat-label>
+    <input id="auth-form-email" matInput name="email" formControlName="email">
+    <mat-error *ngIf="form.get('email')?.errors && form.get('email')?.errors['required']">
+      This field is required
+    </mat-error>
+    <mat-error *ngIf="form.get('email')?.errors && form.get('email')?.errors['email']">
+      Please enter valid email
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label>Password</mat-label>
+    <input id="auth-form-password" matInput name="password" formControlName="password" type="password">
+    <mat-error *ngIf="form.get('password')?.errors">Password is too short</mat-error>
+  </mat-form-field>
+  <div class="form-method">
+    <button mat-raised-button [disabled]="!form.valid" class="submit-form-button" (click)="signInClick()">
+      {{authMethod === 'Login' ? 'Login' : 'Register'}}
+    </button>
+    <span class="auth-form-info">
+      {{authMethod === 'Login' ? 'New user?' : 'Already have an account?'}}<br/>
+      <span id="auth-form-change-method" class="change-method-text" (click)="toggleSwitchMethod()">
+        {{authMethod === 'Login' ? 'Sign up' : 'Sign in'}}
+      </span>
+    </span>
+  </div>
+</form>

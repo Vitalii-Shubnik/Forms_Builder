@@ -1,0 +1,18 @@
+<mat-accordion>
+  <mat-expansion-panel hideToggle>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Form General Styles
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <app-form-general-styles [form]="formGeneralStyles" (stylesChanged)="setFormStyles()"></app-form-general-styles>
+  </mat-expansion-panel>
+  <mat-expansion-panel hideToggle>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Form Element Styles
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <div [cdkPortalOutlet]="portal"></div>
+  </mat-expansion-panel>
+</mat-accordion>

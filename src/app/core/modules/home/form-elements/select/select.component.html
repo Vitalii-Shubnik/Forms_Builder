@@ -1,0 +1,4 @@
+<select #coreElement (click)="onClick(coreElement)" class="available-select" [attr.disabled]="disabled ? true: null">
+  <option *ngIf="data.length === 0" selected>Options</option>
+  <option *ngFor="let item of data" [value]="item">{{item}}</option>
+</select>

@@ -1,0 +1,9 @@
+<div class="auth-page"></div>
+<ng-container *ngIf="!(isLoggedIn$ | ngrxPush) else authorized">
+  <app-login class="auth-form-container" [form]="form"
+    (signIn)="login($event.email, $event.password, $event.authMethod)">
+  </app-login>
+</ng-container>
+<ng-template #authorized>
+  <app-logout [userName]="userName$ | ngrxPush" (logout)="logout()"></app-logout>
+</ng-template>
