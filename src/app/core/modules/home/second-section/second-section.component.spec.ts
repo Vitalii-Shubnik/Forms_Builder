@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Output } from '@angular/core'
 import { ComponentFixture, TestBed } from '@angular/core/testing'
+import { FormBuilder } from '@angular/forms'
 import { Store } from '@ngrx/store'
 import { of } from 'rxjs'
 import { AvailableItems } from 'src/app/core/enums/availableItem'
@@ -28,7 +29,16 @@ fdescribe('SecondSectionComponent', () => {
   let mockFormItemService: any
   let mockPortalBridge: any
   let mockStore: any
-
+  const initial = {
+    height: null,
+    width: null,
+    fontWeight: null,
+    fontSize: null,
+    color: null,
+    borderStyle: null,
+    required: null,
+    placeholder: null
+  }
   beforeEach(async () => {
     mockFormItemService = jasmine.createSpyObj(FormItemService, ['setActive', 'getStyles', 'element$'])
     mockPortalBridge = jasmine.createSpyObj(PortalBridgeService, ['setPortal'])
@@ -41,13 +51,14 @@ fdescribe('SecondSectionComponent', () => {
         EditFieldsComponent
       ],
       providers: [
+        FormBuilder,
         { provide: FormItemService, useValue: mockFormItemService },
         { provide: PortalBridgeService, useValue: mockPortalBridge },
         { provide: Store, useValue: mockStore },
       ]
     })
       .compileComponents()
-    
+
     fixture = TestBed.createComponent(SecondSectionComponent)
     component = fixture.componentInstance
     component.activeItem$ = of({ type: AvailableItems.checkbox, element: document.createElement('input') })
@@ -64,7 +75,7 @@ fdescribe('SecondSectionComponent', () => {
   })
 
   xit('should dispatch set styles', () => {
-    component.styles = { height: '100px', width: '150px' }
+    component.formStyles.setValue({ ...initial, height: '100px', width: '150px' })
     component.setElementCurrentStyleValues()
     // spyOn(component, 'getElementCurrentStyleValues')
     expect(mockStore.dispatch).toHaveBeenCalled()
@@ -72,7 +83,7 @@ fdescribe('SecondSectionComponent', () => {
 
   it('should remove styles', () => {
     component.onRemoved()
-    expect(component.styles).toEqual({})
+    expect(component.formStyles.value).toEqual({...initial})
     expect(component.previousStyles).toEqual({})
     expect(mockFormItemService.setActive).toHaveBeenCalledOnceWith(null)
   })

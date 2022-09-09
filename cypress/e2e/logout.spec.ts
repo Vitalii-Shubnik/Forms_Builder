@@ -6,14 +6,14 @@ describe('Auth Test', () => {
   })
   
   it('Visits the initial project page ', () => {
-    cy.visit(routes.home, { failOnStatusCode: false })
+    cy.visit(routes['home'], { failOnStatusCode: false })
 
-    cy.url().should('be.equals', routes.auth)
+    cy.url().should('be.equals', routes['auth'])
   })
 
   it('Register user', () => {
     login()
-    cy.url().should('be.equals', routes.home)
+    cy.url().should('be.equals', routes['home'])
   })
 
   it('Logout', () => {

@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common'
 import { Component, EventEmitter, Input, Output } from '@angular/core'
 import { ComponentFixture, TestBed } from '@angular/core/testing'
-import { FormBuilder } from '@angular/forms'
+import { FormBuilder, FormGroup } from '@angular/forms'
 import { PushModule } from '@ngrx/component'
 import { Store } from '@ngrx/store'
 import { of } from 'rxjs'
@@ -15,7 +15,7 @@ import { AuthComponent } from './auth.component'
   template: '<p>Mock Login Component</p>'
 })
 class MockLoginComponent {
-  @Input() form: any
+  @Input() form: FormGroup
 }
 
 @Component({
@@ -23,8 +23,8 @@ class MockLoginComponent {
   template: '<p>Mock Logout Component</p>'
 })
 class MockLogoutComponent {
-  @Input() userName: any
-  @Output() logout = new EventEmitter()
+  @Input() userName: string
+  @Output() logout = new EventEmitter<void>()
 }
 
 fdescribe('AuthComponent', () => {

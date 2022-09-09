@@ -23,7 +23,7 @@ class mockTemplatePortalComponent {
 })
 class mockStylesComponent {
   @Input() styles: any
-  @Output() stylesChanged = new EventEmitter()
+  @Output() stylesChanged = new EventEmitter<void>()
 }
 
 xdescribe('FirstSectionComponent', () => {
@@ -61,7 +61,7 @@ xdescribe('FirstSectionComponent', () => {
     fixtureSecond = TestBed.createComponent(mockTemplatePortalComponent)
 
     component = fixture.componentInstance
-    component.portal$ = of(fixtureSecond.componentInstance.portalContent)
+    component.portal = fixtureSecond.componentInstance.portalContent
     mockformStylesService.getStyles.and.returnValue({ backgroundColor: 'rgb(0,0,0)', border: '1px solid black', fontStyle: 'normal' })
     fixture.detectChanges()
   })

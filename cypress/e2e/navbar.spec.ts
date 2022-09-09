@@ -6,14 +6,14 @@ describe('App Test', () => {
   })
   
   it('Login', () => {
-    cy.visit(routes.home, { failOnStatusCode: false })
+    cy.visit(routes['home'], { failOnStatusCode: false })
     login()
-    cy.url().should('be.equals', routes.home)
+    cy.url().should('be.equals', routes['home'])
   })
 
   it('should logout through navbar', () => {
     cy.get('div.ng-tns-c16-2.toast-message.ng-star-inserted').should('be.visible').click()
     cy.get('div.navbar>button').should('be.visible').click()
-    cy.url().should('be.equals', routes.auth)
+    cy.url().should('be.equals', routes['auth'])
   })
 })

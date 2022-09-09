@@ -6,7 +6,7 @@ describe('Register for first time', () => {
   })
   
   it('should register user', () => {
-    cy.visit(routes.home, { failOnStatusCode: false })
+    cy.visit(routes['home'], { failOnStatusCode: false })
 
     cy.get('#auth-form-email')
       .should('be.visible')

@@ -1,7 +1,9 @@
+import { CdkDragDrop } from '@angular/cdk/drag-drop'
 import { Component, EventEmitter, Input, Output } from '@angular/core'
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { AvailableItems } from 'src/app/core/enums/availableItem'
 import { ActiveElement } from 'src/app/core/models/activeElement'
+import { DropListElementData } from 'src/app/core/models/dropListElementData'
 import { FormElDraggingService } from 'src/app/core/services/form-el-dragging.service'
 import { FormGeneralService } from 'src/app/core/services/form-general.service'
 import { FormItemService } from 'src/app/core/services/form-item.service'
@@ -13,14 +15,14 @@ import { MainFormComponent } from './main-form.component'
 })
 class DroplistMockComponent {
   @Input() disabled: boolean = false
-  @Input() dropListData: any[] = []
+  @Input() dropListData: DropListElementData[] = []
   @Input() formClass: string = 'default-form'
   @Input() noReturnPredicate = () => true
   @Input() dragHandle: boolean = false
-  @Output() SetActive = new EventEmitter<any>()
-  @Output() SetDropped = new EventEmitter<any>()
-  @Output() dragEvent = new EventEmitter<any>()
-  @Output() mainformInit = new EventEmitter<any>()
+  @Output() SetActive = new EventEmitter<ActiveElement>()
+  @Output() SetDropped = new EventEmitter<CdkDragDrop<DropListElementData[]>>()
+  @Output() dragEvent = new EventEmitter<boolean>()
+  @Output() mainformInit = new EventEmitter<HTMLElement>()
 }
 
 fdescribe('MainFormComponent', () => {

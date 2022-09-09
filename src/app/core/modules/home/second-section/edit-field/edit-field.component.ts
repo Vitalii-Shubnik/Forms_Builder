@@ -1,5 +1,6 @@
 import { CdkDragDrop } from '@angular/cdk/drag-drop'
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core'
+import { DropListElementData } from 'src/app/core/models/dropListElementData'
 import { DumbComponent } from 'src/app/core/models/dumbComponent'
 
 @Component({
@@ -13,13 +14,13 @@ export class EditFieldComponent extends DumbComponent {
   @Input() icon: string
   @Input() className: string
   @Input() activeClassName: string
-  @Output() dropped = new EventEmitter<CdkDragDrop<any, any, any>>()
+  @Output() dropped = new EventEmitter<CdkDragDrop<DropListElementData[]>>()
 
   constructor() {
     super()
   }
 
-  drop(event: CdkDragDrop<any, any, any>): void {
+  drop(event: CdkDragDrop<DropListElementData[]>): void {
     this.dropped.emit(event)
   }
 }

@@ -23,7 +23,13 @@
       "dom"
     ]
   },
-  "include": ["src/**/*"],
+  "include": [
+    "src",
+    "cypress"
+  ],
+  "exclude": [
+    "cypress"
+  ],
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
     "strictInjectionParameters": true,

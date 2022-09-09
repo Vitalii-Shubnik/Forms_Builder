@@ -39,7 +39,6 @@ export class SecondSectionComponent implements OnInit, OnDestroy, AfterViewInit 
     required: null,
     placeholder: null
   }
-  styles: ElementStyles = null
   previousStyles: ElementStyles = null
   destroy$: Subject<boolean> = new Subject<boolean>()
   justRemoved: boolean = false;
