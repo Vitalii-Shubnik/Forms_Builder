@@ -1,11 +1,11 @@
 import { TestBed } from '@angular/core/testing'
+import { ElementStyles } from 'src/app/shared/statesModels/elementStyles.state'
 import { AvailableItems } from '../enums/availableItem'
 import { FormItemService } from './form-item.service'
 
 fdescribe('FormItemService', () => {
   let service: FormItemService
-  let mockWindow: any
-  let styles: any
+  let mockWindow: Window
   beforeEach(() => {
     mockWindow = jasmine.createSpyObj('Window', ['getComputedStyle'])
     TestBed.configureTestingModule({
@@ -17,8 +17,54 @@ fdescribe('FormItemService', () => {
     service = TestBed.inject(FormItemService)
   })
 
-  beforeEach(() => {
-    styles = {
+  it('should set active element', () => {
+    const button: HTMLButtonElement = document.createElement('button')
+    service.setActive({ type: AvailableItems.button, element: button })
+    service.element$.subscribe(el => {
+      expect(el).toEqual({ type: AvailableItems.button, element: button })
+    })
+  })
+
+  it('should return styles of checkbox', () => {
+    const stylesCheckBox: ElementStyles = {
+      width: '200px',
+      height: '100px',
+      required: true,
+    }
+    const checkbox = document.createElement('input')
+    checkbox.setAttribute('type', 'checkbox')
+    const checkboxStyles = {
+      ...stylesCheckBox,
+    }
+    spyOn(service, 'getCheckboxStyles').and.returnValue(checkboxStyles)
+    service.setActive({ type: AvailableItems.checkbox, element: checkbox })
+    expect(service.getStyles()).toEqual(checkboxStyles)
+  })
+
+  it('should return styles of button and select', () => {
+    const stylesSelect: ElementStyles = {
+      width: '200px',
+      height: '100px',
+      fontSize: '14px',
+      fontWeight: '600',
+      color: 'rgb(255,0,0)',
+      borderStyle: '1px solid black',
+    }
+    const button = document.createElement('button')
+    const select = document.createElement('select')
+    const buttonStyles = {
+      ...stylesSelect,
+    }
+    const selectStyles = { ...buttonStyles }
+    spyOn(service, 'getSelectStyles').and.returnValue(buttonStyles)
+    service.setActive({ type: AvailableItems.button, element: button })
+    expect(service.getStyles()).toEqual(buttonStyles)
+    service.setActive({ type: AvailableItems.select, element: select })
+    expect(service.getStyles()).toEqual(selectStyles)
+  })
+
+  it('should return styles of input and textarea', () => {
+    const stylesFull: ElementStyles = {
       width: '200px',
       height: '100px',
       fontSize: '14px',
@@ -28,52 +74,11 @@ fdescribe('FormItemService', () => {
       required: true,
       placeholder: ''
     }
-    spyOn(service, 'getFullStyles').and.returnValue(styles)
-  })
-
-  it('should set active element', () => {
-    const button:HTMLButtonElement = document.createElement('button')
-    service.setActive({ type: AvailableItems.button, element: button })
-    service.element$.subscribe(el => {
-      expect(el).toEqual({ type: AvailableItems.button, element: button })
-    })
-  })
-
-  it('should return styles of checkbox', () => {
-    const checkbox = document.createElement('input')
-    checkbox.setAttribute('type', 'checkbox')
-    const checkboxStyles = {
-      ...styles,
-      fontSize: null,
-      fontWeight: null,
-      color: null,
-      borderStyle: null,
-      placeholder: null
-    }
-    service.setActive({ type: AvailableItems.checkbox, element: checkbox })
-    expect(service.getStyles()).toEqual(checkboxStyles)
-  })
-
-  it('should return styles of button and select', () => {
-    const button = document.createElement('button')
-    const select = document.createElement('select')
-    const buttonStyles = {
-      ...styles,
-      placeholder: null,
-      required: null
-    }
-    const selectStyles = { ...buttonStyles }
-    service.setActive({ type: AvailableItems.button, element: button })
-    expect(service.getStyles()).toEqual(buttonStyles)
-    service.setActive({ type: AvailableItems.select, element: select })
-    expect(service.getStyles()).toEqual(selectStyles)
-  })
-
-  it('should return styles of input and textarea', () => {
     const input = document.createElement('input')
     const textarea = document.createElement('textarea')
-    const inputStyles = { ...styles }
-    const textareaStyles = { ...styles }
+    const inputStyles = { ...stylesFull }
+    const textareaStyles = { ...stylesFull }
+    spyOn(service, 'getInputStyles').and.returnValue(inputStyles)
     expect(service.getStyles()).toBeFalsy()
     service.setActive({ type: AvailableItems.input, element: input })
     expect(service.getStyles()).toEqual(inputStyles)
@@ -100,7 +105,7 @@ fdescribe('FormItemService', () => {
     service.setStyles({ required: true, placeholder: '123' })
     expect([input.getAttribute('required'), input.getAttribute('placeholder')]).toEqual(['true', '123'])
     service.setStyles({ required: false, placeholder: '' })
-    expect([input.getAttribute('required'), input.getAttribute('placeholder')]).toEqual([null, null])
+    expect([input.getAttribute('required'), input.getAttribute('placeholder')]).toEqual([null, ''])
   })
 
   it('should be created', () => {

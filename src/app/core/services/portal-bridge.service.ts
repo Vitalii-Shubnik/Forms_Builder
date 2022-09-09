@@ -1,13 +1,13 @@
 import { TemplatePortal } from '@angular/cdk/portal'
 import { Injectable } from '@angular/core'
-import { BehaviorSubject, ReplaySubject } from 'rxjs'
+import { Subject } from 'rxjs'
 
 @Injectable()
 export class PortalBridgeService {
-  private activePortal = new ReplaySubject<TemplatePortal<any>>(2)
+  private activePortal = new Subject<TemplatePortal<HTMLElement>>()
   readonly portal$ = this.activePortal.asObservable()
 
-  setPortal(portal: TemplatePortal<any>) {
+  setPortal(portal: TemplatePortal<HTMLElement>) {
     this.activePortal.next(portal)
   }
   detachPortal() {

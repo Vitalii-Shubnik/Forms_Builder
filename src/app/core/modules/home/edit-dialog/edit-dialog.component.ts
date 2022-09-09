@@ -1,11 +1,8 @@
 import { Component, Inject, OnInit } from '@angular/core'
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog'
 import { AvailableItems } from 'src/app/core/enums/availableItem'
+import { DropListElementData } from 'src/app/core/models/dropListElementData'
 
-export interface DataType {
-  type: AvailableItems,
-  data: any
-}
 
 @Component({
   selector: 'app-edit-dialog',
@@ -13,12 +10,12 @@ export interface DataType {
   styleUrls: ['./edit-dialog.component.scss']
 })
 export class EditDialogComponent implements OnInit {
-  temp: string
+  temp: string | string[]
   temparr: string[]
 
   constructor(
     public dialogRef: MatDialogRef<EditDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: DataType,
+    @Inject(MAT_DIALOG_DATA) public data: DropListElementData,
   ) { }
 
   ngOnInit(): void {
@@ -40,7 +37,7 @@ export class EditDialogComponent implements OnInit {
 
   applyOptionForSelect(): void {
     if (this.temp) {
-      this.temparr.push(this.temp)
+      this.temparr.push(this.temp as string)
       this.temp = ''
     }
   }

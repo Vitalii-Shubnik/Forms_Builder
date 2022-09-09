@@ -2,7 +2,7 @@ import { Action } from '@ngrx/store'
 import { elementStylesReducer, initialElement } from './elementStyles.reducer'
 import { elementChangeStyles } from '../actions/elementStyles.actions'
 
-fdescribe('Auth Reducer', () => {
+fdescribe('Element Styles Reducer', () => {
   let action: Action
 
   beforeEach(() => {
@@ -21,7 +21,7 @@ fdescribe('Auth Reducer', () => {
     expect(elementStylesReducer(initial, action)).toEqual({ fontSize: '300', color: 'rgb(0,0,224)' })
 
     action = elementChangeStyles({ styles: { color: 'rgb(0,0,224)', placeholder: '123' } })
-    expect(elementStylesReducer({ fontSize: '300' }, action)).toEqual({ fontSize: '300', color: 'rgb(0,0,224)', placeholder: '123' })
+    expect(elementStylesReducer({ fontSize: '300' }, action)).toEqual({ color: 'rgb(0,0,224)', placeholder: '123' })
 
     action = elementChangeStyles({ styles: { fontSize: '400', color: 'rgb(0,0,224)', placeholder: '123' } })
     expect(elementStylesReducer({ fontSize: '300' }, action)).toEqual({ fontSize: '400', color: 'rgb(0,0,224)', placeholder: '123' })
